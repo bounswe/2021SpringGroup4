@@ -1,5 +1,5 @@
 # CMPE 352 - Group 4
-### Our project repository for the CMPE 352 course at Boğaziçi University.
+Our project repository for the CMPE 352 course at Boğaziçi University.
 
 # About Us
 :page_with_curl: **Members**
