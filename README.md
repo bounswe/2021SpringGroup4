@@ -1,5 +1,5 @@
 # CMPE 352 - Group 4
-Our project repository for the CMPE 352 course at Boğaziçi University.
+This is our project repository for CMPE 352, Fundamentals of Software Engineering course at Boğaziçi University. 
 
 # About Us
 :page_with_curl: **Members**
