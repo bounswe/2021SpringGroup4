@@ -11,4 +11,4 @@
 * Yiğit Sarıoğlu
 * Yağmur Selek
 
-**Supervising Teaching Assistant:** Emre Bilgili
+:cop: **Supervising Teaching Assistant:** Emre Bilgili
