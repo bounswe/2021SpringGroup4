@@ -1,6 +1,6 @@
 # CMPE 352 - Group 4
 
-**Members**
+:page_with_curl: **Members**
 * Salih Furkan Akkurt
 * Ece Dilara Aslan
 * İhsan Mert Atalay
