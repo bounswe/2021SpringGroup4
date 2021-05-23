@@ -1,3 +1,23 @@
+"""
+Created on May 23rd, 2021
+
+This script handles the GET and POST requests to the register API endpoint http://localhost:8000/api/register/
+
+    'GET':
+        Returns the registration page.
+    'POST':
+        Validates the information and registers the user into the database if valid, returns a descriptive error if not
+        Use the following JSON format to issue POST requests to this endpoint
+        JSON Format : { 'username': "",                 string, the username selected by the user
+                        'password': "",                 string, the password selected by the user
+                        'email':"",                     string, the email address the user would like to register with
+                        'description':"",               string, a description about the user, can be NULL
+                        'age':"",                       int, age of the user, can be NULL
+                        'location':"",                  string, location provided by the user, can be NULL
+
+@author: Tolga Kerimoğlu
+"""
+
 import copy, hashlib, random, json
 from django.shortcuts import render
 from rest_framework import serializers
