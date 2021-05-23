@@ -57,6 +57,10 @@ def register_api(request):
                                                                 data.get('age'), 
                                                                 data.get('location')) 
 
+        if len(password) == 0:
+            response.status_code = 400
+            response.data = { 'password': 'A password must be provided.'}
+            return response
         hashed_pw = hashlib.sha256(password.encode()).hexdigest() # Hash the password
         form = copy.copy(data) # Copy the data to a new dict
         form['hashed_pw'] = hashed_pw # Insert the hashed password
@@ -66,6 +70,7 @@ def register_api(request):
             response.data = { 'status': 'registration SUCCESSFUL'}
             serializer.save()
         else: # If not valid, return the appropriate page
+            response.status_code = 400
             response.data = serializer.errors
             # TODO: Instead of returning the errors in JSON format, return a proper HTML file displaying the error
 
