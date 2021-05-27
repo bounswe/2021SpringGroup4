@@ -10,3 +10,9 @@ class User(models.Model):
     description = models.TextField(max_length=250, null=True, blank=True)
     age = models.CharField(max_length=50, null=True, blank=True)
     location = models.CharField(max_length=60, null=True, blank=True)
+
+class Post(models.Model):
+    username = models.CharField(max_length=30, unique=True)
+    title = models.CharField(max_length=50, unique=True)
+    description = models.TextField(max_length=250, null=True, blank=True)
+    location = models.CharField(max_length=60, null=True, blank=True)
