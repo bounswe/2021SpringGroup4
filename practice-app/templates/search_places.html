@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  td, th {
+      border: 1px solid #999;
+      padding: 0.5rem; }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% if form %}
+  <center>
+    <h2>Search Places</h2>
+<form id="searchPlacesForm" method="POST" class="form-group" validate action="">
+  {{ form }}
+  <button type='submit'>Submit</button>
+</center>
+  {% else %}
+  <center>
+    <h2>Here are some locations for you</h2>
+<form id="searchPlacesForm" method="POST" class="form-group" validate action="">
+
+    <table>
+        <tr>
+        <th>Place</th>
+        <th>Type</th>
+        <th>Address</th>
+        <th>Rating(Out Of 5)</th>
+        </tr>
+        {% for row in results %}
+            <tr>
+                <td>{{ row.name }}</td>
+                <td>{{ row.types.0 }}</td>
+                <td>{{ row.vicinity }}</td>
+                <td>{{ row.rating }}</td>
+                
+            </tr>
+        {% endfor %}
+    </table>
+  </center>
+  
+  {% endif %}
+
+</form>
+</body>
+</html>

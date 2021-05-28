@@ -22,5 +22,5 @@ class Migration(migrations.Migration):
                 ('age', models.CharField(max_length=50, null=True)),
                 ('location', models.CharField(max_length=60, null=True)),
             ],
-        ),
+        )
     ]
