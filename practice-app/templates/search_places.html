@@ -19,6 +19,8 @@
   {{ form }}
   <button type='submit'>Submit</button>
 </center>
+  {% elif fail == True %}
+   <h3>You need to ender a valid location and keyword!</h3>
   {% else %}
   <center>
     <h2>Here are some locations for you</h2>
