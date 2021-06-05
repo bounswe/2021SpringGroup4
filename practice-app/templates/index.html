@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="teknik.css">
 
   <style>
+     .pro{
+    padding-top: 50px;
+    margin-top: -50px;
+}
       p{font-size: 15px;
       text-align: justify;
       text-indent: 50px;
@@ -87,7 +91,7 @@ h2{
             </nav>
             <div class="col-sm-8"   style="float: right; ">
               
-                <div id="section1">    
+                <div class="pro" id="section1">    
                     <h1>1.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -97,7 +101,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section2">    
+                <div class="pro" id="section2">    
                     <h1>2.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -107,7 +111,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section3">    
+                <div class="pro" id="section3">    
                     <h1>3.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -117,7 +121,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section4">    
+                <div class="pro" id="section4">    
                     <h1>4.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -127,7 +131,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section5">    
+                <div class="pro" id="section5">    
                     <h1>5.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -137,7 +141,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section6">    
+                <div class="pro" id="section6">    
                     <h1>6.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -147,7 +151,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section7">    
+                <div class="pro" id="section7">    
                     <h1>7.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -157,7 +161,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section8">    
+                <div class="pro" id="section8">    
                     <h1>8.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -167,7 +171,7 @@ h2{
   
                 </p>
                 </div>
-                <div id="section9">    
+                <div class="pro" id="section9">    
                     <h1>9.Project Name - Name Surname</h1>
                     <img id="img" src="img.jpg" style="width: 200px; height: 150px; float :right; margin: 0px 0px 15px 15px;">
     
@@ -183,15 +187,21 @@ h2{
             </div>
           </div>
         </div>
-        <script>$('.navbar-collapse a').click(function(){
+        <script>
+      
+        
+        $('.navbar-collapse a').click(function(){
+            
             $(".navbar-collapse").collapse('hide');
           });
           
           $(document).ready(function(){
             // Add scrollspy to <body>
-          
+             
             // Add smooth scrolling on all links inside the navbar
             $(" a").on('click', function(event) {
+
+                
               // Make sure this.hash has a value before overriding default behavior
               if (this.hash !== "") {
                 // Prevent default anchor click behavior
@@ -211,7 +221,9 @@ h2{
                 });
               }  // End if
             });
+            
           });
+        
           </script>
           
         </body>
