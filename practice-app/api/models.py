@@ -16,3 +16,12 @@ class Post(models.Model):
     title = models.CharField(max_length=50, unique=True)
     description = models.TextField(max_length=250, null=True, blank=True)
     location = models.CharField(max_length=60, null=True, blank=True)
+
+class EventPost(models.Model):
+    eventName = models.CharField(max_length=50, unique=True)
+    sportType = models.CharField(max_length=50)
+    numOfPlayers = models.IntegerField(null=True, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
+    date= models.TextField(max_length=250, null=True, blank=True)
+    time= models.TextField(max_length=250, null=True, blank=True)
+   

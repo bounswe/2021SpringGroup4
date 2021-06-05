@@ -1,6 +1,7 @@
 from django.http.response import JsonResponse
 from django.shortcuts import render
 
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
@@ -9,6 +10,7 @@ from api.register.register import register_api
 from api.places.places import places_api
 from api.random_article.main import ra_api
 from api.eq_post.main import eq_post_api
+from api.event_post.main import event_post_api
 
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
@@ -18,6 +20,7 @@ import pycountry
 
 from .models import User
 from .models import Post
+from .models import EventPost
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -74,3 +77,8 @@ def covid_country(request,countrycode):
 @api_view(['GET', 'POST'])
 def eq_post(request):
     return eq_post_api(request)
+
+
+@api_view(['GET', 'POST'])
+def event_post(request):
+    return event_post_api(request)
