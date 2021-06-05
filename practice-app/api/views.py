@@ -10,7 +10,7 @@ from api.register.register import register_api
 from api.places.places import places_api
 from api.random_article.main import ra_api
 from api.eq_post.main import eq_post_api
-from havalı.hava.hava import hava_api
+from api.hava.hava import hava_api
 
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
