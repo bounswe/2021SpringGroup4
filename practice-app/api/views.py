@@ -16,6 +16,8 @@ from api.covid_reports.form_search import SearchForm
 from django.http import HttpResponse
 import pycountry
 
+from api.formula1.formula1 import formula1_api, driver_info_api
+
 from .models import User
 from .models import Post
 
@@ -74,3 +76,11 @@ def covid_country(request,countrycode):
 @api_view(['GET', 'POST'])
 def eq_post(request):
     return eq_post_api(request)
+
+@api_view(['GET'])
+def formula1(request):
+    return formula1_api(request)
+
+@api_view(['GET', 'POST'])
+def driver_info(request):
+    return driver_info_api(request)
