@@ -5,14 +5,15 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from .serializers import PostSerializer
-from api.register.register import register_api
-from api.places.places import places_api
-from api.random_article.main import ra_api
-from api.eq_post.main import eq_post_api
+from .register.register import register_api
+from .places.places import places_api
+from .random_article.main import ra_api
+from .eq_post.main import eq_post_api
 
-from api.covid_reports.main import covid_api
-from api.covid_reports.main import covid_country_api
-from api.covid_reports.form_search import SearchForm
+from .covid_reports.main import covid_api
+from .covid_reports.main import covid_country_api
+from .covid_reports.form_search import SearchForm
+from .search_user.search_user import search_user_api
 from django.http import HttpResponse
 import pycountry
 
@@ -74,3 +75,10 @@ def covid_country(request,countrycode):
 @api_view(['GET', 'POST'])
 def eq_post(request):
     return eq_post_api(request)
+
+
+@api_view(['GET', 'POST'])
+def search_user(request):
+    return search_user_api(request)
+
+

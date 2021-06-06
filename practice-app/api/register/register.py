@@ -50,12 +50,14 @@ def register_api(request):
         response['Content-type'] = 'application/json' # Set it up as a json response
         data = request.data 
         # Extract user information from the request
-        (username, password, email, description, age, location) = (data.get('username'), 
+        (username, password, email, description, age, location, fullname, phone) = (data.get('username'), 
                                                                 data.get('password'), 
                                                                 data.get('email'), 
                                                                 data.get('description'), 
                                                                 data.get('age'), 
-                                                                data.get('location')) 
+                                                                data.get('location'),  
+                                                                data.get('fullname'),
+                                                                data.get('phone'))       
 
         if len(password) == 0:
             response.status_code = 400
