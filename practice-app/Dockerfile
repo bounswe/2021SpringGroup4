@@ -1,12 +1,12 @@
 FROM python:3.9.5-buster
 
-WORKDIR /app
+ADD . /app
 
-COPY . .
+WORKDIR /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 8000
 
 RUN python manage.py makemigrations
 
