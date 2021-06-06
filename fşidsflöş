@@ -1,0 +1,379 @@
+[1mdiff --git a/practice-app/.idea/inspectionProfiles/Project_Default.xml b/practice-app/.idea/inspectionProfiles/Project_Default.xml[m
+[1mdeleted file mode 100644[m
+[1mindex 01b5e87..0000000[m
+[1m--- a/practice-app/.idea/inspectionProfiles/Project_Default.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,31 +0,0 @@[m
+[31m-<component name="InspectionProjectProfileManager">[m
+[31m-  <profile version="1.0">[m
+[31m-    <option name="myName" value="Project Default" />[m
+[31m-    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">[m
+[31m-      <option name="ignoredErrors">[m
+[31m-        <list>[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-          <option value="W29" />[m
+[31m-          <option value="E501" />[m
+[31m-        </list>[m
+[31m-      </option>[m
+[31m-    </inspection_tool>[m
+[31m-  </profile>[m
+[31m-</component>[m
+\ No newline at end of file[m
+[1mdiff --git a/practice-app/.idea/misc.xml b/practice-app/.idea/misc.xml[m
+[1mdeleted file mode 100644[m
+[1mindex 9a2d068..0000000[m
+[1m--- a/practice-app/.idea/misc.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,4 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<project version="4">[m
+[31m-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9.5 virtualenv at C:\Users\yiğit\Desktop\SPRING2021\cmpe352 - software engineering\week9\2021SpringGroup4\sanalortam" project-jdk-type="Python SDK" />[m
+[31m-</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/practice-app/.idea/modules.xml b/practice-app/.idea/modules.xml[m
+[1mdeleted file mode 100644[m
+[1mindex 56d6761..0000000[m
+[1m--- a/practice-app/.idea/modules.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,8 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<project version="4">[m
+[31m-  <component name="ProjectModuleManager">[m
+[31m-    <modules>[m
+[31m-      <module fileurl="file://$PROJECT_DIR$/.idea/practice-app.iml" filepath="$PROJECT_DIR$/.idea/practice-app.iml" />[m
+[31m-    </modules>[m
+[31m-  </component>[m
+[31m-</project>[m
+\ No newline at end of file[m
+[1mdiff --git a/practice-app/.idea/practice-app.iml b/practice-app/.idea/practice-app.iml[m
+[1mdeleted file mode 100644[m
+[1mindex c605f0d..0000000[m
+[1m--- a/practice-app/.idea/practice-app.iml[m
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<module type="PYTHON_MODULE" version="4">[m
+[31m-  <component name="NewModuleRootManager">[m
+[31m-    <content url="file://$MODULE_DIR$" />[m
+[31m-    <orderEntry type="jdk" jdkName="Python 3.9.5 virtualenv at C:\Users\yiğit\Desktop\SPRING2021\cmpe352 - software engineering\week9\2021SpringGroup4\sanalortam" jdkType="Python SDK" />[m
+[31m-    <orderEntry type="sourceFolder" forTests="false" />[m
+[31m-  </component>[m
+[31m-  <component name="TestRunnerService">[m
+[31m-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />[m
+[31m-  </component>[m
+[31m-</module>[m
+\ No newline at end of file[m
+[1mdiff --git a/practice-app/.idea/workspace.xml b/practice-app/.idea/workspace.xml[m
+[1mdeleted file mode 100644[m
+[1mindex a19c86b..0000000[m
+[1m--- a/practice-app/.idea/workspace.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1,744 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<project version="4">[m
+[31m-  <component name="ChangeListManager">[m
+[31m-    <list default="true" id="7da14f72-d987-49ae-a6ac-5fcceea69ccd" name="Default Changelist" comment="" />[m
+[31m-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />[m
+[31m-    <option name="TRACKING_ENABLED" value="true" />[m
+[31m-    <option name="SHOW_DIALOG" value="false" />[m
+[31m-    <option name="HIGHLIGHT_CONFLICTS" value="true" />[m
+[31m-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />[m
+[31m-    <option name="LAST_RESOLUTION" value="IGNORE" />[m
+[31m-  </component>[m
+[31m-  <component name="FileEditorManager">[m
+[31m-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">[m
+[31m-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/api/covid_reports/main.py">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="-569">[m
+[31m-              <caret line="9" column="35" lean-forward="false" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="hava.html" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/templates/hava.html">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="0">[m
+[31m-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="0001_initial.py" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/api/migrations/0001_initial.py">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="0">[m
+[31m-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="0002_auto_20210527_1859.py" pinned="false" current-in-tab="true">[m
+[31m-        <entry file="file://$PROJECT_DIR$/api/migrations/0002_auto_20210527_1859.py">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="0">[m
+[31m-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/api/views.py">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="510">[m
+[31m-              <caret line="58" column="10" lean-forward="false" selection-start-line="58" selection-start-column="10" selection-end-line="58" selection-end-column="10" />[m
+[31m-              <folding>[m
+[31m-                <element signature="e#0#45#0" expanded="true" />[m
+[31m-              </folding>[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="test_register.py" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/api/register/test_register.py">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="-572">[m
+[31m-              <caret line="13" column="53" lean-forward="false" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />[m
+[31m-              <folding>[m
+[31m-                <element signature="e#0#27#0" expanded="true" />[m
+[31m-              </folding>[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="covid_reports.html" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/templates/covid_reports.html">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="17">[m
+[31m-              <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-    </leaf>[m
+[31m-  </component>[m
+[31m-  <component name="FileTemplateManagerImpl">[m
+[31m-    <option name="RECENT_TEMPLATES">[m
+[31m-      <list>[m
+[31m-        <option value="HTML File" />[m
+[31m-        <option value="Python Script" />[m
+[31m-      </list>[m
+[31m-    </option>[m
+[31m-  </component>[m
+[31m-  <component name="Git.Settings">[m
+[31m-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />[m
+[31m-  </component>[m
+[31m-  <component name="IdeDocumentHistory">[m
+[31m-    <option name="CHANGED_PATHS">[m
+[31m-      <list>[m
+[31m-        <option value="$PROJECT_DIR$/api/covid_reports/reports.py" />[m
+[31m-        <option value="$PROJECT_DIR$/api/urls.py" />[m
+[31m-        <option value="$PROJECT_DIR$/templates/page_not_found.html" />[m
+[31m-        <option value="$PROJECT_DIR$/api/covid_reports/form_search.py" />[m
+[31m-        <option value="$PROJECT_DIR$/templates/covid_country_report.html" />[m
+[31m-        <option value="$PROJECT_DIR$/api/deneme.py" />[m
+[31m-        <option value="$PROJECT_DIR$/api/views.py" />[m
+[31m-        <option value="$PROJECT_DIR$/templates/covid_reports.html" />[m
+[31m-        <option value="$PROJECT_DIR$/api/covid_reports/test_covid.py" />[m
+[31m-        <option value="$PROJECT_DIR$/api/covid_reports/main.py" />[m
+[31m-      </list>[m
+[31m-    </option>[m
+[31m-  </component>[m
+[31m-  <component name="ProjectFrameBounds" extendedState="7">[m
+[31m-    <option name="x" value="587" />[m
+[31m-    <option name="width" value="1020" />[m
+[31m-    <option name="height" value="867" />[m
+[31m-  </component>[m
+[31m-  <component name="ProjectId" id="1svusVtQoYdgibFZlM9vuQkkn3d" />[m
+[31m-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />[m
+[31m-  <component name="ProjectView">[m
+[31m-    <navigator currentView="ProjectPane" proportions="" version="1">[m
+[31m-      <flattenPackages />[m
+[31m-      <showMembers />[m
+[31m-      <showModules />[m
+[31m-      <showLibraryContents />[m
+[31m-      <hideEmptyPackages />[m
+[31m-      <abbreviatePackageNames />[m
+[31m-      <autoscrollToSource />[m
+[31m-      <autoscrollFromSource />[m
+[31m-      <sortByType />[m
+[31m-      <manualOrder />[m
+[31m-      <foldersAlwaysOnTop value="true" />[m
+[31m-    </navigator>[m
+[31m-    <panes>[m
+[31m-      <pane id="ProjectPane">[m
+[31m-        <subPane>[m
+[31m-          <expand>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="api" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="api" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="covid_reports" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="api" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="migrations" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="main" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-            <path>[m
+[31m-              <item name="practice-app" type="b2602c69:ProjectViewProjectNode" />[m
+[31m-              <item name="practice-app" type="462c0819:PsiDirectoryNode" />[m
+[31m-              <item name="templates" type="462c0819:PsiDirectoryNode" />[m
+[31m-            </path>[m
+[31m-          </expand>[m
+[31m-          <select />[m
+[31m-        </subPane>[m
+[31m-      </pane>[m
+[31m-      <pane id="Scratches" />[m
+[31m-    </panes>[m
+[31m-  </component>[m
+[31m-  <component name="ProjectViewState">[m
+[31m-    <option name="hideEmptyMiddlePackages" value="true" />[m
+[31m-    <option name="showLibraryContents" value="true" />[m
+[31m-  </component>[m
+[31m-  <component name="PropertiesComponent">[m
+[31m-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />[m
+[31m-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />[m
+[31m-    <property name="WebServerToolWindowFactoryState" value="false" />[m
+[31m-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sanalortam/Scripts/python.exe" />[m
+[31m-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />[m
+[31m-    <property name="DefaultHtmlFileTemplate" value="HTML File" />[m
+[31m-  </component>[m
+[31m-  <component name="RunDashboard">[m
+[31m-    <option name="ruleStates">[m
+[31m-      <list>[m
+[31m-        <RuleState>[m
+[31m-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />[m
+[31m-        </RuleState>[m
+[31m-        <RuleState>[m
+[31m-          <option name="name" value="StatusDashboardGroupingRule" />[m
+[31m-        </RuleState>[m
+[31m-      </list>[m
+[31m-    </option>[m
+[31m-  </component>[m
+[31m-  <component name="RunManager" selected="Python.deneme">[m
+[31m-    <configuration name="deneme" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />[m
+[31m-      <option name="IS_MODULE_SDK" value="true" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <module name="practice-app" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/deneme.py" />[m
+[31m-      <option name="PARAMETERS" value="" />[m
+[31m-      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[31m-      <option name="EMULATE_TERMINAL" value="false" />[m
+[31m-    </configuration>[m
+[31m-    <configuration name="practice-app" type="Python.DjangoServer" factoryName="Django server">[m
+[31m-      <module name="practice-app" />[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="" />[m
+[31m-      <option name="IS_MODULE_SDK" value="false" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <option name="launchJavascriptDebuger" value="false" />[m
+[31m-      <option name="port" value="8000" />[m
+[31m-      <option name="host" value="" />[m
+[31m-      <option name="additionalOptions" value="" />[m
+[31m-      <option name="browserUrl" value="" />[m
+[31m-      <option name="runTestServer" value="false" />[m
+[31m-      <option name="runNoReload" value="false" />[m
+[31m-      <option name="useCustomRunCommand" value="false" />[m
+[31m-      <option name="customRunCommand" value="" />[m
+[31m-      <method v="2" />[m
+[31m-    </configuration>[m
+[31m-    <configuration name="yandex_translate" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />[m
+[31m-      <option name="IS_MODULE_SDK" value="true" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <module name="practice-app" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/yandex_translate.py" />[m
+[31m-      <option name="PARAMETERS" value="" />[m
+[31m-      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[31m-      <option name="EMULATE_TERMINAL" value="false" />[m
+[31m-    </configuration>[m
+[31m-    <configuration name="yandex_translate_fonksiyon" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />[m
+[31m-      <option name="IS_MODULE_SDK" value="true" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <module name="practice-app" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/yandex_translate_fonksiyon.py" />[m
+[31m-      <option name="PARAMETERS" value="" />[m
+[31m-      <option name="SHOW_COMMAND_LINE" value="false" />[m
+[31m-      <option name="EMULATE_TERMINAL" value="false" />[m
+[31m-    </configuration>[m
+[31m-    <configuration name="youtube_api_deneme" type="PythonConfigurationType" factoryName="Python" temporary="true">[m
+[31m-      <option name="INTERPRETER_OPTIONS" value="" />[m
+[31m-      <option name="PARENT_ENVS" value="true" />[m
+[31m-      <envs>[m
+[31m-        <env name="PYTHONUNBUFFERED" value="1" />[m
+[31m-      </envs>[m
+[31m-      <option name="SDK_HOME" value="" />[m
+[31m-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />[m
+[31m-      <option name="IS_MODULE_SDK" value="true" />[m
+[31m-      <option name="ADD_CONTENT_ROOTS" value="true" />[m
+[31m-      <option name="ADD_SOURCE_ROOTS" value="true" />[m
+[31m-      <module name="practice-app" />[m
+[31m-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api
