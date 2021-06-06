@@ -12,15 +12,17 @@ import COVID19Py
 import pycountry
 from rest_framework.response import Response
 from .form_search import SearchForm
+from django.http import HttpResponse
 
 
 
 covid19 = COVID19Py.COVID19()
 
-#This method returns the data of the all world
+#This method returns the data of the all over the world
+#Also users could search specific country
 def covid_api (request):
     if request.method == 'GET':
-        form=SearchForm()
+        form=SearchForm()       #initialize a form object
 
         latest = covid19.getLatest()
         confirmed= latest["confirmed"]
@@ -41,22 +43,23 @@ def covid_api (request):
                                                       'death' : death, 'sform':form, "deathrank":list1, "confirmrank":list2 })
 
     elif request.method == 'POST':
-        response = Response()    # Create a rest_framework.Response object
-        response['Content-type'] = 'application/json'   # Set it up as a json response
-        data = request.data
-        # Extract user information from the request
-        (country) = (data.get('country') )
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            country = form.cleaned_data.get('country')
+            if len(country) != 2:
+                return HttpResponse("<h1>Not Valid Country Code..Code length should be 2 .Please write valid code</h1>")
 
-        if len(country) != 2:
-            response.status_code = 400
-            response.data = { 'NOT VALİD,  A valid country code (length =2 ) must be provided.'}
-            return response
+            elif pycountry.countries.get(alpha_2=country):
+                return covid_country_api(request, country)
+            else:
+                return HttpResponse("<h1>Not Valid Country Code..Your Country Code is not in the table. Please look the country table. Then write a valid code</h1>")
 
         else:
-             response.data = { 'status': 'a valid countrycode entered'}
-             return response
+            return HttpResponse("<h1>Not valid form request </h1>")
 
-        return response
+    else:
+
+        return  HttpResponse("<h1>Not valid request </h1>")
 
 
 
@@ -67,21 +70,41 @@ def covid_api (request):
 # Works with GET call.
 def covid_country_api (request,countrycode):
 
-    locationdata = covid19.getLocationByCountryCode(countrycode)
-    countryname = locationdata[0]["country"]
-    confirmed = locationdata[0]["latest"] ["confirmed"]
-    deaths = locationdata[0]["latest"] ["deaths"]
-    recovered = locationdata[0]["latest"] ["recovered"]
-    updatetime= locationdata[0]["last_updated"]
 
     if request.method == 'GET':
-            return render(request, 'covid_country_report.html', {'cname':countryname, 'confirm' : confirmed ,'death' : deaths , 'recover': recovered, 'time': updatetime})
+
+        if len(countrycode) != 2:
+            return HttpResponse("<h1>Not Valid Country Code..Code length should be 2 .Please write valid code</h1>")
+
+        elif pycountry.countries.get(alpha_2=countrycode):
+
+            locationdata = covid19.getLocationByCountryCode(countrycode)
+            countryname = locationdata[0]["country"]
+            confirmed = locationdata[0]["latest"]["confirmed"]
+            deaths = locationdata[0]["latest"]["deaths"]
+            recovered = locationdata[0]["latest"]["recovered"]
+            updatetime = locationdata[0]["last_updated"]
+
+            return render(request, 'covid_country_report.html',
+                      {'cname': countryname, 'confirm': confirmed, 'death': deaths, 'recover': recovered,
+                       'time': updatetime})
+        else:
+            return HttpResponse(
+                "<h1>Not Valid Country Code..Your Country Code is not in the table. Please look the country table. Then write a valid code</h1>")
 
 
 
     elif request.method == 'POST':
 
-            return  render(request, 'covid_country_report.html', {'cname':countryname, 'confirm' : confirmed ,'death' : deaths , 'recover': recovered, 'time': updatetime})
+        locationdata = covid19.getLocationByCountryCode(countrycode)
+        countryname = locationdata[0]["country"]
+        confirmed = locationdata[0]["latest"]["confirmed"]
+        deaths = locationdata[0]["latest"]["deaths"]
+        recovered = locationdata[0]["latest"]["recovered"]
+        updatetime = locationdata[0]["last_updated"]
 
+        return render(request, 'covid_country_report.html',
+                      {'cname': countryname, 'confirm': confirmed, 'death': deaths, 'recover': recovered,
+                       'time': updatetime})
 
 
