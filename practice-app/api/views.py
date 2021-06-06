@@ -1,5 +1,6 @@
 from django.http.response import JsonResponse
 from django.shortcuts import render
+import requests   
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -9,6 +10,7 @@ from api.register.register import register_api
 from api.places.places import places_api
 from api.random_article.main import ra_api
 from api.eq_post.main import eq_post_api
+from api.hava.hava import hava_api
 
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
@@ -29,6 +31,11 @@ def apiOverview(request):
         'Covid19 Case Reports' : '/covid19/'
     }
     return Response(urls)
+
+@api_view(['GET', 'POST'])    
+def hava(request):
+    return hava_api(request)
+
 
 @api_view(['GET', 'POST'])
 def register(request):

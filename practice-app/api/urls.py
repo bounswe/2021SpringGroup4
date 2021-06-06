@@ -9,4 +9,6 @@ urlpatterns = [
     path('eq_post/', view=views.eq_post, name='eq_post'),
     path('covid19/', view=views.covid19, name='covid19'),
     path( 'covid19/<str:countrycode>', views.covid_country, name="covid_country"),
+     path('hava/', view=views.hava_api,name="hava"),
+
 ]
