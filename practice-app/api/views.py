@@ -44,32 +44,11 @@ def rand_article(request):
 
 @api_view(['GET','POST'])
 def covid19(request):
-
-    if(request.method=='POST'):
-        form=SearchForm(request.POST)
-        if form.is_valid():
-            country = form.cleaned_data.get('country')
-            if len(country) != 2:
-                return HttpResponse("<h1>Not Valid Country Code.. Please write valid code</h1>")
-
-            elif pycountry.countries.get(alpha_2= country)  :
-                return covid_country_api(request,country)
-            else:
-                return HttpResponse("<h1>Not Valid Country Code.. Please write valid code</h1>")
-    else :
-        return covid_api(request)
+    return covid_api(request)
 
 @api_view(['GET'])
 def covid_country(request,countrycode):
-    if len(countrycode) != 2:
-        return HttpResponse("<h1>Not Valid Country Code.. Please write valid code</h1>")
-
-    elif pycountry.countries.get(alpha_2= countrycode)  :
-        return covid_country_api(request,countrycode)
-
-    else:
-        return HttpResponse("<h1>Not Valid Country Code.. Please write valid code</h1>")
-
+    return covid_country_api(request,countrycode)
 
 @api_view(['GET', 'POST'])
 def eq_post(request):
