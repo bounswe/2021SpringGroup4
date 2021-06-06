@@ -9,6 +9,8 @@ from api.register.register import register_api
 from api.places.places import places_api
 from api.random_article.main import ra_api
 from api.eq_post.main import eq_post_api
+from api.holidays.main import holidays_api
+
 
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
@@ -74,3 +76,7 @@ def covid_country(request,countrycode):
 @api_view(['GET', 'POST'])
 def eq_post(request):
     return eq_post_api(request)
+
+@api_view(['GET', 'POST'])
+def holidays(request):
+    return holidays_api(request)
