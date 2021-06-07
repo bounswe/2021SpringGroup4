@@ -38,6 +38,7 @@ def formula1_api(request):
         return render(request, "formula1_standings.html", {'year':data['season'], 'table':table}, status=200)
 
 def driver_info_api(request):
+
     data = main()
     table = []
     # Sends the information of the page is requested without a data
@@ -87,3 +88,5 @@ def driver_info_api(request):
                 search_key = d_name[i][0].upper() + d_name[i][1:]+ " "
         
         return render(request, "driver_information.html", {'redirect':False, 'no_result':no_result, 'search_key':search_key, 'table':table}, status=status)
+
+        

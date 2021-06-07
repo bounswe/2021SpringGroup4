@@ -40,21 +40,23 @@ from .models import EventPost
 @api_view(['GET'])
 def apiOverview(request):
     urls = {
-        'Login' : '/login/',
         'Register' : '/register/',
+        'Search User' : '/search_user/',
         'Random article' : '/random_article/',
         'Equipment post' : '/eq_post/',
         'Covid19 Case Reports' : '/covid19/',
         'Formula 1' : '/formula1/',
         'NBA Teams Information' : '/team/',
-
+        'Create Event Post' : '/event_post/',
+        'Holidays' : '/holidays/',
+        'Hava Durumu' : '/hava/',
     }
-    return Response(urls)
+
+    return render(request, 'main.html')    
 
 @api_view(['GET', 'POST'])    
 def hava(request):
     return hava_api(request)
-
 
 @api_view(['GET', 'POST'])
 def register(request):
@@ -100,17 +102,19 @@ def formula1(request):
     return formula1_api(request)
 
 @api_view(['GET', 'POST'])
+def driver_info(request):
+    return driver_info_api(request)
+
+@api_view(['GET', 'POST'])
 def eq_post(request):
     return eq_post_api(request)
-
 
 @api_view(['GET', 'POST'])
 def event_post(request):
     return event_post_api(request)
+
 def search_user(request):
     return search_user_api(request)
 
-def driver_info(request):
-    return driver_info_api(request)
 
 
