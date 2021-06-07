@@ -20,9 +20,9 @@ from api.register.register import register_api
 from api.places.places import places_api
 from api.random_article.main import ra_api
 from api.eq_post.main import eq_post_api
+from api.holidays.main import holidays_api
 from api.event_post.main import event_post_api
 from api.hava.hava import hava_api
-
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
 from api.covid_reports.form_search import SearchForm
@@ -81,6 +81,10 @@ def eq_post(request):
     return eq_post_api(request)
 
 @api_view(['GET', 'POST'])
+def holidays(request):
+    return holidays_api(request)
+
+@api_view(['GET', 'POST'])  
 def select_team(request):
     if request.method =='POST':
         return list_team_api(request=request)
@@ -108,4 +112,5 @@ def search_user(request):
 
 def driver_info(request):
     return driver_info_api(request)
+
 

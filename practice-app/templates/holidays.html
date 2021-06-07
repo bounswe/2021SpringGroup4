@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    {% if form %}
+    <h2>  Search holiday date for the spesific country and determine proper day for your sport activity </h2>
+    <form id="HolidayForm" method="POST" class="form-group" validate action="">
+        {{ form }}
+        <button type='submit'>Submit</button> <br><br><br><hr>
+        Available countries: turkey, united states, germany, azerbaijan, france, spain, italy , russia
+    {% elif input_error%}  
+    <h2>  Error message: </h2> 
+    Error code: {{error_message}}  
+    {% else %}
+    <h2>  The result message: </h2>
+    legal date:     {{legal_date}} <br>
+    requested date: {{requested_date}} <br>
+    holiday status: {{is_holiday}} <br>
+    holiday name:    {{holiday_name}} <br>
+    next proper date (not holiday): {{next_day}} <br>
+    {% endif %}
+</body>
+</html>
