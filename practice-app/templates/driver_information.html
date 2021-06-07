@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Information: {{search_key}}</title>
+</head>
+<body style="text-align:center">
+    {% if redirect or search_key == "" %}
+        <h1>You haven't searched for any driver!</h1>
+        <h2>Please <a href="/api/formula1/">go back</a> and search for a driver</h2>
+    {% else %}
+        {% if no_result %}
+            <h1>There is no driver with name {{search_key}}!</h1>
+            <h2>Please <a href="/api/formula1/">go back</a> and search for another driver</h2>
+        {% else %}
+            <h1>You have searched for {{search_key}}</h1>
+            <table style="width:50%; text-align:center; border:1px solid; margin-left:auto; margin-right:auto">
+                <tr>
+                    <th>Name</th>
+                    <th>Permanent Number</th>
+                    <th>Nationality</th>
+                    <th>Date of Birth</th>
+                    <th>For more information</th>
+                </tr>
+                {% for row in table %}
+                    <tr>
+                        <td>{{row.0}}</td>
+                        <td>{{row.1}}</td>
+                        <td>{{row.2}}</td>
+                        <td>{{row.3}}</td>
+                        <td><a href={{row.4}}>Click here!</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
