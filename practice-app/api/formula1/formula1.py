@@ -35,14 +35,14 @@ def formula1_api(request):
                         data['DriverStandings'][i]['Constructors'][0]['name'],
                         data['DriverStandings'][i]['points'],
                         data['DriverStandings'][i]['wins']])
-        return render(request, "formula1_standings.html", {'year':data['season'], 'table':table})
+        return render(request, "formula1_standings.html", {'year':data['season'], 'table':table}, status=200)
 
 def driver_info_api(request):
     data = main()
     table = []
     # Sends the information of the page is requested without a data
     if request.method == 'GET':
-        return render(request, "driver_information.html", {'redirect':True})
+        return render(request, "driver_information.html", {'redirect':True}, status=400)
     # Sends the information of the driver provided by the user
     # There can be three cases: no driver name is provided, 
                               # a driver which is not in the table is provided (invalid driver name),
@@ -52,6 +52,7 @@ def driver_info_api(request):
         d_name = driver_name.lower().split() # name, surname or name and surname is accepted, not case-sensitive
         search_key = ""
         no_result = False
+        status = 200
         if len(d_name) == 2:
             for i in range(len(data['DriverStandings'])):
                 if d_name[0] == data['DriverStandings'][i]['Driver']['givenName'].lower() and d_name[1] == data['DriverStandings'][i]['Driver']['familyName'].lower():
@@ -76,10 +77,13 @@ def driver_info_api(request):
                     temp.append(data['DriverStandings'][i]['Driver']['url'])
                     table.append(temp)
                     search_key = d_name[0][0].upper() + d_name[0][1:]
-                    
-        if search_key == "":
+        
+        if driver_name == "":
+            status = 400         
+        elif search_key == "":
             no_result = True
+            status = 404
             for i in range(len(d_name)):
                 search_key = d_name[i][0].upper() + d_name[i][1:]+ " "
-            
-        return render(request, "driver_information.html", {'redirect':False, 'no_result':no_result, 'search_key':search_key, 'table':table})
+        
+        return render(request, "driver_information.html", {'redirect':False, 'no_result':no_result, 'search_key':search_key, 'table':table}, status=status)
