@@ -15,6 +15,8 @@ from api.hava.hava import hava_api
 from api.covid_reports.main import covid_api
 from api.covid_reports.main import covid_country_api
 from api.covid_reports.form_search import SearchForm
+from .teams.main import list_team_api
+from .teams.main import team_api
 from django.http import HttpResponse
 import pycountry
 
@@ -31,7 +33,9 @@ def apiOverview(request):
         'Random article' : '/random_article/',
         'Equipment post' : '/eq_post/',
         'Covid19 Case Reports' : '/covid19/',
-        'Formula 1' : '/formula1/'
+        'Formula 1' : '/formula1/',
+        'NBA Teams Information' : '/team/',
+
     }
     return Response(urls)
 
@@ -64,6 +68,17 @@ def covid_country(request,countrycode):
 def eq_post(request):
     return eq_post_api(request)
 
+@api_view(['GET', 'POST'])
+def select_team(request):
+    if request.method =='POST':
+        return list_team_api(request=request)
+    elif request.method == 'GET':
+        return team_api(request=request)
+
+@api_view(['GET'])
+def list_team(request, team_code):
+    return list_team_api(request=request, team_code=team_code)
+
 @api_view(['GET'])
 def formula1(request):
     return formula1_api(request)
@@ -71,3 +86,4 @@ def formula1(request):
 @api_view(['GET', 'POST'])
 def driver_info(request):
     return driver_info_api(request)
+
