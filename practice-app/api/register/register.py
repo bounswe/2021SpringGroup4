@@ -11,9 +11,12 @@ This script handles the GET and POST requests to the register API endpoint http:
         JSON Format : { 'username': "",                 string, the username selected by the user
                         'password': "",                 string, the password selected by the user
                         'email':"",                     string, the email address the user would like to register with
+                        'fullname':"",                  string, full name of the user
                         'description':"",               string, a description about the user, can be NULL
                         'age':"",                       int, age of the user, can be NULL
                         'location':"",                  string, location provided by the user, can be NULL
+                        'phone':"",                     string, phone number provided by the user, can be NULL
+                    }
 
 @author: Tolga Kerimoğlu
 """
@@ -52,11 +55,11 @@ def register_api(request):
         # Extract user information from the request
         (username, password, email, description, age, location, fullname, phone) = (data.get('username'), 
                                                                 data.get('password'), 
-                                                                data.get('email'), 
+                                                                data.get('email'),   
+                                                                data.get('fullname'),
                                                                 data.get('description'), 
                                                                 data.get('age'), 
-                                                                data.get('location'),  
-                                                                data.get('fullname'),
+                                                                data.get('location'),
                                                                 data.get('phone'))       
 
         if len(password) == 0:

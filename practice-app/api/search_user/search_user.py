@@ -5,12 +5,24 @@ This script handles the GET and POST requests to the user_profile API endpoint h
 
     'GET':
         Returns an html page including a search bar to search a user by their username.
+
+        An example GET request from terminal:
+        
+            curl http://127.0.0.1:8000/api/search_user/
+
     'POST':
         Checks if such a user exists. 
         Returns a user profile page if so, and an error response if not.
 
         Use the following JSON format to issue POST requests to this endpoint
         JSON Format : { 'input': ""  string, the username you want to search }
+
+        An example POST request from terminal:
+            
+            curl -X POST 
+                 -H "Content-type:application/json" 
+                 --data "{\"input\":\"<your search here>\"}" 
+                 http://127.0.0.1:8000/api/search_user/
 
 @author: Irfan Bozkurt
 """
@@ -34,8 +46,6 @@ from django import forms
 class SearchBar(forms.Form):
     input = forms.CharField(label='input', max_length=30)
 
-
-
 """
     Process the GET and POST requests sent to the search_user API.
 
@@ -50,6 +60,9 @@ class SearchBar(forms.Form):
     response (Response): rest_framework.Response object representing the outgoing response           , OR  
     HttpResponse (request): django.http.HttpResponse object representing the outgoing response
 """
+
+# For now, only able to find user with a complete username as input.
+# Should implement a better search.
 def search_user_api(request):
 
     if request.method == 'GET':
@@ -71,9 +84,16 @@ def search_user_api(request):
         input = searchbar.get('input')
 
         # In case of empty input
-        if len(input) == 0:
+        if not input:
             response.status_code = 400
             response.data = { 'error': 'You must enter at least one character.'}
+            return response 
+        
+        # TODO: return a proper html instead of a JSON response
+        # Control if input contains any character but numerical and alphabetical ones:
+        if not input.isalnum():
+            response.status_code = 400
+            response.data = { 'error': 'You must enter alphanumerical characters.'}
             return response 
         
         # TODO
@@ -82,6 +102,7 @@ def search_user_api(request):
         # 1 element only, which is supposedly the user we search for.
         result = User.objects.filter(username = input)
 
+        # TODO: return a proper html instead of a JSON response
         # If user not found:
         if len(result) == 0:
             response.status_code = 400
