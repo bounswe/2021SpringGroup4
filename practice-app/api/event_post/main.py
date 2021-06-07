@@ -16,7 +16,7 @@
 @author: Yağmur Selek
 """
 
-
+from django.http import HttpResponse
 import copy
 from django.shortcuts import render
 
@@ -73,7 +73,7 @@ def event_post_api(request):
         serializer = EventPostSerializer(data = form)
         if serializer.is_valid(): # If valid 
             response.status_code = 201 # return success status code 201
-            response.data = { 'status': 'EVENT POST SUCCESSFUL'}
+            
             serializer.save()  #save event to the database
         else: # If not valid
             response.status_code = 400
@@ -81,4 +81,4 @@ def event_post_api(request):
             # TODO: Instead of returning the errors in JSON format, return a proper HTML file displaying the error
 
 
-    return response
+    return HttpResponse("<h1>You have successfully created your event !</h1>")   
