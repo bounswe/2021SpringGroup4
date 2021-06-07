@@ -12,5 +12,4 @@ class RegistrationForm(forms.Form):
     description = forms.CharField(label='Description', max_length=250, required = False)
     age = forms.IntegerField(label='Age', required = False)
     location = forms.CharField(label='Location', max_length=60, required = False)
-    profile_picture = forms.ImageField(label='Profile Picture', required = False)
     phone = forms.CharField(label='Phone', max_length=50, required = False)    
