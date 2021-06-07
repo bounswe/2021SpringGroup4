@@ -11,4 +11,5 @@ urlpatterns = [
     path( 'covid19/<str:countrycode>', views.covid_country, name="covid_country"),
     path('formula1/', views.formula1, name="formula1"),
     path('formula1/driver_info/', views.driver_info, name="driver_info"),
+    path('hava/', view=views.hava_api,name="hava"),
 ]
