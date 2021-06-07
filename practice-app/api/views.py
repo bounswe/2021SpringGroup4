@@ -28,7 +28,8 @@ def apiOverview(request):
         'Register' : '/register/',
         'Random article' : '/random_article/',
         'Equipment post' : '/eq_post/',
-        'Covid19 Case Reports' : '/covid19/'
+        'Covid19 Case Reports' : '/covid19/',
+        'Formula 1' : '/formula1/'
     }
     return Response(urls)
 
