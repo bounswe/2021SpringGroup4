@@ -10,4 +10,9 @@ urlpatterns = [
     path('covid19/', view=views.covid19, name='covid19'),
     path('covid19/<str:countrycode>', views.covid_country, name="covid_country"),
     path('search_user/', view=views.search_user, name='search_user'),
+    path('formula1/', views.formula1, name="formula1"),
+    path('formula1/driver_info/', views.driver_info, name="driver_info"),
+    path('hava/', view=views.hava_api,name="hava"),
+    path('team/', view=views.select_team, name='select_team'),
+    path('team/<str:team_code>', view=views.list_team, name='list_team'),
 ]
