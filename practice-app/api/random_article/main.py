@@ -6,6 +6,7 @@ This script gets a random sports arena article from Wikipedia.
 @author: Salih Furkan Akkurt
 """
 import random
+from rest_framework.response import Response
 from django.shortcuts import render
 import requests
 import json
@@ -33,4 +34,9 @@ def ra_api(request):
         if 'External links' in page_text:
             idx = page_text.index('External links')
             page_text = page_text[:idx]
+        if page_text == '':
+            response = Response()
+            response['Content-type'] = 'application/json'
+            response.status_code = 400
+            return response
         return render(request, 'rand_wiki.html', {'rand_article' : page_text})
