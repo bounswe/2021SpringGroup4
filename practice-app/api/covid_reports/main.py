@@ -16,13 +16,17 @@ from django.http import HttpResponse
 
 
 
-covid19 = COVID19Py.COVID19()
-
 #This method returns the data of the all over the world
 #Also users could search specific country
 def covid_api (request):
+
+
+    covid19 = COVID19Py.COVID19()
+
+
     if request.method == 'GET':
         form=SearchForm()       #initialize a form object
+
 
         latest = covid19.getLatest()
         confirmed= latest["confirmed"]
@@ -43,6 +47,7 @@ def covid_api (request):
                                                       'death' : death, 'sform':form, "deathrank":list1, "confirmrank":list2 })
 
     elif request.method == 'POST':
+
         form = SearchForm(request.POST)
         if form.is_valid():
             country = form.cleaned_data.get('country')
@@ -70,6 +75,7 @@ def covid_api (request):
 # Works with GET call.
 def covid_country_api (request,countrycode):
 
+    covid19 = COVID19Py.COVID19()
 
     if request.method == 'GET':
 

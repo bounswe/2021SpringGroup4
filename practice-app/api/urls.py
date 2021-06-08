@@ -17,4 +17,6 @@ urlpatterns = [
     path('hava/', view=views.hava_api,name="hava"),
     path('team/', view=views.select_team, name='select_team'),
     path('team/<str:team_code>', view=views.list_team, name='list_team'),
+
+
 ]
