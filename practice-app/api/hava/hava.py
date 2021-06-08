@@ -23,4 +23,4 @@ def hava_api(request):
 
     context = {'city_weather' : city_weather} 
 
-    return  render(request,'hava.html ',context)
+    return  render(request,'hava.html',context)

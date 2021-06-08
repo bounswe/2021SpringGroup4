@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 
-
-  
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group4 Homepage</title>
     <link rel="stylesheet" href="{% static 'button.css' %}">
-    <title>Document</title>
-    
 </head>
 
 
 <div class="header">
-  <a href="#default" class="logo">MyApp</a>
+  <a href="#default" class="logo">PracticeApp-Group4</a>
   <div class="header-right">
-    <a  href="http://localhost:8000/">Home</a>
+    <a class="active" href="#home">Home</a>
 
-    <a href="http://localhost:8000/register/">Register</a>
-     <a href="http://localhost:8000/search_user/">Search User</a>
-       <a href="http://localhost:8000/eq_post/">Equipment Post</a>
-
-
-      <a class="active" href="http://localhost:8000/event_post/">Event Post</a>
-      <a href="http://localhost:8000/places/">Places API</a>
-      <a href="http://localhost:8000/covid19/"> Covid19 API</a>
+    <a href="{% url 'register' %}">Register</a>
+     <a href="{% url 'search_user' %}">Search User</a>
+       <a href="{% url 'eq_post' %}">Equipment Post</a>
 
 
-     <a href="http://localhost:8000/random_article/">Random Article </a>
-      <a href="http://localhost:8000/holidays/ ">Holidays API </a>
-      <a href="http://localhost:8000/formula1/">Formula1 API</a>
+      <a href="{% url 'event_post' %}">Event Post</a>
+      <a href="{% url 'places' %}">Places API</a>
+      <a href="{% url 'covid19' %}"> Covid19 API</a>
 
 
-      <a href="http://localhost:8000/team/">NBA Team API </a>
-      <a href="http://localhost:8000/hava/">Hava API</a>
+     <a href="{% url 'random_article' %}">Random Article </a>
+      <a href="{% url 'holidays' %}">Holidays API </a>
+      <a href="{% url 'formula1' %}">Formula1 API</a>
+
+
+      <a href="{% url 'select_team' %}">NBA Team API </a>
+      <a href="{% url 'hava' %}">Hava API</a>
   </div>
 </div>
 

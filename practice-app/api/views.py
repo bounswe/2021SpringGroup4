@@ -113,6 +113,7 @@ def eq_post(request):
 def event_post(request):
     return event_post_api(request)
 
+@api_view(['GET', 'POST'])
 def search_user(request):
     return search_user_api(request)
 

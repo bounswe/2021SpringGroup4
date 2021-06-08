@@ -14,7 +14,7 @@ urlpatterns = [
     path('search_user/', view=views.search_user, name='search_user'),
     path('formula1/', views.formula1, name="formula1"),
     path('formula1/driver_info/', views.driver_info, name="driver_info"),
-    path('hava/', view=views.hava_api,name="hava"),
+    path('hava/', view=views.hava,name="hava"),
     path('team/', view=views.select_team, name='select_team'),
     path('team/<str:team_code>', view=views.list_team, name='list_team'),
 ]
