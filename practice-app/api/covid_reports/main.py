@@ -4,6 +4,16 @@ Created on 30.05.2021
 This api gets the latest covid19 data, shows the organized and sorted data.
 Users also could search according to country code
 
+    'GET':
+        Returns the html page for the case reports all over the world
+    'POST':
+        Using the country code information , provided by the user, it connects to the CovidPy API,
+        to take the country data. Retrieves the data and passes it to the Django template "covid_country_report.html"
+        where the data is processed and displayed to the user.
+
+        JSON Format : { 'countrycode': "", string, identifies the country code user search for it
+
+
 @author: Yiğit SARIOĞLU
 """
 
