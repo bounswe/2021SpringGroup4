@@ -1,6 +1,8 @@
 """
 Created on 30.05.2021
 
+This script handles the GET and POST requests to the covid19 API endpoint http://localhost:8000/api/covid19/
+
 This api gets the latest covid19 data, shows the organized and sorted data.
 Users also could search according to country code
 
