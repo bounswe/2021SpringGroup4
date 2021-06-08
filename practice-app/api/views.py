@@ -36,6 +36,9 @@ from .models import User
 from .models import Post
 from .models import EventPost
 
+@api_view(['GET'])
+def index(request):
+    return render(request, 'index.html')
 
 @api_view(['GET'])
 def apiOverview(request):
