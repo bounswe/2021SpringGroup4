@@ -53,3 +53,25 @@ URL: *to be added.*
                         }
 
 **@author:** Tolga Kerimoğlu
+
+
+## Covid19 Case Reports
+
+This endpoint is used for searching covid19 case reports all over the world. Returns a total confirmed case,deaths and recoveries of the world , rankings of confirmed cases using connection to the CovidPy API , also displays a search form for a GET request. For a POST request, it connects to the Covid API and it retrieves specific country data. Using the countrycode from the form, it retrieves confirmed,death and recovery data of the specific country and passes it to the Django template 'covid_country_report.html' where data is displayed to the user.
+
+'covid_reports.html' where data is taken, used, processed and shown to the user
+'covid_country_report.html' wher data processed and shown to the user
+
+
+    'GET':
+        Returns the html page for the case reports (confirmed, death, recovered) all over the world, 
+        Returns the html page for top 20 rankings according to confirmed cases or deaths
+        Displays a search form 
+    'POST':
+        Using the country code information , provided by the user, it connects to the CovidPy API,
+        to take the country data. Retrieves the data and passes it to the Django template "covid_country_report.html"
+        where the data displayed to the user.
+        JSON Format : { 'countrycode': "", string, identifies the country code user search for it }
+
+**@author:** Yiğit Sarıoğlu
+
