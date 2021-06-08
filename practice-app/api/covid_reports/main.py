@@ -1,8 +1,16 @@
 """
 Created on 30.05.2021
 
+This script handles the GET and POST requests to the covid19 API endpoint http://localhost:8000/api/covid19/
 This api gets the latest covid19 data, shows the organized and sorted data.
 Users also could search according to country code
+    'GET':
+        Returns the html page for the case reports all over the world
+    'POST':
+        Using the country code information , provided by the user, it connects to the CovidPy API,
+        to take the country data. Retrieves the data and passes it to the Django template "covid_country_report.html"
+        where the data is processed and displayed to the user.
+        JSON Format : { 'countrycode': "", string, identifies the country code user search for it
 
 @author: Yiğit SARIOĞLU
 """
@@ -16,11 +24,13 @@ from django.http import HttpResponse
 
 
 
-covid19 = COVID19Py.COVID19()
+
 
 #This method returns the data of the all over the world
 #Also users could search specific country
 def covid_api (request):
+    covid19 = COVID19Py.COVID19()
+
     if request.method == 'GET':
         form=SearchForm()       #initialize a form object
 
@@ -70,7 +80,7 @@ def covid_api (request):
 # Works with GET call.
 def covid_country_api (request,countrycode):
 
-
+    covid19 = COVID19Py.COVID19()
     if request.method == 'GET':
 
         if len(countrycode) != 2:

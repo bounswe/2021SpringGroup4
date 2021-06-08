@@ -1,17 +1,50 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid19 Cases Data</title>
+    <link rel="stylesheet" href="{% static 'button.css' %}">
 </head>
+
+<div class="header">
+  <a href="#default" class="logo">MyApp</a>
+  <div class="header-right">
+    <a  ref="http://localhost:8000/">Home</a>
+
+    <a href="http://localhost:8000/register/">Register</a>
+     <a href="http://localhost:8000/search_user/">Search User</a>
+       <a href="http://localhost:8000/eq_post/">Equipment Post</a>
+
+
+      <a href="http://localhost:8000/event_post/">Event Post</a>
+      <a href="http://localhost:8000/places/">Places API</a>
+      <a class="active" href="http://localhost:8000/covid19/"> Covid19 API</a>
+
+
+     <a href="http://localhost:8000/random_article/">Random Article </a>
+      <a href="http://localhost:8000/holidays/ ">Holidays API </a>
+      <a href="http://localhost:8000/formula1/">Formula1 API</a>
+
+
+      <a href="http://localhost:8000/team/">NBA Team API </a>
+      <a href="http://localhost:8000/hava/">Hava API</a>
+  </div>
+</div>
+
+
+
+
+
 <body>
-  <h1> <b> Latest Covid Reports All Over The World  </b> </h1>   </br>
+  <h3> <b> Latest Covid Reports All Over The World  </b> </h3>   </br>
 
    CONFIRMED CASE : {{confirm}}  </br>
-   DEATHS :   {{recovery}}       </br>
-   RECOVERED : {{death}}         </br>
-
-      </br> </br>
+   DEATHS :   {{death}}       </br>
+   RECOVERED : {{recovery}}         </br>
+      </br>
   COVİD 19 RANKING ACCORDING TO CONFIRMED TOTAL CASES (TOP 20 COUNTRY) </br>
     {{ confirmrank}}
 
@@ -44,8 +77,7 @@ at the end of the link.
 
 
 </form>
-
-   </br> </br>
+  </br>
 
 Countrycode = [
     ('US', 'United States'),
@@ -284,4 +316,28 @@ Countrycode = [
 
 
 </body>
+
+
+
+
+
+<div class="footer">
+   <h4> Our Github Repo : <a href="https://github.com/bounswe/2021SpringGroup4"> 2021SpringGroup4 </a>   </h4>
+<p>
+
+      Our Team Members :
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Salih-Furkan-Akkurt"> Salih Furkan Akkurt </a>  ,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan"> Ece Dilara Aslan </a> ,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/%C4%B0hsan-Mert-Atalay"> İhsan Mert Atalay </a>,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Muhammed İrfan Bozkurt</a>,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Mehmet Hilmi Dündar</a>,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Berkay Gümüş</a>,
+       <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Tolga Kerimoğlu</a>,
+       <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Yiğit Sarıoğlu </a>,
+      <a href="https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt"> Yağmur Selek </a>
+
+
+  </p>
+</div>
+
 </html>

@@ -1,5 +1,8 @@
 .idea/
+.vscode/
 sanalortam/
+__pycache__/
+*.py[cod]
 
 
 /sanalortam
