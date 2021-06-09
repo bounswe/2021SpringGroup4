@@ -124,7 +124,7 @@ URL: *to be added*
 This endpoint is used for checking information for selected NBA team. Returns a selection page for a GET request. For a POST request, when a user selects a team and submit, 
 it takes information using NBA-api and shows them at a new page. Also, POST request can be used by adding the abbreavion of the desired team to the url at selection page (/team/cle) to take information without selecting a team and submitting at the page.
 
-'team.html' where data is taken and used \\
+'team.html' where data is taken and used;
 'list_team.html' where data is processed and shown to the user.
 
 URL: *to be added*
