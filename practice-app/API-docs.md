@@ -63,11 +63,11 @@ it takes information using NBA-api and shows them at a new page. Also, POST requ
 'team.html' where data is taken and used
 'list_team.html' where data is processed and shown to the user.
 
-URL: to be added
+URL: *to be added*
 
-'GET':
-	Returns the html page with a choice field showing all available teams and a submit button to select a team.
-'POST':
-	It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
+	'GET':
+		Returns the html page with a choice field showing all available teams and a submit button to select a team.
+	'POST':
+		It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
 
 **@author:** Berkay Gümüş
