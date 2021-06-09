@@ -118,3 +118,28 @@ URL: *to be added*
             HTTP_400_BAD_REQUEST : The returned article was empty somehow.
        
 **@author:** Salih Furkan Akkurt
+
+## NBA Teams
+
+This endpoint is used for checking information for selected NBA team. Returns a selection page for a GET request. For a POST request, when a user selects a team and submit, 
+it takes information using NBA-api and shows them at a new page. Also, POST request can be used by adding the abbreavion of the desired team to the url at selection page (/team/cle) to take information without selecting a team and submitting at the page.
+
+'team.html' where data is taken and used
+'list_team.html' where data is processed and shown to the user.
+
+URL: *to be added*
+
+	'GET':
+		Returns the html page with a choice field showing all available teams and a submit button to select a team.
+	'POST':
+		It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
+		
+	JSON Format : { 'team_code': "", string, identifies the desired team for searching }
+	
+	RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the team selection webpage.
+        POST: 
+            HTTP_200_OK : Successfully gets a response after selecting a team.
+
+**@author:** Berkay Gümüş
