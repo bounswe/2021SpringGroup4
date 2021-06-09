@@ -71,5 +71,11 @@ URL: *to be added*
 		It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
 		
 	JSON Format : { 'team_code': "", string, identifies the desired team for searching }
+	
+	RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the team selection webpage.
+        POST: 
+            HTTP_200_OK : Successfully gets a response after selecting a team.
 
 **@author:** Berkay Gümüş
