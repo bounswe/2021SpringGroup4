@@ -218,3 +218,35 @@ URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/formu
 
 **@author:** Ece Dilara Aslan
 
+       
+## Search User
+
+This endpoint is the user search interface to the system, running on the default Django SQLite backend. Returns an html page with a search bar for a GET request. For a POST request, it checks if input is valid and looks for the user in the database (username and input must exactly be the same). Returns an error response if user not found.
+Returns a profile page of the user containing user information. Blank sections say “Not provided”.
+Likewise, if the user hasn’t provided a profile picture yet, which they cannot for now, makes use of an external API named UI Avatars to retrieve a rounded image with the user’s full name initials in it.
+
+URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/search_user/
+
+    'GET':
+        Returns an html page including a search bar to search a user by their 
+        username.
+ 
+        An example GET request from terminal:
+        
+            curl http://127.0.0.1:8000/api/search_user/
+ 
+    'POST':
+        Checks if such a user exists. 
+        Returns a user profile page if so, and an error response if not.
+ 
+        Use the following JSON format to issue POST requests to this endpoint
+        JSON Format : { 'input': ""  string, the username you want to search }
+ 
+        An example POST request from terminal:
+            
+            curl -X POST 
+                 -H "Content-type:application/json" 
+                 --data "{\"input\":\"<your search here>\"}" 
+                 http://127.0.0.1:8000/api/search_user/
+
+**@author:** Irfan Bozkurt
