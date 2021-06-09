@@ -51,5 +51,9 @@ URL: *to be added.*
         JSON Format : { 'location': "",                 string, identifies the location
                         'keyword': "",                 string, contains relevant keywords about what type of place to search for
                         }
-
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully conducted the search and returned matching places.
+        POST: .
+            HTTP_400_BAD_REQUEST : Something was wrong with the provided information. Most likely an empty search.
 **@author:** Tolga Kerimoğlu
