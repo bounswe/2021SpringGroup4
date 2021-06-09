@@ -69,5 +69,7 @@ URL: *to be added*
 		Returns the html page with a choice field showing all available teams and a submit button to select a team.
 	'POST':
 		It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
+		
+	JSON Format : { 'team_code': "", string, identifies the desired team for searching }
 
 **@author:** Berkay Gümüş
