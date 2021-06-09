@@ -192,6 +192,6 @@ URL: *to be added*
 	    HTTP_400_BAD_REQUEST : It Can't return correctly
 
             HTTP_200_OK : Successfully returns the Current Weather Condition of Istanbul.
-       URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/hava/
 
 **@author:** İHSAN MERT ATALAY
+       URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/hava/
