@@ -143,3 +143,38 @@ URL: *to be added*
             HTTP_200_OK : Successfully gets a response after selecting a team.
 
 **@author:** Berkay Gümüş
+
+
+**@author:** Yağmur Selek
+## Create Event Post 
+
+This endpoint is for creating an event post. It returns the Event Post Page for a GET request. For a POST request,
+it validates the information entered as 'event name' should be different than the events that currently residing in our SQLite database, 'date' and 'time' fields should be selected as future, than saves the event to the database and returns an HttpResponse containing
+the message says 'Event creation is successfull', if the request was valid. If any errors occur, returns a response default response page describing the error.
+
+
+    'GET':
+        Returns the  event creation page.
+    'POST':
+        Validates the necessary informations are filled and check for validity of that informations to record the event to our database if it is valid
+        JSON Format : { 'eventName': "",                 string, the eventname entered by the event creator, also a primary key for db table
+                        'sportType': "",                 string, the sporttype entered by the user
+                        'numOfPlayers ':"",              int, the number of players wanted for that event given by the event creator
+                        'description':"",                string, a description about the event created by event creator, this can be NULL
+                        'date':"",                       date(year:int, month:int, day: int): , a valid date that can be selected 
+                        'time':"",                       time (hour: int, min: int), a valid time that can be selected 
+    RESPONSE STATUS CODES
+      GET:
+            HTTP_200_OK : Successfully returns the event post page.
+      POST: 
+            HTTP_202_CREATED : Successfully added the event post desired to the database.
+            HTTP_400_BAD_REQUEST : Serializer ERROR
+            HTTP_101_BAD_REQUEST : SportType field is not provided 
+            HTTP_100_BAD_REQUEST : An eventName must be provided.
+            HTTP_102_BAD_REQUEST : You can not enter a past date or time
+           
+           
+
+
+URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/event_post/
+**@author:** Yağmur Selek
