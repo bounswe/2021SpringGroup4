@@ -98,10 +98,10 @@ URL: *to be added*
         GET:
             HTTP_200_OK : Successfully returns the equipment post page.
         POST: 
-	    HTTP_400_BAD_REQUEST : Something was wrong with the provided information and no post was added.
             HTTP_201_CREATED : Successfully added the post in the database.
+	    HTTP_400_BAD_REQUEST : Something was wrong with the provided information and no post was added.
 
-**@author:** İhsan Mert Atalay
+**@author:** Salih Furkan Akkurt
 
 ## Random Article
 
@@ -189,8 +189,9 @@ URL: *to be added*
 
      RESPONSE STATUS CODES
         GET:
+	    HTTP_400_BAD_REQUEST : It Can't return correctly
+
             HTTP_200_OK : Successfully returns the Current Weather Condition of Istanbul.
-            HTTP_400_BAD_REQUEST : It Can't return correctly
        URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/hava/
 
-**@author:** Salih Furkan Akkurt
+**@author:** İHSAN MERT ATALAY
