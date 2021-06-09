@@ -57,3 +57,92 @@ URL: *to be added.*
         POST: .
             HTTP_400_BAD_REQUEST : Something was wrong with the provided information. Most likely an empty search.
 **@author:** Tolga Kerimoğlu
+
+## Covid19 Case Reports
+
+This endpoint is used for searching covid19 case reports all over the world. Returns a total confirmed case,deaths and recoveries of the world , rankings of confirmed cases using connection to the CovidPy API , also displays a search form for a GET request. For a POST request, it connects to the Covid API and it retrieves specific country data. Using the countrycode from the form, it retrieves confirmed,death and recovery data of the specific country and passes it to the Django template 'covid_country_report.html' where data is displayed to the user.
+
+'covid_reports.html' where data is taken, used, processed and shown to the user
+'covid_country_report.html' wher data processed and shown to the user
+
+
+    'GET':
+        Returns the html page for the case reports (confirmed, death, recovered) all over the world, 
+        Returns the html page for top 20 rankings according to confirmed cases or deaths
+        Displays a search form 
+    'POST':
+        Using the country code information , provided by the user, it connects to the CovidPy API,
+        to take the country data. Retrieves the data and passes it to the Django template "covid_country_report.html"
+        where the data displayed to the user.
+        JSON Format : { 'countrycode': "", string, identifies the country code user search for it }
+
+**@author:** Yiğit Sarıoğlu
+
+
+## Equipment Post
+
+This endpoint is the equipment posting interface on the system. It returns the equipment posting page for a GET request. For a POST request, it checks if the required fields are filled. Then, it adds the equipment post to the database.
+
+URL: *to be added*
+
+    'GET':
+        Returns the equipment posting page.
+
+    'POST':
+        Checks the fields and adds the equipment post in the database, returns an error if not
+        Use the following JSON format to issue POST requests to this endpoint
+        JSON Format : { 'username': "",                 string, the username selected by the user
+                        'title': "",                    string, the title selected by the user
+                        'description':"",               string, a description about the user, can be NULL
+                        'location':"",                  string, location provided by the user, can be NULL
+                       }
+                       
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the equipment post page.
+        POST: 
+            HTTP_201_CREATED : Successfully added the post in the database.
+            HTTP_400_BAD_REQUEST : Something was wrong with the provided information and no post was added.
+
+**@author:** Salih Furkan Akkurt
+
+## Random Article
+
+This endpoint is for getting an article off Wikipedia on a sports arena. It only has a GET request. It uses a predefined list of arenas and shows a random article.
+
+URL: *to be added*
+
+    'GET':
+        Returns the random article on the page.
+
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the article.
+            HTTP_400_BAD_REQUEST : The returned article was empty somehow.
+       
+**@author:** Salih Furkan Akkurt
+
+## NBA Teams
+
+This endpoint is used for checking information for selected NBA team. Returns a selection page for a GET request. For a POST request, when a user selects a team and submit, 
+it takes information using NBA-api and shows them at a new page. Also, POST request can be used by adding the abbreavion of the desired team to the url at selection page (/team/cle) to take information without selecting a team and submitting at the page.
+
+'team.html' where data is taken and used;
+'list_team.html' where data is processed and shown to the user.
+
+URL: *to be added*
+
+	'GET':
+		Returns the html page with a choice field showing all available teams and a submit button to select a team.
+	'POST':
+		It connects to NBA-api and takes the data about desired NBA team. Then, this data is displayed at new page.
+		
+	JSON Format : { 'team_code': "", string, identifies the desired team for searching }
+	
+	RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the team selection webpage.
+        POST: 
+            HTTP_200_OK : Successfully gets a response after selecting a team.
+
+**@author:** Berkay Gümüş
