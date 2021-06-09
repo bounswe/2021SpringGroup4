@@ -1,15 +1,21 @@
 """
 Created on June 4th, 2021
 
-This script handles the GET requests to the formula1 API endpoint http://localhost:8000/api/formula1/ ,
-                and the GET and POST requests to the formula1 API endpoint http://localhost:8000/api/formula1/driver_info/
+This script handles the GET requests to the formula1 API endpoint http://localhost:8000/formula1/ ,
+                and the GET and POST requests to the formula1 API endpoint http://localhost:8000/formula1/driver_info/
 
-    'GET' - endpoint http://localhost:8000/api/formula1/:
-        Returns the html for the current formula 1 driver standings and a search option of information about a driver from the upper table.
-    'GET' - endpoint http://localhost:8000/api/formula1/driver_info/:
-        Returns the html of the results page without a data, so shows a message to user and a link to redirect the user to standings page.
-    'POST' - endpoint http://localhost:8000/api/formula1/driver_info/:
+    'GET' - endpoint http://localhost:8000/formula1/:
+        Returns the html for the current formula 1 driver standings and 
+        a search option of information about a driver from the upper table.
+    
+    'GET' - endpoint http://localhost:8000/formula1/driver_info/:
+        Returns the html of the results page without a data, 
+        so shows a message to user and a link for the standings page.
+    
+    'POST' - endpoint http://localhost:8000/formula1/driver_info/:
         Returns the html for the information about the driver that is provided by the user. 
+    
+        JSON Format : { 'driver_name': "",      string, identifies the name of the driver}
 
 @author: Ece Dilara Aslan
 """
