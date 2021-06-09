@@ -75,3 +75,46 @@ This endpoint is used for searching covid19 case reports all over the world. Ret
 
 **@author:** Yiğit Sarıoğlu
 
+
+## Equipment Post
+
+This endpoint is the equipment posting interface on the system. It returns the equipment posting page for a GET request. For a POST request, it checks if the required fields are filled. Then, it adds the equipment post to the database.
+
+URL: *to be added*
+
+    'GET':
+        Returns the equipment posting page.
+
+    'POST':
+        Checks the fields and adds the equipment post in the database, returns an error if not
+        Use the following JSON format to issue POST requests to this endpoint
+        JSON Format : { 'username': "",                 string, the username selected by the user
+                        'title': "",                    string, the title selected by the user
+                        'description':"",               string, a description about the user, can be NULL
+                        'location':"",                  string, location provided by the user, can be NULL
+                       }
+                       
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the equipment post page.
+        POST: 
+            HTTP_201_CREATED : Successfully added the post in the database.
+            HTTP_400_BAD_REQUEST : Something was wrong with the provided information and no post was added.
+
+**@author:** Salih Furkan Akkurt
+
+## Random Article
+
+This endpoint is for getting an article off Wikipedia on a sports arena. It only has a GET request. It uses a predefined list of arenas and shows a random article.
+
+URL: *to be added*
+
+    'GET':
+        Returns the random article on the page.
+
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully returns the article.
+            HTTP_400_BAD_REQUEST : The returned article was empty somehow.
+       
+**@author:** Salih Furkan Akkurt
