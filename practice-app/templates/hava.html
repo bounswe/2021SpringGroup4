@@ -14,7 +14,7 @@
 <div class="header">
   <a href="#default" class="logo">PracticeApp-Group4</a>
   <div class="header-right">
-    <a class="active" href="#home">Home</a>
+    <a href="{% url 'api-overview' %}">Home</a>
 
     <a href="{% url 'register' %}">Register</a>
      <a href="{% url 'search_user' %}">Search User</a>
@@ -32,7 +32,7 @@
 
 
       <a href="{% url 'select_team' %}">NBA Team API </a>
-      <a href="{% url 'hava' %}">Hava API</a>
+      <a class="active" href="{% url 'hava' %}">Hava API</a>
   </div>
 </div>
 
