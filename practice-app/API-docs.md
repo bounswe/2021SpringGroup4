@@ -195,3 +195,26 @@ URL: *to be added*
 
 **@author:** İHSAN MERT ATALAY
        URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/hava/
+       
+       
+## Formula 1
+
+This endpoint is used for checking the current Formula 1 driver standings and searching driver information by driver name. Returns the standings page and a search option for a GET request to endpoint /formula1/. Returns a HTML page that gives a link for the standings page for a GET request to endpoint /formula1/driver_info/. For a POST request to endpoint /formula1/driver_info/, it gets the data from Ergast F1 API and filters the information of the driver whose name/surname or name and surname is given, case-insensitively. Then, this information is passed to the 'driver_information.html' where the data is displayed which are searched driver's name, permanent number, nationality, date of birth and a Wikipedia link for more information.
+
+URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/formula1/
+
+    'GET' - endpoint http://localhost:8000/formula1/:
+        Returns the html for the current formula 1 driver standings and 
+        a search option of information about a driver from the upper table.
+    
+    'GET' - endpoint http://localhost:8000/formula1/driver_info/:
+        Returns the html of the results page without a data, 
+        so shows a message to user and a link for the standings page.
+    
+    'POST' - endpoint http://localhost:8000/formula1/driver_info/:
+        Returns the html for the information about the driver that is provided by the user. 
+        
+        JSON Format : { 'driver_name': "",      string, identifies the name of the driver}
+
+**@author:** Ece Dilara Aslan
+
