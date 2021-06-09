@@ -179,3 +179,39 @@ URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/searc
                  http://127.0.0.1:8000/api/search_user/
 
 **@author:** Irfan Bozkurt
+
+
+
+## Holidays
+
+This endpoint is for checking holidays for selected country. Gets the date and country information from user by GET request and it firstly tests the validity of this date. Then,  Gets the holidays for the input country by google calender url as JSON format. Determines whether this date is a holiday and if it is, returns the holiday information and the next date which is not holiday by POST request. Also, if there is an wrong input, Determines source of the error and returns the proper error message by POST request. Finally,The returned data is displayed in html file.
+
+URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/holidays/
+
+    'GET':
+        Returns an html page including a holidays form (day,month,year,country) to get input by user.
+
+ 
+    'POST':
+        By spesific country name which is provided by the user,  determines the google calender url and gets holidays  
+        for this country as json format. By date which is also provided by the user, checks whether this date is in the
+        holidays list. For holiday dates, Calculates the next not holiday date and displays the proper information. 
+        For the wrong inputs, it handles this cases and displays error massage.
+        
+      
+       JSON Format : { 'input_error': "",                 boolean, identifies whether there is an error
+                       'legal_date': "",                  boolean, identifies whether the input date is legal
+                       'requested_date': "",              string, input date
+                       'is_holiday': "",                  boolean, identifies whether the input date is a holiday
+                       'holiday_name': "",                string, holiday name for the input date, if it is not '-'
+                       'next_day': "",                    string, next not holiday date, if it is not '-'
+                       'error_message': "",               string, type of error, if it is not '-'
+                        }
+     RESPONSE STATUS CODES
+        GET:
+            HTTP_200_OK : Successfully gets the input of the date and the country.
+
+        POST: 
+            HTTP_200_OK : Successfully proceeded the getting holidays information and input format is legal.
+            HTTP_400_BAD_REQUEST : There is a problem in the input such as illegal date, not country in the list, or empty input 
+**@author:** Mehmet Hilmi Dündar
