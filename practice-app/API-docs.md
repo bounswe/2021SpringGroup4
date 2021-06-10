@@ -237,3 +237,19 @@ URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/formu
         JSON Format : { 'driver_name': "",      string, identifies the name of the driver}
 
 **@author:** Ece Dilara Aslan
+## Current Weather Condition of Istanbul
+
+This project return the Current Weather Condition of Istanbul. This API get Temparature, Weather condution for example suny,rainy,clear sky ... and small image about weather condution from cities name.
+URL: *to be added*
+
+    'GET' or 'POST':
+        Returns the Current Weather condition of Istanbul.
+
+     RESPONSE STATUS CODES
+        GET:
+	    HTTP_400_BAD_REQUEST : It Can't return correctly
+
+            HTTP_200_OK : Successfully returns the Current Weather Condition of Istanbul.
+
+**@author:** İHSAN MERT ATALAY
+       URL: http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/hava/
