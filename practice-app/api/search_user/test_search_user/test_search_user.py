@@ -28,7 +28,7 @@ class Search_User_Test_Cases(APITestCase):
         Create a post request to the register API
         Control if registration is successful. Terminate test otherwise.
         """
-        response = self.client.post('/api/register/', user_data, format='json')
+        response = self.client.post('/register/', user_data, format='json')
         if response.status_code != status.HTTP_201_CREATED:
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -36,7 +36,7 @@ class Search_User_Test_Cases(APITestCase):
         Perform search using search_user API
         """
         data = { 'input' : username } 
-        response = self.client.post('/api/search_user/', data, format='json')
+        response = self.client.post('/search_user/', data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
@@ -61,7 +61,7 @@ class Search_User_Test_Cases(APITestCase):
 
         If the creation of the user fails, this test must fail:
         """
-        response = self.client.post('/api/register/', user_data, format='json')
+        response = self.client.post('/register/', user_data, format='json')
         if response.status_code != status.HTTP_201_CREATED:
             self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -70,7 +70,7 @@ class Search_User_Test_Cases(APITestCase):
         The search should fail:
         """
         data = { 'input' : username } 
-        response = self.client.post('/api/search_user/', data, format='json')
+        response = self.client.post('/search_user/', data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         
@@ -95,6 +95,6 @@ class Search_User_Test_Cases(APITestCase):
         The search should fail:
         """
         data = { 'input' : username } 
-        response = self.client.post('/api/search_user/', data, format='json')
+        response = self.client.post('/search_user/', data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
