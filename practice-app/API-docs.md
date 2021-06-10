@@ -83,7 +83,7 @@ This endpoint is used for searching covid19 case reports all over the world. Ret
 
 This endpoint is the equipment posting interface on the system. It returns the equipment posting page for a GET request. For a POST request, it checks if the required fields are filled. Then, it adds the equipment post to the database.
 
-URL: *to be added*
+[URL](http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/eq_post/)
 
     'GET':
         Returns the equipment posting page.
@@ -110,7 +110,7 @@ URL: *to be added*
 
 This endpoint is for getting an article off Wikipedia on a sports arena. It only has a GET request. It uses a predefined list of arenas and shows a random article.
 
-URL: *to be added*
+[URL](http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/random_article/)
 
     'GET':
         Returns the random article on the page.
