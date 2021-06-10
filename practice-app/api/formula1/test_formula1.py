@@ -7,7 +7,7 @@ class Formula1Tests(APITestCase):
         Ensure we can use GET request to endpoint http://localhost:8000/api/formula1/ properly
         """
         client = APIClient()
-        response = client.get('/api/formula1/')
+        response = client.get('/formula1/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
     
     def test_get_driver_info_page(self):
@@ -15,7 +15,7 @@ class Formula1Tests(APITestCase):
         Ensure we cannot use GET request to endpoint http://localhost:8000/api/formula1/driver_info/
         """
         client = APIClient()
-        response = client.get('/api/formula1/driver_info/')
+        response = client.get('/formula1/driver_info/')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_valid_input(self):
@@ -24,7 +24,7 @@ class Formula1Tests(APITestCase):
         """
         data = {'driver_name':'Hamilton'}
         client = APIClient()
-        response = client.post('/api/formula1/driver_info/', data)
+        response = client.post('/formula1/driver_info/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
     
     def test_valid_input_ignore_case(self):
@@ -33,7 +33,7 @@ class Formula1Tests(APITestCase):
         """
         data = {'driver_name':'leWis HamiltoN'}
         client = APIClient()
-        response = client.post('/api/formula1/driver_info/', data)
+        response = client.post('/formula1/driver_info/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_invalid_input(self):
@@ -42,7 +42,7 @@ class Formula1Tests(APITestCase):
         """
         data = {'driver_name':'xxxxx'}
         client = APIClient()
-        response = client.post('/api/formula1/driver_info/', data)
+        response = client.post('/formula1/driver_info/', data)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
     def test_no_input(self):
@@ -51,7 +51,7 @@ class Formula1Tests(APITestCase):
         """
         data = {'driver_name':''}
         client = APIClient()
-        response = client.post('/api/formula1/driver_info/', data)
+        response = client.post('/formula1/driver_info/', data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     
