@@ -145,7 +145,6 @@ URL: *to be added*
 **@author:** Berkay Gümüş
 
 
-**@author:** Yağmur Selek
 ## Create Event Post 
 
 This endpoint is for creating an event post. It returns the Event Post Page for a GET request. For a POST request,
