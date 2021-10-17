@@ -1,11 +1,24 @@
-# CMPE 352 - Group 4
-This is our project repository for CMPE 352, Fundamentals of Software Engineering course at Boğaziçi University. 
+This project repository was prepared by the 4th group for CMPE 352/451 course.
+
+You can find more information on the [Wiki page](https://github.com/bounswe/2021SpringGroup4/wiki) of our repository.
+
+# CMPE 451 Members
+* [Fatih Akgöz](https://github.com/bounswe/2021SpringGroup4/wiki/Fatih-Akg%C3%B6z)
+* [Ece Dilara Aslan](https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan)
+* [Muhammed İrfan Bozkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt)
+* [Mehmet Hilmi Dündar](https://github.com/bounswe/2021SpringGroup4/wiki/Mehmet-Hilmi-D%C3%BCndar)
+* [Tolga Kerimoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Tolga-Kerimo%C4%9Flu)
+* [Yiğit Sarıoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Yi%C4%9Fit-Sar%C4%B1o%C4%9Flu)
+* [Yağmur Selek](https://github.com/bounswe/2021SpringGroup4/wiki/Ya%C4%9Fmur-Selek)
+
+
+
 
 # CMPE 352 - Practice-App 
 
 URL : http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/
 
-# About Us
+# CMPE 352 Members
 * [Salih Furkan Akkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Salih-Furkan-Akkurt)
 * [Ece Dilara Aslan](https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan)
 * [İhsan Mert Atalay](https://github.com/bounswe/2021SpringGroup4/wiki/%C4%B0hsan-Mert-Atalay)
