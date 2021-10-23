@@ -9,9 +9,9 @@ class UsernameSerializer(serializers.ModelSerializer):
 
 class EventSerializer(serializers.ModelSerializer):
     creator = serializers.CharField(source='owner.username', read_only=True)
-    applicants = serializers.SerializerMethodField()
-    participants = serializers.SerializerMethodField()
-    followers = serializers.SerializerMethodField()
+    applicants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
+    participants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
+    followers = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     class Meta:
         model = Event
         fields = ('id', 'title', 'description', 'creator', 'date', 'time', 'duration', 
@@ -21,14 +21,7 @@ class EventSerializer(serializers.ModelSerializer):
         validated_data['owner'] = self.context['request'].user
         return super(EventSerializer, self).create(validated_data)
 
-    def get_applicants(self, obj):
-        return [user.username for user in obj.applicants.all()]
 
-    def get_participants(self, obj):
-        return [user.username for user in obj.participants.all()]
-
-    def get_followers(self, obj):
-        return [user.username for user in obj.followers.all()]
 
 
 
