@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/layout/fragment_lg.xml" value="0.18414387031408308" />
+        <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/fakgoz/Desktop/School/Projects/Cmpe451/2021SpringGroup4/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
