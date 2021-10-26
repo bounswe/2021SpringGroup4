@@ -14,4 +14,5 @@ urlpatterns = [
         version="1.0.0",
     ), name="openapi-schema"),
     path('api/docs/', include_docs_urls(title='API')),
+    path('api/equipment/', include('api.equipment.urls')),
 ]
