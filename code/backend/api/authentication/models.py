@@ -40,7 +40,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     location = models.CharField(max_length=100, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-
+    #TODO: Tag 
+    #TODO: Block 
+    #TODO: Follower
+    #TODO: Notification
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
