@@ -8,62 +8,58 @@ from rest_framework.response import Response
 from rest_framework import status
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.exceptions import APIException
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class EventNotFoundException(APIException):
     status_code = 404
     default_detail = "Event with the given ID does not exist. Please provide a valid ID."
     default_code = "event_not_found"
 
-class EventListCreateView(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
+class EventListCreateView(views.APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-class EventRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
+    def get(self, request, format=None):
+        events = Event.objects.all()
+        serializer = EventSerializer(events, many=True)
+        return Response(serializer.data)
 
-class EventAddRemoveView(views.APIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    def post(self, request, format=None):
+        serializer = EventSerializer(data=request.data, context={"request": request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request, pk, format=None):
-        try: 
-            event = Event.objects.get(pk=pk)
-        except:
-            raise EventNotFoundException 
+class EventDetailView(views.APIView):
+    permissions_classes = [IsOwnerOrReadOnly]
 
-        #TODO Handle checks for whether the given user exists.
-        if 'applicant' in request.data:
-            applicant = User.objects.get(username=request.data['applicant'])
-            event.applicants.add(applicant)
-        if 'follower' in request.data:
-            follower = User.objects.get(username=request.data['follower'])
-            event.followers.add(follower)
-        if 'participant' in request.data:
-            participant = User.objects.get(username=request.data['participant'])
-            event.participants.add(participant)
-        event.save()
+    def get(self, request, pk, format=None):
+        event = Event.objects.get(pk=pk)
         serializer = EventSerializer(event)
         return Response(serializer.data)
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         try: 
             event = Event.objects.get(pk=pk)
-        except:
-            raise EventNotFoundException
+        except Event.DoesNotExist:
+            return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+        event.delete()
+        return Response({"status": "Event deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
-        if 'applicant' in request.data:
-            applicant = User.objects.get(username=request.data['applicant'])
-            event.applicants.remove(applicant)
-        if 'follower' in request.data:
-            follower = User.objects.get(username=request.data['follower'])
-            event.followers.remove(follower)
-        if 'participant' in request.data:
-            participant = User.objects.get(username=request.data['participant'])
-            event.participants.remove(participant)
-        event.save()
-        serializer = EventSerializer(event)
-        return Response(serializer.data)
+    def patch(self, request, pk):
+        try: 
+            event = Event.objects.get(pk=pk)
+        except Event.DoesNotExist:
+            return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = EventSerializer(event, request.data, context={"method": "patch"})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
         
     
 
