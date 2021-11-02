@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import related
 from api.authentication.models import User 
 
 class EventBody(models.Model):
@@ -31,3 +32,13 @@ class Event(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="events")
     body =  models.OneToOneField(EventBody, on_delete=models.CASCADE)
 
+class Comment(models.Model):
+    posted = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="event_comments")
+    parent = models.ForeignKey(EventBody, on_delete=models.CASCADE, related_name="comments")
+    body = models.TextField(max_length=200)
+
+    #TODO: upvote/downvote mechanism 
+
+    class Meta:
+        ordering = ['posted']
