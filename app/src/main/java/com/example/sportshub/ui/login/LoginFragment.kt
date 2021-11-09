@@ -1,21 +1,13 @@
 package com.example.sportshub.ui.login
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.example.sportshub.MainActivity
 import com.example.sportshub.R
-import com.example.sportshub.databinding.FragmentDashboardBinding
 import com.example.sportshub.databinding.FragmentLoginBinding
-import com.example.sportshub.ui.dashboard.DashboardViewModel
 
 class LoginFragment : Fragment() {
 
@@ -39,18 +31,30 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            var result = loginViewModel.tryLogin(binding.editTextEmail.toString(),binding.editTextPassword.toString())
+            var result = loginViewModel.tryLogin(binding.editTextEmail.text.toString(),binding.editTextPassword.text.toString())
             if(result){
                 //Start Main Activity and Stop Login Activity
-               val intent = Intent(requireContext(),MainActivity::class.java)
-                startActivity(intent)
-                
+               //val intent = Intent(requireContext(),MainActivity::class.java)
+                //startActivity(intent)
+                Toast.makeText(requireContext(),binding.editTextPassword.text,Toast.LENGTH_LONG).show()
+
             }else{
 
             }
         }
+
+
         return root
     }
+
+    override fun onResume() {
+        super.onResume()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        binding.editTextEmail.requestFocus()
+    }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

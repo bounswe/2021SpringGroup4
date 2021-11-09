@@ -2,10 +2,8 @@ package com.example.sportshub.ui.login
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.sportshub.R
 import com.example.sportshub.databinding.FragmentLoginBinding
 import com.example.sportshub.databinding.FragmentRegisterBinding
@@ -32,6 +30,11 @@ class RegisterFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        binding.editTextNewEmail.requestFocus()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
