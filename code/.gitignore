@@ -4,9 +4,13 @@
 *.pyc
 __pycache__
 db.sqlite3
+./.dbdata/
 media
+.dbdata
+.dbdata/
 
 ./backend/backend-env/
+./backend/api/events/__pycache__
 # Backup files # 
 *.bak 
 

@@ -1,17 +1,24 @@
 from rest_framework import serializers
-from .models import Event, EventBody
+from .models import Event, EventBody, Comment
 from api.authentication.models import User
 from rest_framework.response import Response
 from collections import OrderedDict
+
+class CommentSerializer(serializers.ModelSerializer):
+    owner = serializers.SlugRelatedField(read_only=True, slug_field="username")
+    class Meta:
+        model = Comment 
+        fields = ('id', 'owner', 'parent', 'body')
 
 class EventBodySerializer(serializers.ModelSerializer):
     applicants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     participants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     followers = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
+    comments = CommentSerializer(many=True)
     class Meta:
         model = EventBody
         fields = ('title', 'description', 'date', 'time', 'duration', 
-                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'followers')
+                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'followers', 'comments')
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -75,6 +82,19 @@ class EventSerializer(serializers.ModelSerializer):
                         user = User.objects.get(username=username)
                         attribute = getattr(body, field)
                         attribute.remove(user)
+                    
+        if 'comment' in validated_data:
+            if 'add' in validated_data['comment']:
+                cbody = validated_data['comment']['add']
+                attribute = getattr(body, 'comments')
+                comment = Comment.objects.create(body=cbody, owner=self.context.get('request').user, 
+                                                parent=body)
+                attribute.add(comment)
+            if 'remove' in validated_data['comment']:
+                pk = validated_data['comment']['remove']
+                attribute = getattr(body, 'comments')
+                comment = Comment.objects.get(pk=pk)
+                comment.delete()
 
         return instance
 

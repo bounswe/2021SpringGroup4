@@ -52,7 +52,7 @@ class EventDetailView(views.APIView):
         except Event.DoesNotExist:
             return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = EventSerializer(event, request.data, context={"method": "patch"})
+        serializer = EventSerializer(event, request.data, context={"request": request, "method": "patch", "event": event})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
