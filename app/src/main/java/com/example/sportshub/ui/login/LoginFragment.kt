@@ -1,11 +1,13 @@
 package com.example.sportshub.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.sportshub.MainActivity
 import com.example.sportshub.R
 import com.example.sportshub.databinding.FragmentLoginBinding
 
@@ -34,9 +36,8 @@ class LoginFragment : Fragment() {
             var result = loginViewModel.tryLogin(binding.editTextEmail.text.toString(),binding.editTextPassword.text.toString())
             if(result){
                 //Start Main Activity and Stop Login Activity
-               //val intent = Intent(requireContext(),MainActivity::class.java)
-                //startActivity(intent)
-                Toast.makeText(requireContext(),binding.editTextPassword.text,Toast.LENGTH_LONG).show()
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
 
             }else{
 
