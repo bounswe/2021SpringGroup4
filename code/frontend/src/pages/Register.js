@@ -1,6 +1,7 @@
 
 
-import React, { Component } from 'react'
+import React, { Component }  from 'react'
+import {useState} from 'react'
 
 class Register extends Component {
     constructor(){
@@ -50,6 +51,8 @@ class Register extends Component {
         })
 
     }
+
+    
 
     render() {
         return (
