@@ -1,13 +1,14 @@
 package com.example.sportshub
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.sportshub.databinding.ActivityLoginBinding
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,8 +25,20 @@ class LoginActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_login)
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        actionBar?.setDisplayHomeAsUpEnabled(true);
         setupActionBarWithNavController(navController, appBarConfiguration)
 
     }
 
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

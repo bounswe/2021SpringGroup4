@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.btnLogin.setOnClickListener{
+        binding.btnNavigateToRegister.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         return root
