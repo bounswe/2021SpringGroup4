@@ -2,11 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/login_navigation"
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.sportshub.ui.login.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.sportshub.ui.login.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register"/>
 </navigation>
