@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-e2$vybfw-v8o-9025y77#0((bsj1r&n=mg4tpe$#plvsty40jk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,8 +44,10 @@ INSTALLED_APPS = [
     'api.events',
     'api.equipment',
     'django.contrib.gis',
-    'api.geo_engine',    
+    'api.geo_engine',  
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

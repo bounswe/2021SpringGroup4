@@ -15,5 +15,5 @@ urlpatterns = [
     ), name="openapi-schema"),
     path('api/docs/', include_docs_urls(title='API')),
     path('api/equipment/', include('api.equipment.urls')),
-    path('api/geo/', include('api.geo_engine.urls'))
+    path('api/geo/', include('api.geo_engine.urls')),
 ]

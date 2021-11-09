@@ -69,7 +69,7 @@ class NearbyEvents(views.APIView):
 
     def post(self, request, format=None):
         location = request.data.get('location') 
-        dist = int(request.data.get('dist'))
+        dist = float(request.data.get('dist'))
         g = geolocator.geocode(location)
         lat = g.latitude
         lng = g.longitude
