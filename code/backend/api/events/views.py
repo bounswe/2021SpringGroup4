@@ -2,13 +2,18 @@ from django.shortcuts import render
 from rest_framework import views  
 from rest_framework import generics
 from .serializers import EventSerializer
-from .models import Event 
+from .models import Event, EventBody 
 from api.authentication.models import User 
 from rest_framework.response import Response
 from rest_framework import status
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.exceptions import APIException
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from django.db.models import Q
+from django.contrib.gis.geos import Point
+from geopy.geocoders import Nominatim
+
+geolocator = Nominatim(user_agent="location")
 
 class EventNotFoundException(APIException):
     status_code = 404
@@ -52,15 +57,27 @@ class EventDetailView(views.APIView):
         except Event.DoesNotExist:
             return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = EventSerializer(event, request.data, context={"request": request, "method": "patch", "event": event})
+        serializer = EventSerializer(event, request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class NearbyEvents(views.APIView):
+    permission_classes = [AllowAny]
 
-        
+    def post(self, request, format=None):
+        location = request.data.get('location') 
+        dist = int(request.data.get('dist'))
+        g = geolocator.geocode(location)
+        lat = g.latitude
+        lng = g.longitude
+        pnt = Point(lng, lat)
+        qs = EventBody.objects.filter(point__distance_lte=(pnt, dist / 31000 * 360))
+        qs_events = Event.objects.filter(body__in=qs)
+        serializer = EventSerializer(qs_events, many=True)
+        return Response(serializer.data)
     
 
         
