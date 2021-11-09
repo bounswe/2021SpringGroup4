@@ -1,10 +1,24 @@
-version: "3.9"
-   
+version: "3"
+
 services:
-  web:
-    build: .
-    command: python ./backend/manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes: 
+      - .:/app/backend
+    ports: 
+      - 8000:8000
+    depends_on: 
+      - db
+
+  db:
+    image: mysql
+    restart: always
     ports:
-      - "8000:8000"
+      - 33066:3306
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - .dbdata:/var/lib/mysql
