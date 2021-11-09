@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'api.profiles',
     'api.events',
     'api.equipment',
+    'django.contrib.gis',
+    'api.geo_engine',    
 ]
 
 MIDDLEWARE = [
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.contrib.gis.db.backends.mysql',
         'NAME':  'admin',
         'USER': 'root',
         'PASSWORD': 'root',
