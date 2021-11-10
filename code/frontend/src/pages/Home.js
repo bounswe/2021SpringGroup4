@@ -6,6 +6,7 @@ import Contact from './Contact';
 import Login from './Login';
 import Register from './Register';
 import Equipment from './Equipment';
+import CreateEvent from './CreateEvent';
 import '../index.css'
 
 
@@ -30,6 +31,9 @@ function Home() {
               <li>
                 <Link to="/equipment">Equipment</Link>
               </li>
+              <li>
+                <Link to="/createEvent">CreateEvent</Link>
+              </li>
             </ul>
             <Switch>
               <Route exact path='/register' component={Register}></Route>
@@ -37,6 +41,7 @@ function Home() {
               <Route exact path='/contact' component={Contact}></Route>
               <Route exact path='/login' component={Login}></Route>
               <Route exact path='/equipment' component={Equipment}></Route>
+              <Route exact path='/CreateEvent' component={CreateEvent}></Route>
             </Switch>
           </div>
         </Router>

@@ -1,7 +1,6 @@
 
 
-import React, { Component }  from 'react'
-import {useState} from 'react'
+import React, { Component } from 'react'
 
 class Register extends Component {
     constructor(){
@@ -52,8 +51,6 @@ class Register extends Component {
 
     }
 
-    
-
     render() {
         return (
             <table className="table table-bordered">
@@ -61,25 +58,25 @@ class Register extends Component {
                     <tr>
                         <th>E-Mail</th>
                         <td>
-                            <input value={this.state.email} name="email" onChange={this.changeHandler} type="text" className="form-control" placeholder="you@email.com" />
+                            <input value={this.state.email} name="email" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>UserName</th>
                         <td>
-                            <input value={this.state.username} name="username" onChange={this.changeHandler} type="text" className="form-control"  placeholder="nickname"/>
+                            <input value={this.state.username} name="username" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>Password</th>
                         <td>
-                            <input value={this.state.password} name="password" onChange={this.changeHandler} type="password" className="form-control" placeholder="******"/>
+                            <input value={this.state.password} name="password" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>First Name</th>
                         <td>
-                            <input value={this.state.first_name} name="first_name" onChange={this.changeHandler} type="text" className="form-control" placeholder="your name"/>
+                            <input value={this.state.first_name} name="first_name" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>

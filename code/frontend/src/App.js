@@ -6,6 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import './bootstrap.min.css';
+import Register from './pages/Register';
 
 
 function App() {
