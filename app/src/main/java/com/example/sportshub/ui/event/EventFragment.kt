@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.databinding.FragmentEventBinding
 
@@ -30,8 +31,11 @@ class EventFragment : Fragment() {
                 ViewModelProvider(this).get(EventViewModel::class.java)
 
         _binding = FragmentEventBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
+        val rw : RecyclerView = binding.listEvent
+        rw.adapter = EventAdapter()
+
+        val root: View = binding.root
 
         return root
     }
