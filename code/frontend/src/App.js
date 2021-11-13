@@ -7,16 +7,25 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import './bootstrap.min.css';
 import Register from './pages/Register';
+import Home2 from './pages/Home2'
+
 
 
 function App() {
   
   return (
-    <Home> </Home>
-
+    <>
+      <Router>
+        <Home2 />
+        <Switch>
+          <Route path='/about' exact component={About} />
+          <Route path='/contact' component={Contact} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+        </Switch>
+      </Router>
+    </>
   );
-
-
 }
 
 export default App;
