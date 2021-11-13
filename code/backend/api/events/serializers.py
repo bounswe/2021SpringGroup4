@@ -18,8 +18,8 @@ class EventBodySerializer(serializers.ModelSerializer):
     class Meta:
         model = EventBody
         fields = ('title', 'description', 'date', 'time', 'duration', 
-                'location', 'point', 'sportType', 'maxPlayers', 'applicants', 'participants', 'followers', 'comments',)
-        extra_kwargs = {"point": {"read_only": True}}
+                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'followers', 'comments',)
+
 
 class EventSerializer(serializers.ModelSerializer):
     body = EventBodySerializer()

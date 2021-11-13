@@ -17,6 +17,7 @@ class EventBody(models.Model):
     class Meta:
         ordering = ['date']
 
+
 class Event(models.Model):
     @staticmethod
     def context():
