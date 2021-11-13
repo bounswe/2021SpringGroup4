@@ -31,24 +31,23 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(max_length=50, unique=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(unique=True)
     age = models.IntegerField(blank=True, null=True) 
     about = models.TextField(max_length=500, blank=True, null=True)
-    email = models.EmailField(unique=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    #TODO: Tag 
-    #TODO: Block 
-    #TODO: Follower
-    #TODO: Notification
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, blank=True, null=True)
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['first_name', 'email']
+    REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return self.username
+
+    class Meta:
+        ordering = ['id']
 

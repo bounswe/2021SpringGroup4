@@ -12,7 +12,7 @@ class EventTests(APITestCase):
 
     def test_event_create(self):
         user = User.objects.create(username="user", password="pass",
-                                    email="test@email.com", first_name="Test")
+                                    email="test@email.com")
         self.client.force_authenticate(user=user)
         data = {
             "title": "TestEvent",
