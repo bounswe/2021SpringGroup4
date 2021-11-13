@@ -2,6 +2,7 @@ version: "3"
 
 services:
   backend:
+    restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -10,15 +11,24 @@ services:
     ports: 
       - 8000:8000
     depends_on: 
-      - db
+      pgdb:
+        condition: service_healthy
+    links:
+      - pgdb
 
-  db:
-    image: mysql
-    restart: always
-    ports:
-      - 33066:3306
-    environment:
-      MYSQL_DATABASE: admin
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - .dbdata:/var/lib/mysql
+  pgdb:
+      image: postgres
+      container_name: pgdb
+      environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - "5432:5432"
+      volumes: 
+        - .dbdata:/var/lib/postgresql/data
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U postgres"]
+        interval: 5s
+        timeout: 5s
+        retries: 5

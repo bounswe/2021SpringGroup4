@@ -4,11 +4,6 @@ from api.authentication.models import User
 from rest_framework.response import Response
 from collections import OrderedDict
 
-from django.contrib.gis.geos import Point
-from geopy.geocoders import Nominatim
-
-geolocator = Nominatim(user_agent="location")
-
 class CommentSerializer(serializers.ModelSerializer):
     owner = serializers.SlugRelatedField(read_only=True, slug_field="username")
     class Meta:
@@ -46,12 +41,6 @@ class EventSerializer(serializers.ModelSerializer):
         else: return data
 
     def to_internal_value(self, data):
-        address = data['location']
-        g = geolocator.geocode(address)
-        lat = g.latitude
-        lng = g.longitude
-        pnt = Point(lng, lat)
-        data['point'] = pnt 
         return data
 
     def to_representation(self, instance):

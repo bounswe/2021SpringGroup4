@@ -1,6 +1,5 @@
 from django.db import models
 from api.authentication.models import User 
-from django.contrib.gis.db import models
 
 class EventBody(models.Model):
     title = models.CharField(max_length=100)
@@ -11,7 +10,6 @@ class EventBody(models.Model):
     location = models.CharField(max_length=50)
     sportType = models.CharField(max_length=30)
     maxPlayers = models.IntegerField()
-    point = models.PointField(null=True)
     applicants = models.ManyToManyField(User, related_name="applied")
     participants = models.ManyToManyField(User, related_name="going")
     followers = models.ManyToManyField(User, related_name="following")
