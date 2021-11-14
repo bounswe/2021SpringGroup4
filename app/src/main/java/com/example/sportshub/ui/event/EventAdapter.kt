@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 
 class EventAdapter:RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
-    val eventList: MutableList<Int> = MutableList(10,init = {index -> index})
+    var eventList: MutableList<Int> = MutableList(0,init = {index -> index })
 
     class EventViewHolder(view: View):RecyclerView.ViewHolder(view) {
         private val title: TextView = view.findViewById(R.id.event_title)
