@@ -10,6 +10,7 @@ from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import status
 from .utils import distance, dist, loc
+
 class UserSearch(views.APIView):
     def get(self, request, *args, **kwargs):
         if kwargs.get('field') == 'username':
