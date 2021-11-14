@@ -29,7 +29,7 @@ function App() {
           <Route path='/register' component={RegisterForm} />
           <Route path='/registereduser' component={RegisteredUser} />
           <Route path='/equipment' component={Equipment} />
-          <Route path='/event' component={CreateEvent} />
+          <Route path='/createEvent' component={CreateEvent} />
         </Switch>
 
 

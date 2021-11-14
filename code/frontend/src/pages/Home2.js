@@ -73,7 +73,7 @@ function Home2() {
                             </Link>
                         </li>
                         <li className='home2-item'>
-                            <Link to='/createEvent' className='home2-links' onClick={closeMobileMenu}>
+                            <Link to='/createevent' className='home2-links' onClick={closeMobileMenu}>
                                 Event
                             </Link>
                         </li>

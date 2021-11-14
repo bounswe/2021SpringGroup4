@@ -7,12 +7,13 @@ class CreateEvent extends Component {
         this.state={ 
             title:'',
             description:'',
+            date:'',
+            time:'',
+            duration:'',
             location:'',
             sportType:'',
-            numberOfPlayers:'',
-            date:'',
-            equipments:''
-
+            maxPlayers:''
+    
 
         };
     
@@ -22,7 +23,7 @@ class CreateEvent extends Component {
     
     }
 
-
+    //ınput change handler
     changeHandler(event){
         console.log("Input has been changed..");
         this.setState({
@@ -33,9 +34,9 @@ class CreateEvent extends Component {
 
     //submitform
     submitForm(){
-        console.log("New Event has been created.");
+        console.log("Event Data submitted.");
 
-        fetch('http://localhost:8000/api/CreateEvent/' ,{
+        fetch('http://localhost:8000/api/event/' ,{
             method:'POST',
             body:JSON.stringify(this.state),
             headers:{
@@ -49,11 +50,8 @@ class CreateEvent extends Component {
         this.setState({
             title:'',
             description:'',
-            location:'',
-            sportType:'',
-            numberOfPlayers:'',
-            date:'',
-            equipments:''
+            location:'', 
+            numbofplayers:''
 
         })
 
@@ -79,38 +77,44 @@ class CreateEvent extends Component {
                         </td>
                     </tr>
                     <tr>
+                        <th>Date</th>
+                        <td>
+                            <input value={this.state.location} name="date" onChange={this.changeHandler} type="date" className="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Time</th>
+                        <td>
+                            <input value={this.state.location} name="time" onChange={this.changeHandler} type="time" className="form-control" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>duration</th>
+                        <td>
+                            <input value={this.state.location} name="duration" onChange={this.changeHandler} type="text" className="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Location</th>
                         <td>
                             <input value={this.state.location} name="location" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
-                    <tr> 
-                        <th>Title</th>
-                        <td>
-                            <input value={this.state.sportType} name="sportType" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-
-                    <tr> 
-                        <th>Title</th>
-                        <td>
-                            <input value={this.state.numberOfPlayers} name="numberOfPlayers" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-                    <tr> 
-                        <th>Title</th>
-                        <td>
-                            <input value={this.state.date} name="date" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-
-                    <tr> 
-                        <th>Title</th>
-                        <td>
-                            <input value={this.state.equipments} name="equipments" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
                     
+                    <tr>
+                        <th>sportType</th>
+                        <td>
+                            <input value={this.state.location} name="sportType" onChange={this.changeHandler} type="text" className="form-control" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>maxPlayers</th>
+                        <td>
+                            <input value={this.state.location} name="maxPlayers" onChange={this.changeHandler} type="text" className="form-control" />
+                        </td>
+                    </tr>
+
                     <tr>
                         <td colSpan="2">
                             <input type="submit" value="Submit" onClick={this.submitForm} className="btn btn-dark" />
