@@ -7,11 +7,9 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import './bootstrap.min.css';
 import Register from './pages/Register';
-import Home2 from './pages/Home2'
 import RegisterForm from './pages/RegisterForm';
 import RegisteredUser from './pages/RegisteredUser';
-import EquipmentList from './pages/EquipmentList';
-import Home2backgroundfinal from './pages/Home2bgfinal';
+import Home2 from './pages/Home2';
 import Equipment from './pages/Equipment';
 import CreateEvent from './pages/CreateEvent';
 
@@ -24,7 +22,6 @@ function App() {
     
       <Router>
         <Home2 />
-        <Home2backgroundfinal />
         <Switch>
           <Route path='/about' exact component={About} />
           <Route path='/contact' component={Contact} />
