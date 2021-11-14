@@ -1,8 +1,9 @@
 from django.urls import reverse 
-from rest_framework import status 
+from rest_framework import status
+from rest_framework.generics import get_object_or_404 
 from rest_framework.test import APITestCase
 from api.authentication.models import User 
-from .models import Event
+from .models import Comment, Event
 import datetime
 
 class EventTests(APITestCase):
@@ -88,10 +89,52 @@ class EventTests(APITestCase):
         
         self.assertEqual(event_counter, Event.objects.all().count())
 
-    def test_comment(self): 
-        pass #TODO 
+    def test_comment_CR(self):
+        user = User.objects.create(username="test_comment", password="pass",
+                                   email="test@email.com")
+        self.client.force_authenticate(user=user)
+        data = {
+            "title": "test_comment",
+            "location": "TestLocation",
+            "maxPlayers": "10",
+            "date": "2021-10-05",
+            "time": "21:00",
+            "duration": "02:00",            
+        }
+        url = reverse('event_list_create')
+        response = self.client.post(url, data=data, format='json')
+        test_event = get_object_or_404(Event, id=response.data.get('id'))
+        #######
+        url = reverse('event_comment', kwargs={'pk': test_event.id})
+        
+        # CREATE
+        comment_body = "This is a test comment"
+        data = {"body": comment_body}
+        response = self.client.post(url, data=data, kwargs={'pk': test_event.id}, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        #######
+        url = reverse('event_comment_RUD', kwargs={'pk': test_event.id, 
+                                                   'comment_pk': response.data.get('id')})
+        # RETRIEVE
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        comment = get_object_or_404(Comment, id=response.data.get('id'))
+        self.assertEqual(comment.body, comment_body)
+        # UPDATE
+        new_body = "This is an updated test comment."
+        data = {"body": new_body}                                              
+        response = self.client.put(url, data=data, kwargs={'pk': test_event.id,
+                                                           'comment_pk': comment.id}, format='json')
+        comment = get_object_or_404(Comment, id=comment.id)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(new_body, comment.body)
+        # DELETE
+        response = self.client.delete(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_authorization(self):
         pass #TODO 
-
         

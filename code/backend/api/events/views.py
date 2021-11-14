@@ -56,3 +56,26 @@ class EventDetailView(views.APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CommentCreateAPIView(generics.CreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    
+
+    def perform_create(self, serializer):
+        event_pk = self.kwargs.get('pk')
+        event = generics.get_object_or_404(Event, pk=event_pk)
+        user = self.request.user 
+
+        serializer.save(parent=event.body, owner=user)
+
+
+class CommentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    
+
+    
