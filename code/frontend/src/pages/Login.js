@@ -1,7 +1,4 @@
 
-
-
-
 import React, { Component } from 'react'
 
 
@@ -82,7 +79,7 @@ submitForm(){
                     <tr>
                         <th>Password</th>
                         <td>
-                            <input value={this.state.password} name="password" onChange={this.changeHandler} type="password" className="form-control" />
+                            <input value={this.state.password} name="password" onChange={this.changeHandler} type="password" className="form-control" placeholder="******" />
                         </td>
                     </tr>
                     <tr>
@@ -96,11 +93,8 @@ submitForm(){
     )
 
 
-
-
   }
 
 }
 export default Login
-
 

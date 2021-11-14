@@ -7,6 +7,7 @@ import About from './About';
 import Contact from './Contact';
 import Login from './Login';
 import Register from './Register';
+import RegisterForm from './RegisterForm';
 import Equipment from './Equipment';
 import CreateEvent from './CreateEvent';
 function Home2() {
@@ -33,7 +34,7 @@ function Home2() {
     window.addEventListener('resize', showButton);
 
     return (
-        <>
+        <div>
             <nav className="home2">
                 <div className="home2-container">
                     <Link to="/" className="home2-logo" onClick= {closeMobileMenu}>
@@ -56,6 +57,12 @@ function Home2() {
                         </li>
 
                         <li className='home2-item'>
+                            <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
+                                Equipment
+                            </Link>
+                        </li>
+
+                        <li className='home2-item'>
                             <Link to='/login' className='home2-links' onClick={closeMobileMenu}>
                                 Login
                             </Link>
@@ -72,7 +79,11 @@ function Home2() {
                 </div>
 
             </nav>
-            </>
+
+            
+
+     </div>
+            
     );
 }
 

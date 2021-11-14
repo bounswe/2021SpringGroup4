@@ -8,23 +8,32 @@ import Login from './pages/Login';
 import './bootstrap.min.css';
 import Register from './pages/Register';
 import Home2 from './pages/Home2'
-
-
-
+import RegisterForm from './pages/RegisterForm';
+import RegisteredUser from './pages/RegisteredUser';
+import Equipment from './pages/Equipment';
+import EquipmentList from './pages/EquipmentList';
 function App() {
   
   return (
-    <>
+   
+    
       <Router>
-        <Home2 />
+
+        <Home2/>
+
         <Switch>
           <Route path='/about' exact component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/login' component={Login} />
-          <Route path='/register' component={Register} />
+          <Route path='/register' component={RegisterForm} />
+          <Route path='/registereduser' exact component={RegisteredUser}></Route>
+          <Route path='/equipment' exact component={Equipment}></Route>
+          <Route path='/equipmentlist' exact component={EquipmentList}></Route>
         </Switch>
+
+
       </Router>
-    </>
+    
   );
 }
 
