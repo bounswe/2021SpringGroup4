@@ -28,7 +28,7 @@ class NotificationCreateAPIView(generics.CreateAPIView):
 class NotificationListAPIView(views.APIView):
 
     def get(self, request, format=None):
-        notifications = Notification.objects.filter(recipient=request.user).order_by()
+        notifications = Notification.objects.filter(recipient=request.user)
         serializer = NotificationSerializer(notifications, many=True)
         return Response(serializer.data)
 

@@ -7,6 +7,7 @@ from api.authentication.models import User
 
 class NotificationTEMPLATES():
     greeting = 'Welcome to SportsHUB! Your registration was successful!'
+    test = 'This is a test notification. Number: '
  
 
 class Notification(models.Model):
