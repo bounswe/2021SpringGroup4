@@ -234,14 +234,11 @@ class Registerform extends Component {
             <div className="createAccount">
               <button type="submit">Create Account</button>
               <small>Already Have an Account?</small>
-                <Router> <div>
+                <div>
                     <Link to="/login">Login</Link>
-                    <Switch>
-                     <Route path='/login' component={Login}></Route>
-                     </Switch>
-
+          
                      </div>
-                </Router>
+        
             </div>
           </form>
         </div>

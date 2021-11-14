@@ -17,6 +17,7 @@ this.submitForm=this.submitForm.bind(this);
 }
 
 
+
  //ınput change handler
  changeHandler(event){
   console.log("Input has been changed..");
@@ -66,7 +67,10 @@ submitForm(){
 
 
   render() {
+   
+
     return (
+
     <div>   
       <table className="table table-bordered">
                 <tbody>

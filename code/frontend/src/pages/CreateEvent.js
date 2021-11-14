@@ -52,8 +52,12 @@ class CreateEvent extends Component {
         this.setState({
             title:'',
             description:'',
-            location:'', 
-            numbofplayers:''
+            date:'',
+            time:'',
+            duration:'',
+            location:'',
+            sportType:'',
+            maxPlayers:''
 
         })
 
@@ -81,20 +85,20 @@ class CreateEvent extends Component {
                     <tr>
                         <th>Date</th>
                         <td>
-                            <input value={this.state.location} name="date" onChange={this.changeHandler} type="date" className="form-control" />
+                            <input value={this.state.date} name="date" onChange={this.changeHandler} type="date" className="form-control" />
                         </td>
                     </tr>
                     <tr>
                         <th>Time</th>
                         <td>
-                            <input value={this.state.location} name="time" onChange={this.changeHandler} type="time" className="form-control" />
+                            <input value={this.state.time} name="time" onChange={this.changeHandler} type="time" className="form-control" />
                         </td>
                     </tr>
 
                     <tr>
-                        <th>duration</th>
+                        <th>Duration</th>
                         <td>
-                            <input value={this.state.location} name="duration" onChange={this.changeHandler} type="text" className="form-control" />
+                            <input value={this.state.duration} name="duration" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>
@@ -103,17 +107,19 @@ class CreateEvent extends Component {
                             <input value={this.state.location} name="location" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
+
+                    
                     
                     <tr>
-                        <th>sportType</th>
+                        <th>SportType</th>
                         <td>
-                            <input value={this.state.location} name="sportType" onChange={this.changeHandler} type="text" className="form-control" />
+                            <input value={this.state.sportType} name="sportType" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th>maxPlayers</th>
+                        <th>Max Players</th>
                         <td>
-                            <input value={this.state.location} name="maxPlayers" onChange={this.changeHandler} type="text" className="form-control" />
+                            <input value={this.state.maxPlayers} name="maxPlayers" onChange={this.changeHandler} type="text" className="form-control" />
                         </td>
                     </tr>
 
