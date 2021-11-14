@@ -1,21 +1,13 @@
-from django.shortcuts import render
-from rest_framework import views  
-from rest_framework import generics
-from .serializers import EventSerializer
-from .models import Event, EventBody 
-from api.authentication.models import User 
+from rest_framework import views, generics
 from rest_framework.response import Response
 from rest_framework import status
+
+from .serializers import CommentSerializer, EventSerializer
+from .models import Comment, Event
 from .permissions import IsOwnerOrReadOnly
-from rest_framework.exceptions import APIException
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
-from django.db.models import Q
 
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-class EventNotFoundException(APIException):
-    status_code = 404
-    default_detail = "Event with the given ID does not exist. Please provide a valid ID."
-    default_code = "event_not_found"
 
 class EventListCreateView(views.APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -32,7 +24,9 @@ class EventListCreateView(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class EventDetailView(views.APIView):
+
     permissions_classes = [IsOwnerOrReadOnly]
 
     def get(self, request, pk, format=None):
@@ -44,24 +38,21 @@ class EventDetailView(views.APIView):
         try: 
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
-            return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status": "Event with the given ID does not exists"},
+                            status=status.HTTP_400_BAD_REQUEST)
         event.delete()
-        return Response({"status": "Event deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+        return Response({"status": "Event deleted successfully."},
+                        status=status.HTTP_204_NO_CONTENT)
 
     def patch(self, request, pk):
         try: 
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
-            return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"status": "Event with the given ID does not exists"},
+                            status=status.HTTP_400_BAD_REQUEST)
 
         serializer = EventSerializer(event, request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-    
-
-        
-

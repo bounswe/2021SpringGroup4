@@ -1,5 +1,7 @@
 from django.db import models
+
 from api.authentication.models import User 
+
 
 class EventBody(models.Model):
     title = models.CharField(max_length=100)
@@ -29,14 +31,14 @@ class Event(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="events")
-    body =  models.OneToOneField(EventBody, on_delete=models.CASCADE, related_name="parent")
+    body = models.OneToOneField(EventBody, on_delete=models.CASCADE, related_name="parent")
+    
 
 class Comment(models.Model):
-    posted = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="event_comments")
     parent = models.ForeignKey(EventBody, on_delete=models.CASCADE, related_name="comments")
+    posted = models.DateTimeField(auto_now_add=True)
     body = models.TextField(max_length=200)
-
     #TODO: upvote/downvote mechanism 
 
     class Meta:

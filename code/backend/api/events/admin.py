@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Comment, Event, EventBody
+
+admin.register(EventBody)
+admin.register(Event)
+admin.register(Comment)

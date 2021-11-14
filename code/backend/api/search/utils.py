@@ -4,7 +4,6 @@ from math import radians, cos, sin, asin, sqrt
 import json
 
 def distance(lat1, lat2, lon1, lon2):
-     
 
     lon1 = radians(lon1)
     lon2 = radians(lon2)
@@ -35,6 +34,3 @@ def loc(location):
     geocode_source = gmaps.geocode(location)[0]  
     lat1, lon1 = (geocode_source['geometry']['location']).values()
     return lat1, lon1
-
-if __name__ == '__main__':
-    print(dist("Adana", "Ankara"))

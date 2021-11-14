@@ -4,25 +4,34 @@ from api.authentication.models import User
 from rest_framework.response import Response
 from collections import OrderedDict
 
+
 class CommentSerializer(serializers.ModelSerializer):
     owner = serializers.SlugRelatedField(read_only=True, slug_field="username")
+    parent = serializers.SlugRelatedField(read_only=True, slug_field="id")
+
     class Meta:
         model = Comment 
-        fields = ('id', 'owner', 'parent', 'body')
+        exclude = ['posted']
+        #fields = ('id', 'owner', 'parent', 'body')
+
 
 class EventBodySerializer(serializers.ModelSerializer):
     applicants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     participants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     followers = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     comments = CommentSerializer(many=True)
+
     class Meta:
         model = EventBody
-        fields = ('title', 'description', 'date', 'time', 'duration', 
-                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'followers', 'comments',)
+        fields = '__all__'
+        #fields = ('title', 'description', 'date', 'time', 'duration', 
+        #         'location', 'sportType', 'maxPlayers', 'applicants', 
+        #         'participants', 'followers', 'comments',)
 
 
 class EventSerializer(serializers.ModelSerializer):
     body = EventBodySerializer()
+
     class Meta:
         model = Event  
         fields = ('context', 'id', 'created', 'owner', 'type', 'body')
@@ -63,6 +72,7 @@ class EventSerializer(serializers.ModelSerializer):
         regular_fields = ['title', 'description', 'date', 'time', 'duration', 'location', 'maxPlayers']
         list_fields = ['applicants', 'participants', 'followers']
         body = instance.body
+
         for field in regular_fields:
             if field in validated_data:
                 setattr(body, field, validated_data[field])
@@ -94,11 +104,3 @@ class EventSerializer(serializers.ModelSerializer):
                 comment.delete()
 
         return instance
-
-    
-
-
-
-
-
-

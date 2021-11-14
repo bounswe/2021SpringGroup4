@@ -1,15 +1,21 @@
 from django.shortcuts import render
+
 from api.events.serializers import EventSerializer, EventBodySerializer, CommentSerializer
 from api.events.models import Event, EventBody, Comment
 from api.authentication.models import User 
 from api.profiles.serializers import UserSerializer
+
 from rest_framework import generics 
 from rest_framework import views
 from rest_framework.permissions import AllowAny
-from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import status
+
+from django.db.models import Q
+
 from .utils import distance, dist, loc
+
+
 class UserSearch(views.APIView):
     def get(self, request, *args, **kwargs):
         if kwargs.get('field') == 'username':
@@ -20,6 +26,7 @@ class UserSearch(views.APIView):
             qs = User.objects.filter(Q(first_name__contains=kwargs.get('value')))
             serializer = UserSerializer(qs, many=True)
             return Response(status=status.HTTP_200_OK, data=serializer.data)  
+
 
 class EventSearch(views.APIView):
     permission_classes = [AllowAny]
@@ -49,3 +56,4 @@ class EventSearch(views.APIView):
                 data['location'] = event.location 
                 return_events.append(data)
             return Response(status=200, data=return_events, content_type='json')
+            

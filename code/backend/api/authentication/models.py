@@ -18,14 +18,16 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
     
-    def create_superuser(self, email, username, first_name, password, **other_fields):
+    def create_superuser(self, email, username, password, first_name="", **other_fields):
+        
+        if first_name == "":
+            first_name = "admin_" + str(User.objects.filter(is_staff=True).count() + 1)
 
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
 
         return self.create_user(email, username, first_name, password, **other_fields)
-
 
 
 class User(AbstractBaseUser, PermissionsMixin):
