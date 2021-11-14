@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 class CreateEvent extends Component {
     constructor(){
+        const date = new Date();
         super();
         this.state={ 
             title:'',
@@ -20,6 +21,7 @@ class CreateEvent extends Component {
 
     this.changeHandler=this.changeHandler.bind(this);
     this.submitForm=this.submitForm.bind(this);
+    
     
     }
 
