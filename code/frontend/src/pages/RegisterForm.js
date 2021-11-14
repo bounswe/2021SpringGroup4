@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { useHistory } from 'react-router-dom'
+
 import { withRouter } from "react-router-dom";
 
 import "../design/RegisterForm.css";
@@ -90,7 +90,7 @@ class Registerform extends Component {
         .then((response) => {
             if(!response.ok) throw new Error(response.status);
             else { 
-                this.props.history.push("./RegisteredUser");
+                this.props.history.push("./registereduser");
                 return response.json();
               } 
               

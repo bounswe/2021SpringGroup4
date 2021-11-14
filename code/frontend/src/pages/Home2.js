@@ -57,12 +57,6 @@ function Home2() {
                         </li>
 
                         <li className='home2-item'>
-                            <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
-                                Equipment
-                            </Link>
-                        </li>
-
-                        <li className='home2-item'>
                             <Link to='/login' className='home2-links' onClick={closeMobileMenu}>
                                 Login
                             </Link>
@@ -71,6 +65,16 @@ function Home2() {
                         <li className='home2-item'>
                             <Link to='/register' className='home2-links' onClick={closeMobileMenu}>
                                 Register
+                            </Link>
+                        </li>
+                        <li className='home2-item'>
+                            <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
+                                Equipment
+                            </Link>
+                        </li>
+                        <li className='home2-item'>
+                            <Link to='/createEvent' className='home2-links' onClick={closeMobileMenu}>
+                                Event
                             </Link>
                         </li>
 

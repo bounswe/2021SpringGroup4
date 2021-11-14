@@ -10,25 +10,29 @@ import Register from './pages/Register';
 import Home2 from './pages/Home2'
 import RegisterForm from './pages/RegisterForm';
 import RegisteredUser from './pages/RegisteredUser';
-import Equipment from './pages/Equipment';
 import EquipmentList from './pages/EquipmentList';
+import Home2backgroundfinal from './pages/Home2bgfinal';
+import Equipment from './pages/Equipment';
+import CreateEvent from './pages/CreateEvent';
+
+
+
 function App() {
   
   return (
    
     
       <Router>
-
-        <Home2/>
-
+        <Home2 />
+        <Home2backgroundfinal />
         <Switch>
           <Route path='/about' exact component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={RegisterForm} />
-          <Route path='/registereduser' exact component={RegisteredUser}></Route>
-          <Route path='/equipment' exact component={Equipment}></Route>
-          <Route path='/equipmentlist' exact component={EquipmentList}></Route>
+          <Route path='/registereduser' component={RegisteredUser} />
+          <Route path='/equipment' component={Equipment} />
+          <Route path='/event' component={CreateEvent} />
         </Switch>
 
 
