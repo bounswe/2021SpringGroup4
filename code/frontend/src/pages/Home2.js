@@ -66,6 +66,16 @@ function Home2() {
                                 Register
                             </Link>
                         </li>
+                        <li className='home2-item'>
+                            <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
+                                Equipment
+                            </Link>
+                        </li>
+                        <li className='home2-item'>
+                            <Link to='/createEvent' className='home2-links' onClick={closeMobileMenu}>
+                                Event
+                            </Link>
+                        </li>
 
                     </ul>
                  

@@ -7,7 +7,10 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import './bootstrap.min.css';
 import Register from './pages/Register';
-import Home2 from './pages/Home2'
+import Home2 from './pages/Home2';
+import Home2backgroundfinal from './pages/Home2bgfinal';
+import Equipment from './pages/Equipment';
+import CreateEvent from './pages/CreateEvent';
 
 
 
@@ -17,11 +20,14 @@ function App() {
     <>
       <Router>
         <Home2 />
+        <Home2backgroundfinal />
         <Switch>
           <Route path='/about' exact component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/equipment' component={Equipment} />
+          <Route path='/event' component={CreateEvent} />
         </Switch>
       </Router>
     </>
