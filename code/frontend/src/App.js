@@ -12,6 +12,7 @@ import RegisteredUser from './pages/RegisteredUser';
 import Home2 from './pages/Home2';
 import Equipment from './pages/Equipment';
 import CreateEvent from './pages/CreateEvent';
+import EquipmentList from './pages/EquipmentList';
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/registereduser' component={RegisteredUser} />
           <Route path='/equipment' component={Equipment} />
           <Route path='/createEvent' component={CreateEvent} />
+          <Route path='/equipmentList' component={EquipmentList} />
         </Switch>
 
 
