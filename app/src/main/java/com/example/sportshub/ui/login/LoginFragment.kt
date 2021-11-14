@@ -33,14 +33,14 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            var result = loginViewModel.tryLogin(binding.editTextEmail.text.toString(),binding.editTextPassword.text.toString())
+            var result = loginViewModel.tryLogin(binding.editTextUsername.text.toString(),binding.editTextPassword.text.toString())
             if(result){
                 //Start Main Activity and Stop Login Activity
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 startActivity(intent)
 
             }else{
-
+                Toast.makeText(requireContext(),"Invalid Username or Password. Try again",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
-        binding.editTextEmail.requestFocus()
+        binding.editTextUsername.requestFocus()
     }
 
 

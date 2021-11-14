@@ -31,7 +31,7 @@ class RegisterFragment : Fragment() {
         val root: View = binding.root
 
         binding.btnRegister.setOnClickListener {
-            var success = registerViewModel.tryregister(binding.editTextNewEmail.text.toString(),binding.editTextNewPassword.text.toString(),binding.editTextConfirmPassword.text.toString())
+            var success = registerViewModel.tryregister(binding.editTextNewUsername.text.toString(),binding.editTextNewEmail.text.toString(),binding.editTextNewPassword.text.toString(),binding.editTextConfirmPassword.text.toString())
             if(success){
                 Toast.makeText(requireContext(),"Registration Successful",Toast.LENGTH_LONG).show()
                 findNavController().navigateUp()
