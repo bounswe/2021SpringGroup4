@@ -1,4 +1,4 @@
-from rest_framework import views, generics
+from rest_framework import mixins, views, generics
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -58,11 +58,18 @@ class EventDetailView(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class CommentCreateAPIView(generics.CreateAPIView):
+class CommentCreateListAPIView(generics.GenericAPIView, 
+                               mixins.CreateModelMixin,mixins.ListModelMixin):
+
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
     def perform_create(self, serializer):
         event_pk = self.kwargs.get('pk')
