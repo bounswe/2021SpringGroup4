@@ -1,9 +1,12 @@
 package com.example.sportshub.ui.event
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -33,6 +36,10 @@ class EventFragment : Fragment() {
 
         _binding = FragmentEventBinding.inflate(inflater, container, false)
 
+
+
+
+        val root: View = binding.root
         val rw : RecyclerView = binding.listEvent
         val adapter = EventAdapter()
         rw.adapter = adapter
@@ -47,13 +54,11 @@ class EventFragment : Fragment() {
                 Toast.makeText(requireContext(),"Error occurred: "+e.message,Toast.LENGTH_SHORT).show()
             }finally {
                 binding.editTextSearchEventLocation.text.clear()
-
+                val manager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                manager.hideSoftInputFromWindow(root.windowToken,0)
             }
 
         }
-
-
-        val root: View = binding.root
 
         return root
     }
