@@ -3,10 +3,10 @@ import EventList from '../components/EventList';
 
 
 const Events = () => {
-   // const [events, setEvents] = useState(null);
+   const [events, setEvents] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
-
+/*
  
     // hardcoded event data because of the db connection problem
     const [events, setEvents] = useState([
@@ -28,9 +28,9 @@ const Events = () => {
         {title: "Boğaziçi Üniversitesi Kortunda Tenis Maçı", description: "Orta seviye bir oyuncuyum. Haftada 2 saat oynamaya çalışıyorum.", date: "2021-10-25", location: "İstanbul", sportType: "Tennis", id:3},
         {title: "Bebek Sahil Koşu", description: "Pazar sabah erkenden bebek sahilde 1 saatlik koşu etkinliği yapıyorum", date: "2021-10-26", location: "İstanbul", sportType: "Running", id:4}
     ]);
-
+*/
  //un-comment when the db connection work
- /*
+ 
     useEffect(() => {
         fetch('http://localhost:8000/api/events/', {
             method: 'GET'
@@ -54,11 +54,11 @@ const Events = () => {
                 setError(err.message);
             })
     }, [])
-*/
+
     return ( 
         <div className="events">
-            { /* error && <div>{ error }</div> */ }
-            { /* isPending && <div>Loading...</div> */}
+            {  error && <div>{ error }</div>  }
+            {  isPending && <div>Loading...</div> }
             {events && <EventList events={events} title = "All Events"/>}
         </div>
      );
