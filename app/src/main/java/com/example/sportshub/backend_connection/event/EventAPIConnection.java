@@ -2,6 +2,7 @@ package com.example.sportshub.backend_connection.event;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -14,7 +15,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EventAPIConnection {
 
@@ -86,7 +89,7 @@ public class EventAPIConnection {
         void onResponse(EventModel eventModel);
     }
 
-    public void createEvent(String title, String description, String location, Integer maxPlayers, String date, String time, String duration, String sportType, CreateEventListener createEventListener){
+    public void createEvent(String access, String title, String description, String location, Integer maxPlayers, String date, String time, String duration, String sportType, CreateEventListener createEventListener){
 
         String url = QUERY_FOR_CREATE_EVENT;
 
@@ -154,7 +157,15 @@ public class EventAPIConnection {
             public void onErrorResponse(VolleyError error) {
                 createEventListener.onError("Something wrong");
             }
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer " + access);
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+        };
 
         SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
 
