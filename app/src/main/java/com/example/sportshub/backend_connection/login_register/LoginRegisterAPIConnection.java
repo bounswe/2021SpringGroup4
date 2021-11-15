@@ -14,6 +14,7 @@ import org.json.JSONObject;
 public class LoginRegisterAPIConnection {
 
     public static final String QUERY_FOR_REGISTER = "http://localhost:8000/api/auth/register/";
+    public static final String QUERY_FOR_LOGIN = "http://localhost:8000/api/auth/login/";
 
     Context context;
 
@@ -61,6 +62,54 @@ public class LoginRegisterAPIConnection {
             @Override
             public void onErrorResponse(VolleyError error) {
                 registerListener.onError("Something wrong");
+            }
+        });
+
+        SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
+
+    }
+
+    public interface LoginListener {
+        void onError(String message);
+
+        void onResponse(LoginResponseModel loginResponseModel);
+    }
+
+    public void login(String username, String password, LoginListener loginListener){
+
+        String url = QUERY_FOR_LOGIN;
+
+        JSONObject loginData = new JSONObject();
+        try{
+            loginData.put("username", username);
+            loginData.put("password", password);
+        } catch(JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, loginData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            LoginResponseModel loginResponseModel = new LoginResponseModel();
+                            if(response.has("refresh") || response.has("access")) {
+                                loginResponseModel.setRefresh(response.getString("refresh"));
+                                loginResponseModel.setAccess(response.getString("access"));
+                            } else if(response.has("detail")) {
+                                loginResponseModel.setDetail(response.getString("detail"));
+                            }
+                            loginListener.onResponse(loginResponseModel);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loginListener.onError("Something wrong");
             }
         });
 
