@@ -85,6 +85,12 @@ const HomePage = () => {
                                 Find an Equipment 
                             </Link>
                         </li>
+
+                        <li >
+                            <Link to='/events' >
+                                Explore Events 
+                            </Link>
+                        </li>
         
 
          </div>

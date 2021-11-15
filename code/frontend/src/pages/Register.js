@@ -8,14 +8,18 @@ class Register extends Component {
         this.state={
             email:'',
             username:'',
-            password:'',
-            first_name:''
+            first_name:'',
+            password:''
 
         }
     
     this.changeHandler=this.changeHandler.bind(this);
     this.submitForm=this.submitForm.bind(this);
     
+    }
+
+    componentWillUnmount(){
+        
     }
 
     //ınput change handler
@@ -44,8 +48,9 @@ class Register extends Component {
         this.setState({
             email:'',
             username:'',
-            password:'',
-            first_name:''
+            first_name:'',
+            password:''
+            
 
         })
 

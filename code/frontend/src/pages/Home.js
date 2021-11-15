@@ -12,6 +12,9 @@ import RegisterForm from './RegisterForm';
 import Equipment from './Equipment';
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
+import Events from './Events';
+
+
 function Home() {
     const [click, setClick] = useState(false);
 
@@ -59,8 +62,8 @@ function Home() {
                         </li>
 
                         <li className='home2-item'>
-                            <Link to='/login' className='home2-links' onClick={closeMobileMenu}>
-                                Login
+                            <Link to='/events' className='home2-links' onClick={closeMobileMenu}>
+                                Explore Events
                             </Link>
                         </li>
 
