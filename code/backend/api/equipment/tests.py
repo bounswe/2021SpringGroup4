@@ -48,4 +48,34 @@ class EquipmentTests(APITestCase):
         url = reverse('equipment_rud', kwargs={'pk': eqp_id})
 
         response = self.client.delete(url, format='json')
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)        
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)       
+
+    def test_equipment_many(self):
+        user = User.objects.create(username="test_equipment_many", password="12345",
+                                    email="eqp_test@email.com")
+        self.client.force_authenticate(user=user)
+
+        data = {
+            "location": "Test Equipment Location",
+            "description": "This equipment is created for testing",     
+        }
+
+        for i in range(0,10):
+            title = "test_equipment_many" + str(i)
+            data["title"] = title
+            url = reverse('equipment_list')
+            response = self.client.post(url, data=data, format='json')
+            self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+        url = reverse('equipment_list')
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+
+        eqp_counter = 0
+        for eqp in response.data:
+            self.assertEqual(eqp.get('id'), EquipmentPost.objects.get(id=eqp.get('id')).id)
+            eqp_counter += 1
+        
+        self.assertEqual(eqp_counter, EquipmentPost.objects.all().count())        
