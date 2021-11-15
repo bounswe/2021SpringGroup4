@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.sportshub.backend_connection.SingletonRequestQueue;
 
 import org.json.JSONArray;
@@ -23,6 +24,7 @@ public class EventAPIConnection {
 
     public static final String QUERY_FOR_EVENT_LIST = "http://localhost:8000/api/events/";
     public static final String QUERY_FOR_CREATE_EVENT = "http://localhost:8000/api/events/";
+    public static final String QUERY_FOR_EVENT_SEARCH_BY_LOCATION = "http://localhost:8000/api/search/event/location/";
 
     Context context;
 
@@ -164,6 +166,60 @@ public class EventAPIConnection {
                 headers.put("Authorization", "Bearer " + access);
                 headers.put("Content-Type", "application/json");
                 return headers;
+            }
+        };
+
+        SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
+
+    }
+
+    public interface EventSearchByLocationListener {
+        void onError(String message);
+
+        void onResponse(List<EventModel> searchEventByLocationList);
+    }
+
+    public void searchEventByLocation(String location, Integer dist, EventSearchByLocationListener eventSearchByLocationListener){
+
+        String url = QUERY_FOR_EVENT_SEARCH_BY_LOCATION;
+
+        List<EventModel> eventModels = new ArrayList<>();
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONArray responseArray = new JSONArray(response);
+                            for(int i=0; i<responseArray.length(); i++){
+                                JSONObject one_event = responseArray.getJSONObject(i);
+
+                                EventModel one_event_model = new EventModel();
+                                one_event_model.setCreator(one_event.getString("owner"));
+                                one_event_model.setId(one_event.getInt("id"));
+                                one_event_model.setTitle(one_event.getString("title"));
+                                one_event_model.setLocation(one_event.getString("location"));
+                                eventModels.add(one_event_model);
+                            }
+                            eventSearchByLocationListener.onResponse(eventModels);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                eventSearchByLocationListener.onError("Something wrong");
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("location", location);
+                params.put("dist", dist.toString());
+                return params;
             }
         };
 
