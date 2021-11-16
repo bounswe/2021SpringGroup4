@@ -9,7 +9,11 @@
         android:id="@+id/navigation_event"
         android:name="com.example.sportshub.ui.event.EventFragment"
         android:label="@string/title_event"
-        tools:layout="@layout/fragment_event" />
+        tools:layout="@layout/fragment_event" >
+        <action
+            android:id="@+id/action_navigation_event_to_eventCreateFragment"
+            app:destination="@id/eventCreateFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,9 @@
         android:name="com.example.sportshub.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/eventCreateFragment"
+        android:name="com.example.sportshub.ui.event.EventCreateFragment"
+        android:label="event_create_fragment"
+        tools:layout="@layout/event_create_fragment" />
 </navigation>

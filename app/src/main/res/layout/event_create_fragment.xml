@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/textViewPageTitle"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="32dp"
         android:background="@color/purple_700"
         android:text="Create Event"
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Event description"
@@ -47,7 +47,7 @@
     <EditText
         android:id="@+id/editTextSportType"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Sport type"
@@ -59,7 +59,7 @@
     <EditText
         android:id="@+id/editTextLocation"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Location"
@@ -71,7 +71,7 @@
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Date"
@@ -83,7 +83,7 @@
     <EditText
         android:id="@+id/editTextTime"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Time"
@@ -95,7 +95,7 @@
     <EditText
         android:id="@+id/editTextDuration"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Duration"
@@ -107,7 +107,7 @@
     <EditText
         android:id="@+id/editTextMaxPlayers"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Maximum number of players"
@@ -124,5 +124,6 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers"
+        android:layout_marginBottom="80dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

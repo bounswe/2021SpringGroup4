@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import java.lang.Exception
@@ -58,6 +59,9 @@ class EventFragment : Fragment() {
                 manager.hideSoftInputFromWindow(root.windowToken,0)
             }
 
+        }
+        binding.btnCreateEvent.setOnClickListener{
+            findNavController().navigate(R.id.action_navigation_event_to_eventCreateFragment)
         }
 
         return root
