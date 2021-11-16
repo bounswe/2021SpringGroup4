@@ -45,7 +45,7 @@ const Events = () => {
                 return res.json();
             })
             .then(data => {
-                setEvents(data);
+                setEvents(data.map(d => d.body));
                 setIsPending(false);
                 setError(null);
             })
@@ -65,3 +65,4 @@ const Events = () => {
 }
  
 export default Events;
+

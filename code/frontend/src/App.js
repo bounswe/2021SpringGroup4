@@ -25,6 +25,7 @@ import EquipmentList from './pages/EquipmentList';
 import Events from './pages/Events';
 import EventCreator from './pages/EventCreator';
 import { EventSuccess } from './pages/EventSucces';
+import SearchEvents from './pages/SearchEvents';
 
 function App() {
   
@@ -56,6 +57,7 @@ function App() {
           
           <Route path='/equipmentList' component={EquipmentList} />
           <Route path='/events' component={Events} />
+          <Route path='/searchEvents' component={SearchEvents} />
 
 
           

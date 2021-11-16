@@ -14,6 +14,8 @@ const Header = () => {
                 <Link to="/login" >Login</Link> ,
                 <Link to="/register" >Register</Link>
             )}
+
+         {user &&   <p>Hello {user.username}</p>}
            
            
         </div>
