@@ -7,7 +7,7 @@ export class RegisteredUser extends Component {
         return (
             <div>
                 <h2> You have been successfully registered to the website </h2>
-                <p> Please Log IN  to the website</p>
+                <p> Please Login to the website</p>
 
                 <h3>
                 <Link to='/login' > Login </Link>

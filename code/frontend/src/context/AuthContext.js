@@ -44,6 +44,34 @@ export const AuthProvider = ({children}) => {
     }
 
 
+    
+    let createEvent = async (e) => {
+        e.preventDefault()
+        let response = await fetch('http://localhost:8000/api/events/', {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':'Bearer ' + String(authTokens.access)
+            },
+            body:JSON.stringify({'title':e.target.title.value, 'description':e.target.description.value, 'date':e.target.date.value , 'time': e.target.time.value , 
+            'duration': e.target.duration.value , 'location': e.target.location.value ,'sportType': e.target.sportType.value, 'maxPlayers': e.target.maxPlayers.value  })
+        })
+        
+        let data = await response.json()
+
+        
+        if(response.status === 200){
+            console.log("Event Data Submitted")
+            history.push('/')
+        }
+        
+        else{
+            alert('Please check your credentials')
+        }
+        
+    }
+
+
     let updateToken = async ()=> {
 
         let response = await fetch('http://localhost:8000/api/auth/login/', {

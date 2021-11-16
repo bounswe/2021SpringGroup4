@@ -32,7 +32,7 @@ const [selectedEvent, setSelectedEvent] = useState(null)
                 <p> Max Players: { selectedEvent.body.maxPlayers }</p>
                 <p> Applicants: { selectedEvent.body.applicants }</p>
                 <p> Participants: { selectedEvent.body.participants }</p>
-                <p> Followers: { selectedEvent.body.followers }</p>
+                <p>  Followers: { selectedEvent.body.followers }  </p>
                 <div className = "button-block-modal">
                     <Link to ="./login" className = "btn btn-dark btn-lg">Join!</Link>
                 </div>    

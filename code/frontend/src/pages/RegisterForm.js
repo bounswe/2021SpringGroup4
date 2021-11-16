@@ -49,10 +49,13 @@ class Registerform extends Component {
 
     }
 
-    componentWillUnmount(){
-      
-    }
+    componentDidMount() {
     
+    }
+  
+    componentWillUnmount() {
+     
+    }
 
     
     handleSubmit = e => {
@@ -88,7 +91,9 @@ class Registerform extends Component {
         })
 
         .then((response) => {
-            if(!response.ok) throw new Error(response.status);
+            if(!response.ok) {
+              throw new Error(response.status);
+            }  
             else { 
                 this.props.history.push("./registereduser");
                 return response.json();
@@ -100,7 +105,9 @@ class Registerform extends Component {
             console.log("DATA STORED");
           })
         .catch((error) => {
+          
             console.log('error: ' + error);
+            
             this.setState({ requestFailed: true });
           });
 

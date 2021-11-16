@@ -12,6 +12,7 @@ import RegisterForm from './RegisterForm';
 import Equipment from './Equipment';
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
+import EventCreator from './EventCreator';
 
 const HomePage = () => {
 
@@ -45,24 +46,6 @@ const HomePage = () => {
 
 
   
-
-    let getNotes = async() =>{
-        let response = await fetch('http://localhost:8000/api/events/', {
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':'Bearer ' + String(authTokens.access)
-            }
-        })
-        let data = await response.json()
-
-        if(response.status === 200){
-            setNotes(data)
-        }else if(response.statusText === 'Unauthorized'){
-            logoutUser()
-        }
-        
-    }
 
     return (
 

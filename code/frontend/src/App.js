@@ -23,6 +23,8 @@ import Equipment from './pages/Equipment';
 import CreateEvent from './pages/CreateEvent';
 import EquipmentList from './pages/EquipmentList';
 import Events from './pages/Events';
+import EventCreator from './pages/EventCreator';
+import { EventSuccess } from './pages/EventSucces';
 
 function App() {
   
@@ -36,6 +38,10 @@ function App() {
           <Header/>
           <PrivateRoute component={HomePage} path="/" exact/>
           <Route component={LoginPage} path="/login"/>
+          <Route path='/createevent' component={EventCreator} />
+
+
+          <Route path='/eventsuccess' component={EventSuccess} />
           
         </AuthProvider>
 
@@ -45,10 +51,14 @@ function App() {
           <Route path='/contact' component={Contact} />
           <Route path='/register' component={RegisterForm} />
           <Route path="/registereduser" component={RegisteredUser}/>
+
           <Route path='/equipment' component={Equipment} />
-          <Route path='/createEvent' component={CreateEvent} />
+          
           <Route path='/equipmentList' component={EquipmentList} />
           <Route path='/events' component={Events} />
+
+
+          
         </Switch>
       </Router>
 
