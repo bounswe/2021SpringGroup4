@@ -6,6 +6,7 @@ You can find more information on the [Wiki page](https://github.com/bounswe/2021
 * [Fatih Akgöz](https://github.com/bounswe/2021SpringGroup4/wiki/Fatih-Akg%C3%B6z)
 * [Ece Dilara Aslan](https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan)
 * [Muhammed İrfan Bozkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt)
+* [Ali Alperen Durak](https://github.com/bounswe/2021SpringGroup4/wiki/Ali-Alperen-Durak)
 * [Mehmet Hilmi Dündar](https://github.com/bounswe/2021SpringGroup4/wiki/Mehmet-Hilmi-D%C3%BCndar)
 * [Tolga Kerimoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Tolga-Kerimo%C4%9Flu)
 * [Yiğit Sarıoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Yi%C4%9Fit-Sar%C4%B1o%C4%9Flu)
