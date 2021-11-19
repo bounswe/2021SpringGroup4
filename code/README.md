@@ -114,7 +114,7 @@ Deployed application lives at http://3.67.188.187:8000/
     }
 ]
 ```
-
+---
 ### **Create Event** http://3.67.188.187:8000/api/events/ [POST] **authorization required**
 
 **Example Request: **
@@ -176,5 +176,28 @@ Deployed application lives at http://3.67.188.187:8000/
     "duration": [
         "This field is required."
     ]
+}
+```
+### **Add/Remove Applicant/Participant/Follower to Event** http://3.67.188.187:8000/api/events/<event_id>/ [POST] **authorization required -> must be event owner**
+
+**Example Request: **
+
+```json
+{
+    "participants":
+    {
+        "add": ["tolga", "irfan"],
+        "remove": []
+    },
+    "applicants":
+    {
+        "add": [],
+        "remove": ["tolga"]
+    },
+    "followers":
+    {
+        "add": [],
+        "remove": []
+    }          
 }
 ```
