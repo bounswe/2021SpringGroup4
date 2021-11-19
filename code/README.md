@@ -117,7 +117,7 @@ Deployed application lives at http://3.67.188.187:8000/
 ---
 ### **Create Event** http://3.67.188.187:8000/api/events/ [POST] **authorization required**
 
-**Example Request: **
+**Example Request:**
 
 ```json
 {
@@ -204,6 +204,8 @@ Deployed application lives at http://3.67.188.187:8000/
 }
 ```
 **Returns the event object**
+
+**Note:** This endpoint can similarly be used to update field other fields of the event by directly specifying the new value.
 
 ---
 
