@@ -63,3 +63,118 @@ Deployed application lives at http://3.67.188.187:8000/
     "detail": "No active account found with the given credentials"
 }
 ```
+---
+### **List All Events** http://3.67.188.187:8000/api/events [GET] 
+
+**Return: [HTTP_200_OK]**
+
+```json
+[
+    {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "id": 1,
+        "creator": "tolga",
+        "created": "2021-11-19T11:57:09.158546+03:00",
+        "type": "Event",
+        "body": {
+            "title": "BestEvent",
+            "description": "",
+            "date": "2021-10-31",
+            "time": "15:00:00",
+            "duration": "02:00:00",
+            "location": "Istanbul",
+            "sportType": "",
+            "maxPlayers": 10,
+            "applicants": [],
+            "participants": [],
+            "followers": [],
+            "comments": []
+        }
+    },
+    {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "id": 2,
+        "creator": "tolga",
+        "created": "2021-11-19T11:57:16.493761+03:00",
+        "type": "Event",
+        "body": {
+            "title": "BestEvent2",
+            "description": "",
+            "date": "2021-10-31",
+            "time": "15:00:00",
+            "duration": "02:00:00",
+            "location": "Istanbul",
+            "sportType": "",
+            "maxPlayers": 10,
+            "applicants": [],
+            "participants": [],
+            "followers": [],
+            "comments": []
+        }
+    }
+]
+```
+
+### **Create Event** http://3.67.188.187:8000/api/events/ [POST] **authorization required**
+
+**Example Request: **
+
+```json
+{
+    "title": "BestEvent3",
+    "location": "Istanbul",
+    "maxPlayers": "10",
+    "date": "2021-10-31",
+    "time": "15:00",
+    "duration": "02:00"
+}
+```
+
+**Return Success: [HTTP_200_OK]**
+```json
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "id": 3,
+    "creator": "tolga",
+    "created": "2021-11-19T12:02:25.474757+03:00",
+    "type": "Event",
+    "body": {
+        "title": "BestEvent3",
+        "description": "",
+        "date": "2021-10-31",
+        "time": "15:00",
+        "duration": "02:00",
+        "location": "Istanbul",
+        "sportType": "",
+        "maxPlayers": 10,
+        "applicants": [],
+        "participants": [],
+        "followers": [],
+        "comments": []
+    }
+}
+```
+
+**Return Failure: [HTTP_400_BAD_REQUEST]**
+```json
+{
+    "title": [
+        "This field is required."
+    ],
+    "location": [
+        "This field is required."
+    ],
+    "maxPlayers": [
+        "This field is required."
+    ],
+    "date": [
+        "This field is required."
+    ],
+    "time": [
+        "This field is required."
+    ],
+    "duration": [
+        "This field is required."
+    ]
+}
+```
