@@ -178,9 +178,11 @@ Deployed application lives at http://3.67.188.187:8000/
     ]
 }
 ```
-### **Add/Remove Applicant/Participant/Follower to Event** http://3.67.188.187:8000/api/events/<event_id>/ [POST] **authorization required -> must be event owner**
+---
+### **Add/Remove Applicant/Participant/Follower to Event** 
+**http://3.67.188.187:8000/api/events/<event_id>/   [PATCH]** **authorization required -> must be event owner**
 
-**Example Request: **
+**Example Request:**
 
 ```json
 {
@@ -201,3 +203,20 @@ Deployed application lives at http://3.67.188.187:8000/
     }          
 }
 ```
+**Returns the event object**
+
+---
+
+### **Get events closer to a given location than the given distance in km**
+**http://3.67.188.187:8000/api/search/event/location [POST]** **authorization required**
+
+**Example Request:**
+
+```json
+{
+ "location": "Beşiktaş",
+ "dist": "10"     
+}
+```
+
+**Returns a list of event objects as in List Events endpoint**
