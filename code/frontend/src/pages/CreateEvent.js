@@ -38,7 +38,7 @@ class CreateEvent extends Component {
     submitForm(){
         console.log("Event Data submitted.");
 
-        fetch('http://localhost:8000/api/event/' ,{
+        fetch('http://3.67.188.187:8000/api/events/' ,{
             method:'POST',
             body:JSON.stringify(this.state),
             headers:{

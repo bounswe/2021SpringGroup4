@@ -9,7 +9,7 @@ export class EquipmentList extends Component {
     }
 
     fetchData(){
-        fetch('http://localhost:8000/api/equipment/')
+        fetch('http://3.67.188.187:8000/api/equipment/')
         .then(response=>response.json() )
         .then((data) =>{
             this.setState({

@@ -34,7 +34,7 @@ class Equipment extends Component {
     submitForm(){
         console.log("Equipment Data submitted.");
 
-        fetch('http://localhost:8000/api/equipment/' ,{
+        fetch('http://3.67.188.187:8000/api/equipment/' ,{
             method:'POST',
             body:JSON.stringify(this.state),
           

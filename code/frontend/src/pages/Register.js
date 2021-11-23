@@ -34,7 +34,7 @@ class Register extends Component {
     submitForm(){
         console.log("Data submitted.");
 
-        fetch('http://localhost:8000/api/auth/register/',{
+        fetch('http://3.67.188.187:8000/api/auth/register/',{
             method:'POST',
             body:JSON.stringify(this.state),
             headers:{

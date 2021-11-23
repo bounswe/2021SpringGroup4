@@ -16,7 +16,7 @@ export const AuthProvider = ({children}) => {
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch('http://localhost:8000/api/auth/login/', {
+        let response = await fetch('http://3.67.188.187:8000/api/auth/login/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -47,7 +47,7 @@ export const AuthProvider = ({children}) => {
     
     let createEvent = async (e) => {
         e.preventDefault()
-        let response = await fetch('http://localhost:8000/api/events/', {
+        let response = await fetch('http://3.67.188.187:8000/api/events/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',
@@ -74,7 +74,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async ()=> {
 
-        let response = await fetch('http://localhost:8000/api/auth/login/', {
+        let response = await fetch('http://3.67.188.187:8000/api/auth/login/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
