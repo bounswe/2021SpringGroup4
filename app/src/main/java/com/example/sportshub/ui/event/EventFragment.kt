@@ -15,8 +15,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
-import java.lang.Exception
 import com.example.sportshub.databinding.FragmentEventBinding
+import java.lang.Exception
+
 
 class EventFragment : Fragment() {
 

@@ -20,6 +20,8 @@ class EventCreateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         return inflater.inflate(R.layout.event_create_fragment, container, false)
     }
 
