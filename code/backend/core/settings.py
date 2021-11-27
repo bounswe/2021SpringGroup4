@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'api.search',
     'api.notifications',
     'corsheaders',
-    'api.notifications',
 ]
 
 
