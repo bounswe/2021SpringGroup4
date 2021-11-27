@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api.events',
     'api.equipment',
     'api.search',
+    'api.notifications',
     'corsheaders',
     'api.notifications',
 ]

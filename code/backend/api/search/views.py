@@ -40,13 +40,6 @@ class EventSearch(views.APIView):
                 dist2src = distance(lat, lat2, lon, lon2) 
                 if dist2src < int(filter_dist):
                     ids.append(id)
-            return_events = []
-            qs = EventBody.objects.filter(Q(id__in=ids))
-            for event in qs:
-                data = {}
-                data['owner'] = event.parent.owner.username 
-                data['id'] = event.id 
-                data['title'] = event.title 
-                data['location'] = event.location 
-                return_events.append(data)
-            return Response(status=200, data=return_events, content_type='json')
+            qs = Event.objects.filter(Q(id__in=ids))
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
