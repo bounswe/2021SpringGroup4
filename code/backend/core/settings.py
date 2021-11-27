@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'api.profiles',
     'api.events',
     'api.equipment',
-    'api.search'
+    'api.search',
+    'api.notifications'
 ]
 
 

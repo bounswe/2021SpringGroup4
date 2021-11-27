@@ -13,5 +13,3 @@ class EquipmentPostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVi
     permission_classes = [IsOwnerOrReadOnly]
     queryset = EquipmentPost.objects.all()
     serializer_class = EquipmentSerializer
-
-

@@ -8,7 +8,8 @@ from api.authentication.models import User
 class NotificationTEMPLATES():
     greeting = 'Welcome to SportsHUB! Your registration was successful!'
     test = 'This is a test notification. Number: '
- 
+    event_created = 'You have created a new event with id: '
+
 
 class Notification(models.Model):
     recipient = ForeignKey(User, on_delete=models.CASCADE, related_name="notifications")

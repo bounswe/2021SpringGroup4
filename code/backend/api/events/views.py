@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import views  
 from rest_framework import generics
+
+from api.notifications.models import Notification, NotificationTEMPLATES
 from .serializers import EventSerializer
 from .models import Event, EventBody 
 from api.authentication.models import User 
@@ -29,6 +31,7 @@ class EventListCreateView(views.APIView):
         serializer = EventSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
+            Notification.objects.create(recipient = request.user, body = NotificationTEMPLATES.event_created + Event.objects.last().id)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
