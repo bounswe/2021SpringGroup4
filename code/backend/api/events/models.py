@@ -12,7 +12,12 @@ class EventBody(models.Model):
     maxPlayers = models.IntegerField()
     applicants = models.ManyToManyField(User, related_name="applied")
     participants = models.ManyToManyField(User, related_name="going")
-    followers = models.ManyToManyField(User, related_name="following")
+    SKILL_LEVELS =(
+    ("1","Beginner"),
+    ("2","Intermediate"),
+    ("3", "Advanced"))
+
+    skill_level = models.CharField(max_length=10,choices=SKILL_LEVELS, default="Beginner")
 
     class Meta:
         ordering = ['date']
