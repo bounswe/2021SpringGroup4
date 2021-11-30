@@ -18,3 +18,6 @@ def event_activity_handler(type, actor, object):
     if type == 'Join':
         summary = f"{actor.username} has joined an event."
         EventActivity.objects.create(type=type, actor=actor, object=object, summary=summary)
+    if type == 'Comment':
+        summary = f"{actor.username} has commented on an event."
+        EventActivity.objects.create(type=type, actor=actor, object=object, summary=summary)

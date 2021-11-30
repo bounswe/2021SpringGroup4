@@ -13,6 +13,13 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment 
         fields = ('id', 'owner', 'parent', 'body')
 
+    def create(self, validated_data):
+        request = self.context.get('request')
+        owner = request.user
+        comment = Comment.objects.create(owner=owner, **validated_data)
+        event_activity_handler(type="Comment", actor=owner, object=comment.parent.parent) 
+        return comment
+
 class EventBodySerializer(serializers.ModelSerializer):
     applicants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")
     participants = serializers.SlugRelatedField(many=True, read_only=True, slug_field="username")

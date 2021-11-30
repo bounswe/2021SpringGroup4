@@ -14,6 +14,7 @@ class EventActivity(models.Model):
         ("3", "Join"),
         ("4", "Apply"),
         ("5", "Update"),
+        ("6", "Comment")
     )
     type = models.CharField(choices=type_choices, max_length=10)
     performed_at = models.DateTimeField(auto_now_add=True)

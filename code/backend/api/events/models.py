@@ -4,9 +4,9 @@ from api.authentication.models import User
 class EventBody(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True) 
-    date = models.DateField() # 'YYYY/MM/DD'
-    time = models.TimeField() # 'HH:MM'
-    duration = models.TimeField() # 'HH:MM'
+    date = models.DateField() 
+    time = models.TimeField() 
+    duration = models.TimeField() 
     location = models.CharField(max_length=50)
     sportType = models.CharField(max_length=30)
     maxPlayers = models.IntegerField()
