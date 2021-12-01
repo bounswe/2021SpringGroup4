@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api.equipment',
     'api.search',
     'api.notifications',
+    'activity_handler',
     'corsheaders',
 ]
 
