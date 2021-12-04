@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.sportshub.backend_connection.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.ActivityMainBinding
 
 import com.example.sportshub.ui.event.EventAdapter
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 //                R.id.navigation_event, R.id.navigation_dashboard, R.id.navigation_profile))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        SingletonRequestQueueProvider.createQueue(applicationContext)
 
     }
 }

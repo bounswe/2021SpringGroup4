@@ -11,6 +11,7 @@ class EventViewModel : ViewModel() {
 
     fun searchByLocation(toString: String): MutableList<Int> {
         return MutableList(3,init = {index -> index})
+
     }
     //TODO Implement ViewModel
 }
