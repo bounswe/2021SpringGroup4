@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.sportshub.MainActivity
 import com.example.sportshub.R
+import com.example.sportshub.backend_connection.login_register.LoginResponseModel
 import com.example.sportshub.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -33,17 +34,19 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            var result = loginViewModel.tryLogin(binding.editTextUsername.text.toString(),binding.editTextPassword.text.toString())
-            if(result){
-                //Start Main Activity and Stop Login Activity
-                val intent = Intent(requireContext(), MainActivity::class.java)
-                startActivity(intent)
+            loginViewModel.tryLogin(requireContext(), binding.editTextUsername.text.toString(),binding.editTextPassword.text.toString(),
+                object: LoginListener() {
+                    override fun onError(loginResponseModel: LoginResponseModel?) {
+                        // error
+                    }
 
-            }else{
-                Toast.makeText(requireContext(),"Invalid Username or Password. Try again",Toast.LENGTH_SHORT).show()
-            }
+                    override fun onResponse(loginResponseModel: LoginResponseModel?) {
+                        //Start Main Activity and Stop Login Activity
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                })
         }
-
 
         return root
     }
