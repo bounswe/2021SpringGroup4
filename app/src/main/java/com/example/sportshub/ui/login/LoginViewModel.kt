@@ -13,7 +13,6 @@ import org.json.JSONObject
 
 class LoginViewModel: ViewModel(){
 
-    private val QUERY_FOR_REGISTER = "http://3.67.188.187:8000/api/auth/register/"
     private val QUERY_FOR_LOGIN = "http://3.67.188.187:8000/api/auth/login/"
 
     fun tryLogin(context: Context, username: String, password: String, loginListener: LoginListener) {
@@ -41,7 +40,7 @@ class LoginViewModel: ViewModel(){
                 val statusCode: Int? = it.networkResponse?.statusCode
 
                 if(statusCode == 401){
-                    Toast.makeText(context, "Invalid Username or Password. Try again!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Invalid username or password. Try again!", Toast.LENGTH_SHORT).show()
                     if(it.networkResponse?.data != null){
                         loginResponseModel.detail = JSONObject(String(it.networkResponse.data)).getString("detail")
                     }

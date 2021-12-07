@@ -37,7 +37,8 @@ class LoginFragment : Fragment() {
             loginViewModel.tryLogin(requireContext(), binding.editTextUsername.text.toString(),binding.editTextPassword.text.toString(),
                 object: LoginListener() {
                     override fun onError(loginResponseModel: LoginResponseModel?) {
-                        // error
+                        binding.editTextUsername.text.clear()
+                        binding.editTextPassword.text.clear()
                     }
 
                     override fun onResponse(loginResponseModel: LoginResponseModel?) {
