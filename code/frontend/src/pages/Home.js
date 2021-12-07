@@ -72,6 +72,12 @@ function Home() {
                                 Register
                             </Link>
                         </li>
+
+                        <li className='home2-item'>
+                            <Link to='/fileupload' className='home2-links' onClick={closeMobileMenu}>
+                                Upload File
+                            </Link>
+                        </li>
                 
 
                     </ul>

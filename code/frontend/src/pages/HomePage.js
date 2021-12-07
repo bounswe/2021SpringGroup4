@@ -17,40 +17,16 @@ import EventCreator from './EventCreator';
 const HomePage = () => {
 
 
-    let [notes, setNotes] = useState([])
-    let {authTokens, logoutUser} = useContext(AuthContext)
+    
+   // let {authTokens, logoutUser} = useContext(AuthContext)
+    let {myusername, user} = useContext(AuthContext)
 
-
-
-    const [click, setClick] = useState(false);
-
-    const [button,setButton]= useState(true);
-
-    const clickHandler = () => setClick(!click); 
-
-    const closeMobileMenu = () => setClick(false);
-
-    const showButton = () => {
-        if(window.innerWidth <= 960) {
-            setButton(false);
-        } else {
-            setButton(true);
-        }
-    };
-
-    useEffect(() => {
-        showButton();
-      }, []);
-
-    window.addEventListener('resize', showButton);
-
-
-  
 
     return (
 
 
         <div>
+            {user &&   <p>Hello user: {myusername}</p>}
             <p>You are logged to the home page!</p>
 
                         <li >
@@ -72,6 +48,12 @@ const HomePage = () => {
                         <li >
                             <Link to='/events' >
                                 Explore Events 
+                            </Link>
+                        </li>
+
+                        <li >
+                            <Link to='/profile' >
+                               User Profile Page
                             </Link>
                         </li>
         

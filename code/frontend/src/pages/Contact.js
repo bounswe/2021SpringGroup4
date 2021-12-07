@@ -15,6 +15,9 @@ function Contact() {
                 <p> Fax: +90 212 265 63 57  </p>
                 </div>
 
+
+               
+
         </div>
     )
 }

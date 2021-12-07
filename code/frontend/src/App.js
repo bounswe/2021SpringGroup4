@@ -26,6 +26,10 @@ import Events from './pages/Events';
 import EventCreator from './pages/EventCreator';
 import { EventSuccess } from './pages/EventSucces';
 import SearchEvents from './pages/SearchEvents';
+import UploadFile from './components/UploadFile';
+import UserProfilePage from './pages/UserProfilePage';
+import UserProfile from './pages/UserProfile';
+import EditUserProfile from './pages/EditUserProfile';
 
 function App() {
   
@@ -43,25 +47,28 @@ function App() {
 
 
           <Route path='/eventsuccess' component={EventSuccess} />
-          
-        </AuthProvider>
 
-        <Switch>
+
           <Route path='/home' exact component={Home} />
-          <Route path='/about' exact component={About} />
-          <Route path='/contact' component={Contact} />
-          <Route path='/register' component={RegisterForm} />
-          <Route path="/registereduser" component={RegisteredUser}/>
+        <Route path='/about' exact component={About} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/register' component={RegisterForm} />
+        <Route path="/registereduser" component={RegisteredUser}/>
 
-          <Route path='/equipment' component={Equipment} />
-          
-          <Route path='/equipmentList' component={EquipmentList} />
-          <Route path='/events' component={Events} />
-          <Route path='/searchEvents' component={SearchEvents} />
+        <Route path='/equipment' component={Equipment} />
+        
+        <Route path='/equipmentList' component={EquipmentList} />
+        <Route path='/events' component={Events} />
+        <Route path='/searchEvents' component={SearchEvents} />
+        <Route path='/fileupload' component={UploadFile} />
 
+        <Route path='/profile' component={UserProfile} />
+        <Route path='/editprofile' component={EditUserProfile} />
+        
+          </AuthProvider>
 
-          
-        </Switch>
+      
+      
       </Router>
 
 
