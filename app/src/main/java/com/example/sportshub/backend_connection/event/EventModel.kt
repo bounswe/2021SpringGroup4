@@ -9,7 +9,7 @@ data class EventModel(
     var time: String = "",
     var duration: String = "",
     var location: String = "",
-    var sportType: SportTypeModel = SportTypeModel(),
+    var sportType: String = "",
     var maxPlayers: Int = 0,
     var applicants: MutableList<String> = mutableListOf(),
     var participants: MutableList<String> = mutableListOf(),
