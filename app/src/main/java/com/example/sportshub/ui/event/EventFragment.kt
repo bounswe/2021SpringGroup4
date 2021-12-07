@@ -1,6 +1,7 @@
 package com.example.sportshub.ui.event
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sportshub.MainActivity
 import com.example.sportshub.R
+import com.example.sportshub.backend_connection.event.EventModel
+import com.example.sportshub.backend_connection.login_register.LoginResponseModel
 import com.example.sportshub.databinding.FragmentEventBinding
+import com.example.sportshub.ui.login.LoginListener
 import java.lang.Exception
 
 
@@ -45,10 +50,19 @@ class EventFragment : Fragment() {
         val rw : RecyclerView = binding.listEvent
         val adapter = EventAdapter()
         rw.adapter = adapter
-        adapter.eventList = eventViewModel.getAllEvents()
-        adapter.notifyDataSetChanged()
+        eventViewModel.getAllEvents(requireContext(),
+            object: EventListListener() {
+                override fun onError() {
+                    // error
+                }
 
-        binding.btnSearchByLocation.setOnClickListener{
+                override fun onResponse(eventList:MutableList<EventModel>) {
+                    adapter.eventList = eventList
+                    adapter.notifyDataSetChanged()
+                }
+            })
+
+        /*binding.btnSearchByLocation.setOnClickListener{
             try {
                 adapter.eventList = eventViewModel.searchByLocation(binding.editTextSearchEventLocation.text.toString())
                 adapter.notifyDataSetChanged()
@@ -60,7 +74,7 @@ class EventFragment : Fragment() {
                 manager.hideSoftInputFromWindow(root.windowToken,0)
             }
 
-        }
+        }*/
         binding.btnCreateEvent.setOnClickListener{
             findNavController().navigate(R.id.action_navigation_event_to_eventCreateFragment)
         }
