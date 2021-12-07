@@ -49,10 +49,13 @@ class Registerform extends Component {
 
     }
 
-    componentWillUnmount(){
-      
-    }
+    componentDidMount() {
     
+    }
+  
+    componentWillUnmount() {
+     
+    }
 
     
     handleSubmit = e => {
@@ -79,7 +82,7 @@ class Registerform extends Component {
     submitForm(){
         console.log("Data submitted.");
 
-        fetch('http://localhost:8000/api/auth/register/',{
+        fetch('http://3.67.188.187:8000/api/auth/register/',{
             method:'POST',
             body:JSON.stringify(this.state),
             headers:{
@@ -88,7 +91,9 @@ class Registerform extends Component {
         })
 
         .then((response) => {
-            if(!response.ok) throw new Error(response.status);
+            if(!response.ok) {
+              throw new Error(response.status);
+            }  
             else { 
                 this.props.history.push("./registereduser");
                 return response.json();
@@ -100,7 +105,9 @@ class Registerform extends Component {
             console.log("DATA STORED");
           })
         .catch((error) => {
+          
             console.log('error: ' + error);
+            
             this.setState({ requestFailed: true });
           });
 
@@ -234,14 +241,11 @@ class Registerform extends Component {
             <div className="createAccount">
               <button type="submit">Create Account</button>
               <small>Already Have an Account?</small>
-                <Router> <div>
+                <div>
                     <Link to="/login">Login</Link>
-                    <Switch>
-                     <Route path='/login' component={Login}></Route>
-                     </Switch>
-
+          
                      </div>
-                </Router>
+        
             </div>
           </form>
         </div>

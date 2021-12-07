@@ -8,14 +8,18 @@ class Register extends Component {
         this.state={
             email:'',
             username:'',
-            password:'',
-            first_name:''
+            first_name:'',
+            password:''
 
         }
     
     this.changeHandler=this.changeHandler.bind(this);
     this.submitForm=this.submitForm.bind(this);
     
+    }
+
+    componentWillUnmount(){
+        
     }
 
     //ınput change handler
@@ -30,7 +34,7 @@ class Register extends Component {
     submitForm(){
         console.log("Data submitted.");
 
-        fetch('http://localhost:8000/api/auth/register/',{
+        fetch('http://3.67.188.187:8000/api/auth/register/',{
             method:'POST',
             body:JSON.stringify(this.state),
             headers:{
@@ -44,8 +48,9 @@ class Register extends Component {
         this.setState({
             email:'',
             username:'',
-            password:'',
-            first_name:''
+            first_name:'',
+            password:''
+            
 
         })
 

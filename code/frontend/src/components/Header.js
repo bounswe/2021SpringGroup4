@@ -1,18 +1,24 @@
-import React from 'react'
-import './Header.css';
+import React, {useContext} from 'react'
+import { Link } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
-function Header() {
+const Header = () => {
+    let {user, logoutUser} = useContext(AuthContext)
     return (
-        
-        <nav>
-            <h1>SPORTSHUB</h1> 
-            <ul>
-                <li>Home</li>
-                <li>Contact</li>
-                <li>About Us</li>
-            </ul>
+        <div>
+            <Link to="/" >Home</Link>
+            <span> | </span>
+            {user ? (
+                  <button onClick={logoutUser}  > Logout  </button> 
+            ): (
+                <Link to="/login" >Login</Link> ,
+                <Link to="/register" >Register</Link>
+            )}
 
-        </nav>
+         {user &&   <p>Hello {user.username}</p>}
+           
+           
+        </div>
     )
 }
 

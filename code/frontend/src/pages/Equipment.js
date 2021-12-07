@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
- 
+
+
 
 class Equipment extends Component {
+    
+
     constructor(){
         super();
         this.state={ 
@@ -31,9 +34,10 @@ class Equipment extends Component {
     submitForm(){
         console.log("Equipment Data submitted.");
 
-        fetch('http://localhost:8000/api/equipment/' ,{
+        fetch('http://3.67.188.187:8000/api/equipment/' ,{
             method:'POST',
             body:JSON.stringify(this.state),
+          
             headers:{
                 'Content-type': 'application/json; charset=UTF-8',
             },
@@ -50,6 +54,7 @@ class Equipment extends Component {
         })
 
     }
+    
 
 
     render() {

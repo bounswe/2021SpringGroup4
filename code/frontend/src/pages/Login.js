@@ -17,6 +17,7 @@ this.submitForm=this.submitForm.bind(this);
 }
 
 
+
  //ınput change handler
  changeHandler(event){
   console.log("Input has been changed..");
@@ -29,7 +30,7 @@ this.submitForm=this.submitForm.bind(this);
 submitForm(){
   console.log("Data submitted.");
 
-  fetch('http://localhost:8000/api/auth/login/',{
+  fetch('http://3.67.188.187:8000/api/auth/login/',{
       method:'POST',
       body:JSON.stringify(this.state),
       headers:{
@@ -66,7 +67,10 @@ submitForm(){
 
 
   render() {
+   
+
     return (
+
     <div>   
       <table className="table table-bordered">
                 <tbody>
