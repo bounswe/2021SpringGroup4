@@ -1,23 +1,27 @@
 from django.db import models
-from django.db.models.fields import related
 from api.authentication.models import User 
 
 class EventBody(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True) 
-    date = models.CharField(max_length=12) # 'DD/MM/YYYY'
-    time = models.CharField(max_length=5) # 'HH:MM'
-    duration = models.CharField(max_length=5) # 'HH:MM'
+    date = models.DateField() 
+    time = models.TimeField() 
+    duration = models.TimeField() 
     location = models.CharField(max_length=50)
     sportType = models.CharField(max_length=30)
     maxPlayers = models.IntegerField()
-
     applicants = models.ManyToManyField(User, related_name="applied")
     participants = models.ManyToManyField(User, related_name="going")
-    followers = models.ManyToManyField(User, related_name="following")
+    SKILL_LEVELS =(
+    ("1","Beginner"),
+    ("2","Intermediate"),
+    ("3", "Advanced"))
+
+    skill_level = models.CharField(max_length=10,choices=SKILL_LEVELS, default="Beginner")
 
     class Meta:
         ordering = ['date']
+
 
 class Event(models.Model):
     @staticmethod
@@ -30,7 +34,7 @@ class Event(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="events")
-    body =  models.OneToOneField(EventBody, on_delete=models.CASCADE)
+    body =  models.OneToOneField(EventBody, on_delete=models.CASCADE, related_name="parent")
 
 class Comment(models.Model):
     posted = models.DateTimeField(auto_now_add=True)

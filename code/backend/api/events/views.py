@@ -2,13 +2,16 @@ from django.shortcuts import render
 from rest_framework import views  
 from rest_framework import generics
 from .serializers import EventSerializer
-from .models import Event 
+from .models import Event, EventBody 
 from api.authentication.models import User 
 from rest_framework.response import Response
 from rest_framework import status
 from .permissions import IsOwnerOrReadOnly
 from rest_framework.exceptions import APIException
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from django.db.models import Q
+from activity_handler.handlers import event_activity_handler
+
 
 class EventNotFoundException(APIException):
     status_code = 404
@@ -43,6 +46,7 @@ class EventDetailView(views.APIView):
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+        event_activity_handler(type="Delete", actor=request.user, object=event)
         event.delete()
         return Response({"status": "Event deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
@@ -52,15 +56,13 @@ class EventDetailView(views.APIView):
         except Event.DoesNotExist:
             return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = EventSerializer(event, request.data, context={"request": request, "method": "patch", "event": event})
+        serializer = EventSerializer(event, request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
-        
     
 
         
