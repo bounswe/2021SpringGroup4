@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 import { useHistory } from 'react-router-dom'
+import Maps from '../components/Maps'
 
 const EventCreator = () => {   
 
@@ -119,6 +120,7 @@ const EventCreator = () => {
                         </td>
                     </tr>
 
+                    
                     <tr>
                         <td colSpan="2">
                             <input type="submit" value="Create" name="create" className="btn btn-dark"/>

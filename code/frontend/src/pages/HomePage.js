@@ -56,6 +56,18 @@ const HomePage = () => {
                                User Profile Page
                             </Link>
                         </li>
+
+                        <li >
+                            <Link to='/googlemap' >
+                               Google Map Page
+                            </Link>
+                        </li>
+
+                        <li >
+                            <Link to='/geolocation' >
+                               User Geolocation
+                            </Link>
+                        </li>
         
 
          </div>

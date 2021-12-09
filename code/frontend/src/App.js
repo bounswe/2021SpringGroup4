@@ -30,6 +30,8 @@ import UploadFile from './components/UploadFile';
 import UserProfilePage from './pages/UserProfilePage';
 import UserProfile from './pages/UserProfile';
 import EditUserProfile from './pages/EditUserProfile';
+import Maps from './components/Maps';
+import UserGeolocation from './components/UserGeolocation';
 
 function App() {
   
@@ -64,8 +66,13 @@ function App() {
 
         <Route path='/profile' component={UserProfile} />
         <Route path='/editprofile' component={EditUserProfile} />
+
         
-          </AuthProvider>
+        <Route path='/googlemap' component={Maps} />
+        <Route path='/geolocation' component={UserGeolocation} />
+
+
+        </AuthProvider>
 
       
       
