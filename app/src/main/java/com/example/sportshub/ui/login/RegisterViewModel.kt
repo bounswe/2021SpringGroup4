@@ -4,13 +4,9 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.android.volley.Request
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.sportshub.backend_connection.SingletonRequestQueue
-import com.example.sportshub.backend_connection.login_register.LoginRegisterAPIConnection
-import com.example.sportshub.backend_connection.login_register.LoginResponseModel
 import com.example.sportshub.backend_connection.login_register.RegisterModel
-import kotlinx.coroutines.awaitAll
 import org.json.JSONException
 import org.json.JSONObject
 
