@@ -42,11 +42,8 @@ class EventFragment : Fragment() {
                 ViewModelProvider(this).get(EventViewModel::class.java)
 
         _binding = FragmentEventBinding.inflate(inflater, container, false)
-
-
-
-
         val root: View = binding.root
+
         val rw : RecyclerView = binding.listEvent
         val adapter = EventAdapter()
         rw.adapter = adapter
@@ -62,7 +59,7 @@ class EventFragment : Fragment() {
                 }
             })
 
-        /*binding.btnSearchByLocation.setOnClickListener{
+        binding.btnSearchByLocation.setOnClickListener{
             try {
                 adapter.eventList = eventViewModel.searchByLocation(binding.editTextSearchEventLocation.text.toString())
                 adapter.notifyDataSetChanged()
@@ -74,7 +71,8 @@ class EventFragment : Fragment() {
                 manager.hideSoftInputFromWindow(root.windowToken,0)
             }
 
-        }*/
+        }
+
         binding.btnCreateEvent.setOnClickListener{
             findNavController().navigate(R.id.action_navigation_event_to_eventCreateFragment)
         }
