@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import EventList from '../components/EventList';
-
+import Maps from '../components/Maps';
 
 const Events = () => {
    const [events, setEvents] = useState(null);
@@ -61,6 +61,7 @@ const Events = () => {
             {  isPending && <div>Loading...</div> }
             {events && <EventList events={events} title = "All Events"/>}
         </div>
+        
      );
 }
  

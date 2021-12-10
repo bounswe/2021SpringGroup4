@@ -2,6 +2,11 @@ import './EventList.css';
 import React, { useState } from 'react'
 import Modal from './Modal'
 import { Link, useHistory } from 'react-router-dom';
+import Autocomplete from './Autocomplete';
+
+
+
+
 
 
 const EventList = ({events, title}) => {
@@ -56,9 +61,13 @@ const onFindEvent = ()=> {
                       
                     <Link to ="./login" className = "btn btn-dark btn-lg">Join!</Link>
                 </div>    
-            </Modal>}
+            </Modal>
+            }
+            
+
              
         </div>
+        
 
     );
 }

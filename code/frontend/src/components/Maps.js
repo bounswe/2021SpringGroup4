@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import {GoogleMap, withScriptjs, withGoogleMap, Marker,  InfoWindow } from  "react-google-maps"
 import * as eventdata from "../data/eventdata.json";
-
+import Autocomplete from 'react-google-autocomplete';
 
 function Map(){
     const [selectedPark, setSelectedPark] = useState(null);
@@ -51,6 +51,16 @@ function Map(){
         
         
         }
+        <Autocomplete
+                            style={{
+                                width: '100%',
+                                height: '40px',
+                                paddingLeft: '16px',
+                                marginTop: '2px',
+                                marginBottom: '2rem'
+                            }}
+                        
+                        />
       </GoogleMap>
 
     );
