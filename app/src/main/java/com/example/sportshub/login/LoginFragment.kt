@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.sportshub.MainActivity
 import com.example.sportshub.R
+import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.login.model.LoginResponseModel
 import com.example.sportshub.databinding.FragmentLoginBinding
 
@@ -41,6 +42,8 @@ class LoginFragment : Fragment() {
                     }
 
                     override fun onResponse(loginResponseModel: LoginResponseModel?) {
+                        SingletonRequestQueueProvider.setAccessToken(loginResponseModel!!.access)
+                        SingletonRequestQueueProvider.saveCredentials(binding.editTextUsername.text.toString(),binding.editTextPassword.text.toString())
                         //Start Main Activity and Stop Login Activity
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         startActivity(intent)
