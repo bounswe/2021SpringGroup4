@@ -11,48 +11,132 @@
         android:id="@+id/event_detail_event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        android:layout_marginTop="64dp"
+        tools:text="Title"
+        android:textSize="48sp"
+        android:textColor="#447744"/>
 
     <TextView
         android:id="@+id/event_detail_event_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_title"
+        tools:text="Description"
+        android:background="#DDDDDD"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/event_detail_event_creator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_description"
+        tools:text="Creator" />
 
     <TextView
         android:id="@+id/event_detail_event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/event_detail_event_time"
+        tools:text="dd/mm/yyyy" />
+
+    <TextView
+        android:id="@+id/event_detail_event_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_event_date"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_creator"
+        tools:text="hh:mm:ss" />
 
     <TextView
         android:id="@+id/event_detail_event_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_sport_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/event_detail_event_sport_type"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="hh:mm:ss" />
 
     <TextView
         android:id="@+id/event_detail_event_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_event_time"
+        app:layout_constraintTop_toTopOf="@+id/event_detail_event_time"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Location" />
 
     <TextView
         android:id="@+id/event_detail_event_sport_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_event_duration"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_time"
+        tools:text="Example Type" />
 
     <TextView
         android:id="@+id/event_detail_event_remaining_spots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="22"
+        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_sport_type"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_event_sport_type"
+        app:layout_constraintTop_toTopOf="@+id/event_detail_event_sport_type"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:padding="12dp"
+        android:text="Join"
+        android:textSize="24sp"
+        android:backgroundTint="#226699"
+        app:cornerRadius="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_marginBottom="32dp"
+        android:textSize="24sp"
+        android:padding="12dp"
+        app:cornerRadius="32dp"
+        android:backgroundTint="#228844"
+        android:text="Follow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

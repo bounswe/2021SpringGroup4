@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sportshub.SingletonRequestQueueProvider;
 import com.example.sportshub.event.model.EventModel;
 
 import org.json.JSONArray;
@@ -79,7 +80,7 @@ public class EventAPIConnection {
             }
         });
 
-        SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
+        //SingletonRequestQueueProvider.getInstance(context).addToRequestQueue(request);
 
     }
 
@@ -165,7 +166,7 @@ public class EventAPIConnection {
             }
         };
 
-        SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
+        //SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
 
     }
 
@@ -219,7 +220,7 @@ public class EventAPIConnection {
             }
         };
 
-        SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
+        //SingletonRequestQueue.getInstance(context).addToRequestQueue(request);
 
     }
 
