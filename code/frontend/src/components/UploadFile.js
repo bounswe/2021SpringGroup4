@@ -17,7 +17,7 @@ function UploadFile() {
             formData
         ).then( (response)=> { 
             console.log(response);
-
+            console.log("url linki:" + response.data.url)
         
         });
 
@@ -36,7 +36,7 @@ function UploadFile() {
                 </input>
 
                 <button onClick={uploadImage}> Upload Image</button>
-                <img src= "http://res.cloudinary.com/sportshub/image/upload/v1638880406/yigit/m8r3fxhkldb59jlhttjd.webp" />
+                
         </div>
     )
 }

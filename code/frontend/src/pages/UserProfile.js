@@ -2,7 +2,10 @@ import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+// import profile from '.../public/profile.png';
 
+//Bu metodu kullanıyoruz
+// use this method
 function UserProfile() {
 
     
@@ -36,7 +39,11 @@ function UserProfile() {
                     first_name:data.first_name,
                     last_name:data.last_name,
                     age : data.age,
+                    about: data.about,
                     location: data.location,
+                    going: data.going,
+                    applied: data.applied,
+                    profile_picture:data.profile_picture
                     
                 });
                 console.log("data taken with success");
@@ -62,10 +69,34 @@ function UserProfile() {
 
 
             <h1>User Profile</h1>
-
+            
 
             <table className="table table-bordered" >
+                
+
                 <thead>
+
+                     <tr>
+                        <th>Profile photo: </th>
+                        <th> 
+                        { userdata.profile_picture  ?
+
+                         <img src= {userdata.profile_picture} alt="Profile image" width="200" height="200" />
+              
+                        
+                        :
+                        <img src= "/profile.png" alt="Profile image" width="200" height="200" />   
+
+                        }    
+                            
+                             
+                            
+                            
+                         </th>
+                       
+                    </tr>
+
+
                     <tr>
                         <th>Username: </th>
                         <th>{userdata.username}</th>
@@ -96,9 +127,29 @@ function UserProfile() {
                        
                     </tr>
 
+                    
+                    <tr>
+                        <th>About: </th>
+                        <th>{userdata.about}</th>
+                       
+                    </tr>
+
                     <tr>
                         <th>Location: </th>
                         <th>{userdata.location}</th>
+                       
+                    </tr>
+
+                    <tr>
+                        <th>Going: </th>
+                        <th>{userdata.going}</th>
+                       
+                    </tr>
+
+
+                    <tr>
+                        <th>Applied: </th>
+                        <th>{userdata.applied}</th>
                        
                     </tr>
 

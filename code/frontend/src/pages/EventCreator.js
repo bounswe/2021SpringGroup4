@@ -101,6 +101,7 @@ const EventCreator = () => {
                         
                         </td>
                     </tr>
+                    <Maps/>
 
                    
 
