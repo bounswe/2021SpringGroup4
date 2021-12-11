@@ -6,7 +6,7 @@ services:
             context: .
             dockerfile: Dockerfile
         volumes: 
-            - .:/app
+            - .:/app/src
         ports:
             - 3000:3000
         image: app:app-dev
