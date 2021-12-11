@@ -7,7 +7,7 @@
 // USES GOOGLE MAP REVERSE GEOCODE
 //import { configure } from '@testing-library/dom';
 import React, { Component } from 'react'
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZSliCMn66CV0BvKi9zLt0JlAI_ZYVYPU&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
 
 class UserGeolocation extends Component {
 

@@ -47,7 +47,7 @@ function App() {
           <Header/>
           <PrivateRoute component={HomePage} path="/" exact/>
           
-          <Route component={Autocomplete2} path="/login"/>
+          <Route component={Maps} path="/login"/>
           <Route path='/createevent' component={EventCreator} />
 
 

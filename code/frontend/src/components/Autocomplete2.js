@@ -4,6 +4,8 @@ import PlacesAutocomplete, {
     getLatLng
 } from "react-places-autocomplete";
 
+//   <p>Latitude: {coordinates.lat}</p>
+//<p>Longitude: {coordinates.lng}</p>
 export default function Autocomplete2() {
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
@@ -27,10 +29,9 @@ export default function Autocomplete2() {
         >
           {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-              <p>Latitude: {coordinates.lat}</p>
-              <p>Longitude: {coordinates.lng}</p>
+           
   
-              <input {...getInputProps({ placeholder: "Type address" })} />
+              <input {...getInputProps({ placeholder: "Location" })} />
   
               <div>
                 {loading ? <div>...loading</div> : null}
