@@ -5,7 +5,7 @@ data class SearchEventModel(
     var dist: Int = 0, // unit -> km
     var name: String = "",
     var date: String = "",
-    var sportType: SportTypeModel = SportTypeModel(),
+    var sportType: String = "",
     var skillLevel: Float = 0F // score out of 5
 )
 

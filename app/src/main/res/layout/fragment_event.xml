@@ -21,28 +21,27 @@
         android:id="@+id/toolbar_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#44BBAA"
+        android:background="@color/teal_700"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_margin="8dp"
-            android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Events" />
+            android:text="Events"
+            android:textSize="28sp" />
 
         <EditText
             android:id="@+id/editTextSearchEventLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:ems="9"
             android:hint="Enter Location"
             android:inputType="textPersonName"
@@ -52,22 +51,21 @@
             android:id="@+id/btn_search_by_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:src="@android:drawable/ic_menu_search" />
     </LinearLayout>
 
 
     <ScrollView
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_event"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_event">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_event"
