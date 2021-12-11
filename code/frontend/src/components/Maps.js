@@ -4,6 +4,16 @@ import React, { useState } from "react";
 import {GoogleMap, withScriptjs, withGoogleMap, Marker,  InfoWindow } from  "react-google-maps"
 import * as eventdata from "../data/eventdata.json";
 import Autocomplete from 'react-google-autocomplete';
+/*     <Autocomplete
+                            style={{
+                                width: '100%',
+                                height: '40px',
+                                paddingLeft: '16px',
+                                marginTop: '2px',
+                                marginBottom: '2rem'
+                            }}
+                        
+                        />*/
 
 function Map(){
     const [selectedPark, setSelectedPark] = useState(null);
@@ -51,7 +61,7 @@ function Map(){
         
         
         }
-        <Autocomplete
+         <Autocomplete
                             style={{
                                 width: '100%',
                                 height: '40px',
@@ -59,8 +69,10 @@ function Map(){
                                 marginTop: '2px',
                                 marginBottom: '2rem'
                             }}
-                        
+                           
+                            types={['(regions)']}
                         />
+    
       </GoogleMap>
 
     );
@@ -73,10 +85,10 @@ export default function Maps() {
     
     
     return (
-        <div style={{ width: "80vw", height: "80vh" }}  >
+        <div style={{ width: "60vw", height: "60vh" }}  >
             <MapWrapped
 
-               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=`}
+               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAZSliCMn66CV0BvKi9zLt0JlAI_ZYVYPU`}
             
 
              //  googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key==${process.env.REACT_APP_GOOGLE_KEY}` }

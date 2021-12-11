@@ -32,6 +32,8 @@ import UserProfile from './pages/UserProfile';
 import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
+import Autocomplete2 from './components/Autocomplete2';
+
 
 function App() {
   
@@ -44,7 +46,8 @@ function App() {
         <AuthProvider>
           <Header/>
           <PrivateRoute component={HomePage} path="/" exact/>
-          <Route component={LoginPage} path="/login"/>
+          
+          <Route component={Autocomplete2} path="/login"/>
           <Route path='/createevent' component={EventCreator} />
 
 
@@ -70,6 +73,7 @@ function App() {
         
         <Route path='/googlemap' component={Maps} />
         <Route path='/geolocation' component={UserGeolocation} />
+       
 
 
         </AuthProvider>
