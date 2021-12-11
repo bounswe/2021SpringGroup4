@@ -3,10 +3,10 @@ version: "3.8"
 services: 
     app:
         build: 
-            context: ./app
+            context: .
             dockerfile: Dockerfile
         volumes: 
-            - ./app/src:/usr/src/app/src # <---- this
+            - ./src:/usr/src/app/src # <---- this
             - ./logs:/logs
         ports:
             - 3000:3000
