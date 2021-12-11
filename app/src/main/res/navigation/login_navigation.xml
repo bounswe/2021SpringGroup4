@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.sportshub.ui.login.LoginFragment"
+        android:name="com.example.sportshub.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.sportshub.ui.login.RegisterFragment"
+        android:name="com.example.sportshub.login.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register"/>
 </navigation>

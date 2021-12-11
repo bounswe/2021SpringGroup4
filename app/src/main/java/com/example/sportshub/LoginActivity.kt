@@ -3,7 +3,6 @@ package com.example.sportshub
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NavUtils
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         actionBar?.setDisplayHomeAsUpEnabled(true);
         setupActionBarWithNavController(navController, appBarConfiguration)
+        SingletonRequestQueueProvider.createQueue(applicationContext)
 
     }
 

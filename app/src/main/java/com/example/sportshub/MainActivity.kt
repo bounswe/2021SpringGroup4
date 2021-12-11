@@ -4,13 +4,8 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.sportshub.backend_connection.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.ActivityMainBinding
-
-import com.example.sportshub.ui.event.EventAdapter
 
 class MainActivity : AppCompatActivity() {
 
