@@ -1,12 +1,16 @@
 package com.example.sportshub.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.sportshub.MainActivity
 import com.example.sportshub.R
+import com.example.sportshub.backend_connection.login_register.LoginResponseModel
+import com.example.sportshub.backend_connection.login_register.RegisterModel
 import com.example.sportshub.databinding.FragmentLoginBinding
 import com.example.sportshub.databinding.FragmentRegisterBinding
 
@@ -31,20 +35,24 @@ class RegisterFragment : Fragment() {
         val root: View = binding.root
 
         binding.btnRegister.setOnClickListener {
-            var success = registerViewModel.tryregister(binding.
-            editTextNewUsername.text.toString(),binding.
-            editTextNewEmail.text.toString(),binding.
-            editTextNewPassword.text.toString(),binding.
-            editTextConfirmPassword.text.toString(),requireContext())
-            if(success){
-                Toast.makeText(requireContext(),"Registration Successful",Toast.LENGTH_LONG).show()
-                findNavController().navigateUp()
-            }else{
-                Toast.makeText(requireContext(),"Registration Failed",Toast.LENGTH_LONG).show()
-                binding.editTextNewUsername.text.clear()
-                binding.editTextNewEmail.text.clear()
-                binding.editTextNewPassword.text.clear()
-                binding.editTextConfirmPassword.text.clear()
+            if(binding.editTextNewPassword.text.toString().equals(binding.editTextConfirmPassword.text.toString())){
+                registerViewModel.tryRegister(requireContext(), binding.editTextNewUsername.text.toString(),
+                    binding.editTextNewEmail.text.toString(), binding.editTextNewPassword.text.toString(),
+                    object: RegisterListener() {
+                        override fun onError() {
+                            binding.editTextNewUsername.text.clear()
+                            binding.editTextNewEmail.text.clear()
+                            binding.editTextNewPassword.text.clear()
+                            binding.editTextConfirmPassword.text.clear()
+                        }
+
+                        override fun onResponse(registerModel: RegisterModel?) {
+                            Toast.makeText(requireContext(),"Registration Successful!",Toast.LENGTH_LONG).show()
+                            findNavController().navigateUp()
+                        }
+                    })
+            } else{
+                Toast.makeText(requireContext(),"Password do not match!",Toast.LENGTH_LONG).show()
             }
         }
         return root
