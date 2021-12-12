@@ -7,28 +7,41 @@
 
     <fragment
         android:id="@+id/navigation_event"
-        android:name="com.example.sportshub.ui.event.EventFragment"
+        android:name="com.example.sportshub.event.EventFragment"
         android:label="@string/title_event"
         tools:layout="@layout/fragment_event" >
         <action
             android:id="@+id/action_navigation_event_to_eventCreateFragment"
             app:destination="@id/eventCreateFragment" />
+        <action
+            android:id="@+id/action_navigation_event_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sportshub.ui.dashboard.DashboardFragment"
+        android:name="com.example.sportshub.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.sportshub.ui.profile.ProfileFragment"
+        android:name="com.example.sportshub.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/eventCreateFragment"
-        android:name="com.example.sportshub.ui.event.EventCreateFragment"
+        android:name="com.example.sportshub.event.EventCreateFragment"
         android:label="event_create_fragment"
         tools:layout="@layout/event_create_fragment" />
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.sportshub.event.EventDetailFragment"
+        android:label="event_detail_fragment"
+        tools:layout="@layout/event_detail_fragment" >
+
+        <argument
+            android:name="eventModel"
+            app:argType="com.example.sportshub.event.model.EventModel" />
+    </fragment>
 </navigation>
