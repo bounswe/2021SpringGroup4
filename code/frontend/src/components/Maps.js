@@ -1,22 +1,56 @@
-// latlong.net
+
+
+
 
 import React, { useState } from "react";
 import {GoogleMap, withScriptjs, withGoogleMap, Marker,  InfoWindow } from  "react-google-maps"
 import * as eventdata from "../data/eventdata.json";
-import Autocomplete2 from "./Autocomplete2";
-/*     <Autocomplete
-                            style={{
-                                width: '100%',
-                                height: '40px',
-                                paddingLeft: '16px',
-                                marginTop: '2px',
-                                marginBottom: '2rem'
-                            }}
-                        
-                        />*/
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
+
+
+
+
 
 function Map(){
-    const [selectedPark, setSelectedPark] = useState(null);
+
+
+
+
+
+const [address, setAddress] = React.useState("");
+const [selectedPark, setSelectedPark] = useState(null);
+const [coordinates, setCoordinates] = React.useState({
+lat : '',
+long : ''
+});
+
+const handleChange = address => {
+  this.setState({ address });
+};
+
+
+
+
+const handleSelect = async park => {
+  const results = await geocodeByAddress(park);
+  const latLng = await getLatLng(results[0]);
+  setAddress(park);
+  setCoordinates(latLng);
+  geocodeByAddress(park);
+  //set cursor
+  window.google.maps.Map(document.getElementsByClassName("GoogleMap")).panTo(latLng);
+  
+}; 
+
+
+
+const [clickedLatLng, setClickedLatLng] = useState(null);
+
+
+    
 
     return( 
 
@@ -35,6 +69,7 @@ function Map(){
           }}
           onClick={() => {
             setSelectedPark(park);
+            window.google.maps.Map(document.getElementsByClassName("GoogleMap")).panTo(park);
           }}
          
 
@@ -61,7 +96,36 @@ function Map(){
         
         
         }
-         <Autocomplete2/>
+    <PlacesAutocomplete
+         
+         value={address}
+         onChange={setAddress}
+         onSelect={handleSelect}
+       >
+         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+           <div>
+          
+ 
+             <input {...getInputProps({ placeholder: "Location" })} />
+ 
+             <div>
+               {loading ? <div>...loading</div> : null}
+ 
+               {suggestions.map(suggestion => {
+                 const style = {
+                   backgroundColor: suggestion.active ? "#e79686" : "#a39391"
+                 };
+ 
+                 return (
+                   <div {...getSuggestionItemProps(suggestion, { style })}>
+                     {suggestion.description}
+                   </div>
+                 );
+               })}
+             </div>
+           </div>
+         )}
+       </PlacesAutocomplete>
     
       </GoogleMap>
 
@@ -79,13 +143,9 @@ export default function Maps() {
             <MapWrapped
 
                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=`}
-            
-
-             //  googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key==${process.env.REACT_APP_GOOGLE_KEY}` }
-
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `100%` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
+               loadingElement={<div style={{ height: `100%` }} />}
+               containerElement={<div style={{ height: `100%` }} />}
+               mapElement={<div style={{ height: `100%` }} />}
              
              />
         </div>
