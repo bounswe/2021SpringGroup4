@@ -40,8 +40,9 @@ function App() {
   return (
     
       <Router>
-      <Home/>
+      
         <AuthProvider>
+          <Home/>
           <Header/>
           <PrivateRoute component={HomePage} path="/" exact/>
           <Route component={LoginPage} path="/login"/>

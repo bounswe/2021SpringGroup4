@@ -101,9 +101,7 @@ const EventCreator = () => {
                         
                         </td>
                     </tr>
-                    <Maps/>
-
-                   
+                  
 
                     <tr>
                         <th>Sport Type</th>

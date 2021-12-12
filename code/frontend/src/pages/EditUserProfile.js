@@ -35,12 +35,13 @@ function EditUserProfile() {
         
         if(response.status === 200){
             console.log("User Profile Data Updated")
+            alert('User Profile succesfully updated..')
             history.push('/profile')
         }
         
         else{
             console.log(response)
-            alert('Please check your credentials')
+            alert('Please fill out the form')
         }
         
     }
