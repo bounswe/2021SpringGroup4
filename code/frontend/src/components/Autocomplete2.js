@@ -9,20 +9,25 @@ import PlacesAutocomplete, {
 export default function Autocomplete2() {
     const [address, setAddress] = React.useState("");
     const [coordinates, setCoordinates] = React.useState({
-      lat: null,
-      lng: null
+    lat : null ,
+    long : null
     });
   
-    const handleSelect = async value => {
-      const results = await geocodeByAddress(value);
+    const handleSelect = async address => {
+      const results = await geocodeByAddress(address);
       const latLng = await getLatLng(results[0]);
-      setAddress(value);
+      setAddress(address);
       setCoordinates(latLng);
     };
   
     return (
+       
       <div>
+          <p>Latitude: {coordinates.lat}</p>
+          <p>Longitude: {coordinates.lng}</p>
+        
         <PlacesAutocomplete
+         
           value={address}
           onChange={setAddress}
           onSelect={handleSelect}

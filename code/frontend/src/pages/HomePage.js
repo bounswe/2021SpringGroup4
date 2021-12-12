@@ -14,6 +14,7 @@ import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
 import EventCreator from './EventCreator';
 
+
 const HomePage = () => {
 
 
@@ -68,6 +69,7 @@ const HomePage = () => {
                                User Geolocation
                             </Link>
                         </li>
+                        
         
 
          </div>

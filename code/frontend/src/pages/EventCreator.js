@@ -3,23 +3,37 @@ import AuthContext from '../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 import Maps from '../components/Maps'
 
-const EventCreator = () => {   
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng
+} from "react-places-autocomplete";
 
+
+const EventCreator = () => {   
+  
+
+    const [address, setAddress] = React.useState("");
+    const [coordinates, setCoordinates] = React.useState({
+    lat : '',
+    long : ''
+    });
+  
+    const handleSelect = async value => {
+      const results = await geocodeByAddress(value);
+      const latLng = await getLatLng(results[0]);
+      setAddress(value);
+      setCoordinates(latLng);
+    };
+   
 
     const history = useHistory()
     let {authTokens, logoutUser} = useContext(AuthContext)
     
     let createEvent = async (e) => {
         e.preventDefault()
-        console.log(`
-        --SUBMITTING--
-        Title: ${e.target.title.value}
-        Description: ${e.target.title.value}
-        Time: ${e.target.time.value}
-        Duration: ${e.target.duration.value}
-        Authtoken : ${authTokens.access}
-      `);
-
+   
+        console.log(coordinates.lat);
+        console.log(coordinates.long);
         let response = await fetch('http://3.67.188.187:8000/api/events/', {
             method:'POST',
             headers:{
@@ -27,7 +41,7 @@ const EventCreator = () => {
                 'Authorization':'Bearer ' + String(authTokens.access)
             },
             body:JSON.stringify({'title':e.target.title.value, 'description':e.target.description.value, 'date':e.target.date.value , 'time': e.target.time.value , 
-            'duration': e.target.duration.value , 'location': e.target.location.value ,'sportType': e.target.sportType.value, 'maxPlayers': e.target.maxPlayers.value  })
+            'duration': e.target.duration.value , 'location': address,'sportType': e.target.sportType.value, 'maxPlayers': e.target.maxPlayers.value, 'lat' : coordinates.lat, 'long': coordinates.lng })
         })
         
         let data = await response.json()
@@ -97,7 +111,37 @@ const EventCreator = () => {
                     <tr>
                         <th>Location</th>
                         <td>
-                            <input type="text" name="location" className="form-control" placeholder="Location" />
+                             
+        <PlacesAutocomplete
+         
+         value={address}
+         onChange={setAddress}
+         onSelect={handleSelect}
+       >
+         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+           <div>
+          
+ 
+             <input {...getInputProps({ placeholder: "Location" })} />
+ 
+             <div>
+               {loading ? <div>...loading</div> : null}
+ 
+               {suggestions.map(suggestion => {
+                 const style = {
+                   backgroundColor: suggestion.active ? "#e79686" : "#a39391"
+                 };
+ 
+                 return (
+                   <div {...getSuggestionItemProps(suggestion, { style })}>
+                     {suggestion.description}
+                   </div>
+                 );
+               })}
+             </div>
+           </div>
+         )}
+       </PlacesAutocomplete>
                         
                         </td>
                     </tr>
