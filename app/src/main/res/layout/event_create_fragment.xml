@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     tools:context=".event.EventCreateFragment">
+
+
 
     <EditText
         android:id="@+id/editTextTitle"
@@ -70,38 +75,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSportType" />
 
-    <EditText
+    <DatePicker
         android:id="@+id/editTextDate"
         android:layout_width="0dp"
-        android:layout_height= "wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Date"
-        android:inputType="textPersonName"
+        android:datePickerMode="calendar"
+        android:overScrollMode="ifContentScrolls"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLocation"
+        />
 
-    <EditText
+    <TimePicker
         android:id="@+id/editTextTime"
         android:layout_width="0dp"
         android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Time"
-        android:inputType="textPersonName"
+        android:inputType="time"
+        android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
-    <EditText
+    <TimePicker
         android:id="@+id/editTextDuration"
         android:layout_width="0dp"
         android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Duration"
-        android:inputType="textPersonName"
+        android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
@@ -113,7 +122,8 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Maximum number of players"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDuration" />
@@ -128,4 +138,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers"
         android:layout_marginBottom="80dp"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
