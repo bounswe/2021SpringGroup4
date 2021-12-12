@@ -18,6 +18,8 @@ class EventBody(models.Model):
     ("3", "Advanced"))
 
     skill_level = models.CharField(max_length=10,choices=SKILL_LEVELS, default="Beginner")
+    lat = models.FloatField(null=True, blank=True)
+    long = models.FloatField(null=True, blank=True)
 
     class Meta:
         ordering = ['date']
