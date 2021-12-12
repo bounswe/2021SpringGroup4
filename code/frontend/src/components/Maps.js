@@ -7,6 +7,7 @@ import * as eventdata from "../data/eventdata.json";
 
 function Map(){
     const [selectedPark, setSelectedPark] = useState(null);
+    console.log(process.env.REACT_APP_GOOGLE_KEY); 
 
     return( 
 
@@ -66,10 +67,10 @@ export default function Maps() {
         <div style={{ width: "80vw", height: "80vh" }}  >
             <MapWrapped
 
-               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=`}
+               googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
             
-
-             //  googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key==${process.env.REACT_APP_GOOGLE_KEY}` }
+               
+              // googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=` }
 
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}

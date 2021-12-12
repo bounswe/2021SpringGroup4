@@ -43,7 +43,7 @@ class UserGeolocation extends Component {
     }
 
     reverseGeocodeCoordinates(){
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&sensor=false&key=${process.env.REACT_APP_GOOGLE_KEY}`)
         .then(response => response.json() )
         .then(data=> this.setState({
             userAdress:data.results[0].formatted_address
@@ -90,7 +90,7 @@ class UserGeolocation extends Component {
                 {
                     this.state.latitude && this.state.longitude ?
               
-              <img src= {`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x400&sensor=false&markers=color:red%7C${this.state.latitude},${this.state.longitude}&key=`} alt='' />
+              <img src= {`https://maps.googleapis.com/maps/api/staticmap?center=${this.state.latitude},${this.state.longitude}&zoom=14&size=400x400&sensor=false&markers=color:red%7C${this.state.latitude},${this.state.longitude}&key=${process.env.REACT_APP_GOOGLE_KEY}`} alt='' />
                     :
                     null
 

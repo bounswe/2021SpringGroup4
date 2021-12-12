@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import { withRouter } from "react-router-dom";
 
-
 import "../design/RegisterForm.css";
 
 
@@ -82,8 +81,6 @@ class Registerform extends Component {
        //submitform
     submitForm(){
         console.log("Data submitted.");
-
-        
 
         fetch('http://3.67.188.187:8000/api/auth/register/',{
             method:'POST',
@@ -256,5 +253,6 @@ class Registerform extends Component {
     );
     }
 }
+
 
 export default withRouter(Registerform);
