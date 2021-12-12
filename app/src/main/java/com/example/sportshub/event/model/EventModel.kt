@@ -18,7 +18,8 @@ data class EventModel(
     var maxPlayers: Int = 0,
     var applicants: MutableList<String> = mutableListOf(),
     var participants: MutableList<String> = mutableListOf(),
-    var followers: MutableList<String> = mutableListOf(),
-    var comments: MutableList<String> = mutableListOf(),
-    var skillLevel: Float = 0F  // score out of 5
+    var comments: MutableList<MutableMap<String,String>> = mutableListOf(),
+    var skillLevel: String = "",
+    var lat: String = "",
+    var long: String = ""
 ):Parcelable

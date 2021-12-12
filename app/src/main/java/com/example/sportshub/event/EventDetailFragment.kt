@@ -19,8 +19,20 @@ class EventDetailFragment : Fragment() {
         eventDetailViewModel = ViewModelProvider(this).get(EventDetailViewModel::class.java)
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
+        eventDetailViewModel.event!!.value = savedInstanceState!!.getParcelable("eventModel")
+        eventDetailViewModel.event!!.observe(viewLifecycleOwner,{
+            binding.eventDetailEventTitle.text = it.title
+            binding.eventDetailEventDescription.text = it.description
+            binding.eventDetailEventCreator.text = it.creator
+            binding.eventDetailEventDate.text = it.date
+            binding.eventDetailEventTime.text = it.time
+            binding.eventDetailEventDuration.text = it.duration
+            binding.eventDetailEventLocation.text = it.location
+            binding.eventDetailEventSportType.text = it.sportType
+            binding.eventDetailEventRemainingSpots.text = (it.maxPlayers - it.participants.size).toString()
 
 
+        })
 
 
         return root

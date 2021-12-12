@@ -62,7 +62,6 @@ public class EventAPIConnection {
                                 one_event_model.setDate(one_event.getJSONObject("body").getString("date"));
                                 one_event_model.setTime(one_event.getJSONObject("body").getString("time"));
                                 one_event_model.setDuration(one_event.getJSONObject("body").getString("duration"));
-                                one_event_model.setLocation(one_event.getJSONObject("body").getString("location"));
                                 one_event_model.setSportType(one_event.getJSONObject("body").getString("sportType"));
                                 one_event_model.setMaxPlayers(one_event.getJSONObject("body").getInt("maxPlayers"));
                                 eventModels.add(one_event_model);
@@ -118,9 +117,7 @@ public class EventAPIConnection {
                             if(response.has("title")){
                                 eventModel.setTitle(response.getString("title"));
                             }
-                            if(response.has("location")){
-                                eventModel.setLocation(response.getString("location"));
-                            }
+
                             if(response.has("maxPlayers")){
                                 eventModel.setMaxPlayers(response.getInt("maxPlayers"));
                             }
@@ -141,7 +138,6 @@ public class EventAPIConnection {
                                 eventModel.setDate(response.getJSONObject("body").getString("date"));
                                 eventModel.setTime(response.getJSONObject("body").getString("time"));
                                 eventModel.setDuration(response.getJSONObject("body").getString("duration"));
-                                eventModel.setLocation(response.getJSONObject("body").getString("location"));
                                 eventModel.setSportType(response.getJSONObject("body").getString("sportType"));
                                 eventModel.setMaxPlayers(response.getJSONObject("body").getInt("maxPlayers"));
                             }
@@ -196,7 +192,6 @@ public class EventAPIConnection {
                                 one_event_model.setCreator(one_event.getString("owner"));
                                 one_event_model.setId(one_event.getInt("id"));
                                 one_event_model.setTitle(one_event.getString("title"));
-                                one_event_model.setLocation(one_event.getString("location"));
                                 eventModels.add(one_event_model);
                             }
                             eventSearchByLocationListener.onResponse(eventModels);
