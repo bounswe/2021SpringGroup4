@@ -15,7 +15,7 @@
             app:destination="@id/eventCreateFragment" />
         <action
             android:id="@+id/action_navigation_event_to_eventDetailFragment"
-            app:destination="@id/eventDetailFragment"/>
+            app:destination="@id/eventDetailFragment" />
     </fragment>
 
     <fragment
@@ -38,5 +38,10 @@
         android:id="@+id/eventDetailFragment"
         android:name="com.example.sportshub.event.EventDetailFragment"
         android:label="event_detail_fragment"
-        tools:layout="@layout/event_detail_fragment" />
+        tools:layout="@layout/event_detail_fragment" >
+
+        <argument
+            android:name="eventModel"
+            app:argType="com.example.sportshub.event.model.EventModel" />
+    </fragment>
 </navigation>

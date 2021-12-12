@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.sportshub.event.model.EventModel
 
 class EventDetailViewModel : ViewModel() {
-    val event : MutableLiveData<EventModel>? = MutableLiveData(null)
+    val event : MutableLiveData<EventModel>? = MutableLiveData(EventModel())
 
 
 }

@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.sportshub.databinding.EventDetailFragmentBinding
 
 class EventDetailFragment : Fragment() {
     private lateinit var eventDetailViewModel: EventDetailViewModel
     private var _binding: EventDetailFragmentBinding? = null
     private val binding get() = _binding!!
+    private val args by navArgs<EventDetailFragmentArgs>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,7 +21,7 @@ class EventDetailFragment : Fragment() {
         eventDetailViewModel = ViewModelProvider(this).get(EventDetailViewModel::class.java)
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
-        eventDetailViewModel.event!!.value = savedInstanceState!!.getParcelable("eventModel")
+        eventDetailViewModel.event!!.value = args.eventModel
         eventDetailViewModel.event!!.observe(viewLifecycleOwner,{
             binding.eventDetailEventTitle.text = it.title
             binding.eventDetailEventDescription.text = it.description

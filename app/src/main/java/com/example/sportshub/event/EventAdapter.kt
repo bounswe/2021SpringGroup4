@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
@@ -31,7 +32,8 @@ class EventAdapter:RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
             players.text = "${eventModel.participants.size} out of ${eventModel.maxPlayers} players are chosen"
             creator.text = "${eventModel.creator} created this event"
             itemView.setOnClickListener {
-                Navigation.findNavController(itemView).navigate(R.id.action_navigation_event_to_eventDetailFragment, bundleOf(Pair("eventModel",eventModel)))
+                val action : NavDirections = EventFragmentDirections.actionNavigationEventToEventDetailFragment(eventModel)
+                Navigation.findNavController(itemView).navigate(action)
             }
         }
     }
