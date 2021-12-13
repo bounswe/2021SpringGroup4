@@ -1,5 +1,3 @@
-// latlong.net
-
 import React, { useState } from "react";
 import {GoogleMap, withScriptjs, withGoogleMap, Marker,  InfoWindow } from  "react-google-maps"
 import * as eventdata from "../data/eventdata.json";

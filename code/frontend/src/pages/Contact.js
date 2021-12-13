@@ -1,6 +1,10 @@
 import React from 'react'
 
 function Contact() {
+
+    const lat = 41.084049;
+    const lng = 29.051020;
+
     return (
         <div>
              <h2> Contact Information </h2>
@@ -15,6 +19,8 @@ function Contact() {
                 <p> Fax: +90 212 265 63 57  </p>
                 </div>
                
+
+                <img src= {`https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=14&size=400x400&sensor=false&markers=color:red%7C${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_KEY}`} alt='' />
 
         </div>
     )

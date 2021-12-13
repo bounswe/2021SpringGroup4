@@ -33,6 +33,7 @@ import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
 
+
 function App() {
   
 
@@ -52,7 +53,7 @@ function App() {
           <Route path='/eventsuccess' component={EventSuccess} />
 
 
-          <Route path='/home' exact component={Home} />
+        <Route path='/home' exact component={Home} />
         <Route path='/about' exact component={About} />
         <Route path='/contact' component={Contact} />
         <Route path='/register' component={RegisterForm} />
@@ -71,7 +72,7 @@ function App() {
         
         <Route path='/googlemap' component={Maps} />
         <Route path='/geolocation' component={UserGeolocation} />
-
+        
 
         </AuthProvider>
 

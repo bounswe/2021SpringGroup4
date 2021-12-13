@@ -3,13 +3,18 @@ import {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 import Axios from 'axios';
+import '../design/Image.css';
 
 function EditUserProfile() {
-    // const[profile_pictures, setProfilePicture] = useState("");
+    
     
     var link="";
 
-    let [profile_pictures, setProfilePictures]= useState( );
+    const [ profileImg, setprofileImg] = useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
+
+    let [preview, setPreview] = useState();
+
+    const [profile_pictures, setProfilePictures]= useState( );
     const history = useHistory()
     let {authTokens, logoutUser} = useContext(AuthContext)
     let {myusername, user} = useContext(AuthContext);
@@ -57,22 +62,46 @@ function EditUserProfile() {
         const formData= new FormData();
         formData.append("file", imageSelected);
         formData.append("upload_preset", "nju7fu35");
+        
 
         Axios.post(
             "https://api.cloudinary.com/v1_1/sportshub/image/upload",
             formData
         ).then( (response)=> { 
+
+            if(response.status === 200){
             // console.log(response);
             console.log("url linki:" + response.data.url)
-            setProfilePictures( response.data.url )
-            link=response.data.url;
+            setProfilePictures( response.data.url );
+
             console.log("profile pictures new:  " + profile_pictures )
-        
+            
+            }
+
+            else{
+                console.log(response.data);
+                alert('File could not uploaded, no response from remote server');
+            }
+            
+            
         });
 
         
     };
 
+
+
+    const imageHandler = (e) => {
+        const reader = new FileReader();
+        reader.onload = () =>{
+          if(reader.readyState === 2){
+            setprofileImg (reader.result);
+            setPreview(reader.result);
+          }
+        }
+        console.log("selected image" + imageSelected.data);
+        reader.readAsDataURL( e );
+    } ;   
    
    
 
@@ -81,18 +110,41 @@ function EditUserProfile() {
 
     return (
         
+
         <div>
+                
 
-                <tr> 
-                        <th>Profile Photo</th>
-                        <td>  
-                    <input  type="file"  name="profile_picture" onChange = { (event)=> { setImageSelected(event.target.files[0]); } }  >
-                    </input>
-                    <button onClick={uploadImage}> Upload Image</button>
-                        </td>
+                <div className="page">
+                                <div className="container">
+                                    <h1 className="heading">Add your Image</h1>
+                                    <div className="img-holder">
+                                        {preview ?     
+                                          <img src={preview} alt="" id="img" className="img" />
+                                        :      
+                                           <img src={profileImg} alt="" id="img" className="img" />
+                                        }
+                                        
+                                    </div>
+                                    <input type="file" accept="image/*" name="image-upload" id="input" onChange={ (event)=> { setImageSelected(event.target.files[0]); imageHandler(event.target.files[0]); } } />
+                                    <div className="label">
+                        <label className="image-upload" htmlFor="input">
+                                        <i className="material-icons"></i>
+                                        Choose your Photo
+                                    </label>
 
-                 </tr>
+                                    <button onClick={uploadImage}> Upload Image</button>
+                                    {profile_pictures ? <label>File Uploaded</label> : <label>No file</label> } 
+                                    </div>
+
+                                 
+
+                                </div>
+                
+                </div>
             
+
+
+
             
             <form onSubmit={updateProfile}>
             
@@ -146,7 +198,7 @@ function EditUserProfile() {
 
                     <tr>
                         <td colSpan="2">
-                            <input type="submit" value="Edit" name="edit" className="btn btn-dark"/>
+                            <input type="submit" value="Update Profile" name="edit" className="btn btn-dark"/>
                             
                         </td>
                     </tr>
