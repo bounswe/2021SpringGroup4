@@ -6,9 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.DatePicker
 import android.widget.TimePicker
 import com.example.sportshub.R
+import java.util.*
 
 class EventCreateFragment : Fragment() {
 
@@ -29,8 +30,21 @@ class EventCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<TimePicker>(R.id.editTextTime).setIs24HourView(true)
-        view.findViewById<TimePicker>(R.id.editTextDuration).setIs24HourView(true)
+        view.findViewById<DatePicker>(R.id.createDatePicker).apply {
+            val now = Calendar.getInstance()
+            minDate = now.timeInMillis
+            updateDate(now.get(Calendar.YEAR),now.get(Calendar.MONTH),now.get(Calendar.DAY_OF_MONTH))
+        }
+        view.findViewById<TimePicker>(R.id.createTimePicker).apply {
+            setIs24HourView(true)
+            hour = 0
+            minute = 0
+        }
+        view.findViewById<TimePicker>(R.id.timePickerDuration).apply {
+            setIs24HourView(true)
+            hour = 0
+            minute = 0
+        }
 
     }
 
