@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     tools:context=".event.EventCreateFragment">
+
+    <TextView
+        android:id="@+id/textViewPageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height= "wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@color/purple_700"
+        android:text="Create Event"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTitle"
@@ -20,19 +37,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPageTitle" />
-
-    <TextView
-        android:id="@+id/textViewPageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height= "wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/purple_700"
-        android:text="Create Event"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextDescription"
@@ -59,52 +63,16 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
     <EditText
-        android:id="@+id/editTextLocation"
+        android:id="@+id/editTextSkillLevel"
         android:layout_width="0dp"
         android:layout_height= "wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Location"
+        android:hint="Skill level"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSportType" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="0dp"
-        android:layout_height= "wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="0dp"
-        android:layout_height= "wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Time"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
-
-    <EditText
-        android:id="@+id/editTextDuration"
-        android:layout_width="0dp"
-        android:layout_height= "wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Duration"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
 
     <EditText
         android:id="@+id/editTextMaxPlayers"
@@ -113,10 +81,81 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Maximum number of players"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDuration" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSkillLevel" />
+
+
+    <Button
+        android:id="@+id/btnCreateEventLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Set Location"
+        app:cornerRadius="32dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers" />
+
+    <DatePicker
+        android:id="@+id/createDatePicker"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Date"
+        android:background="#99FF99"
+        android:datePickerMode="calendar"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateEventLocation"
+        />
+
+    <TimePicker
+        android:id="@+id/createTimePicker"
+        android:layout_width="0dp"
+        android:layout_height= "wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="time"
+        android:timePickerMode="spinner"
+        android:background="#99FF99"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createDatePicker" />
+
+    <TextView
+        android:id="@+id/textDuration"
+        android:layout_width="0dp"
+        android:layout_height= "wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:textAlignment="center"
+        android:text="Duration"
+        android:textSize="24sp"
+        android:background="#9999FF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createTimePicker" />
+
+    <TimePicker
+        android:id="@+id/timePickerDuration"
+        android:layout_width="0dp"
+        android:layout_height= "wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:background="#9999FF"
+        android:hint="Duration"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDuration" />
+
+
 
     <Button
         android:id="@+id/buttonCreateEvent"
@@ -126,6 +165,10 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers"
+        app:layout_constraintTop_toBottomOf="@+id/timePickerDuration"
         android:layout_marginBottom="80dp"/>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
