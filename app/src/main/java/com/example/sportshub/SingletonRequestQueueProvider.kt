@@ -31,6 +31,9 @@ object SingletonRequestQueueProvider {
         username = uname
         password = pword
     }
+    fun getUsername():String{
+        return username
+    }
     fun refreshAccessToken(){
         val loginData = JSONObject()
         try {
