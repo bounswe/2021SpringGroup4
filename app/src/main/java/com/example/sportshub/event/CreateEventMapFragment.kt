@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.sportshub.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,9 +19,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CreateEventMapFragment : Fragment() {
-
+    private var markerLocation = LatLng(41.0863, 29.0441)
+    private lateinit var previousMarker: Marker
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -30,16 +34,16 @@ class CreateEventMapFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        var markerLocation = LatLng(41.0863, 29.0441)
-        var marker : Marker? = null
-        googleMap.addMarker(MarkerOptions().position(markerLocation).title("Marker in North Campus"))
+        previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Marker in North Campus"))!!
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
         googleMap.setMinZoomPreference(10.0F)
+
         googleMap.setOnMapClickListener {
-            marker?.remove()
+            previousMarker.remove()
             markerLocation = it
-            marker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))
+            previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))!!
         }
+
     }
 
     override fun onCreateView(
@@ -54,5 +58,15 @@ class CreateEventMapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+
+
+
+        view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
+
+            findNavController().popBackStack(R.id.eventCreateFragment,false)
+            //TODO
+        }
+
+
     }
 }

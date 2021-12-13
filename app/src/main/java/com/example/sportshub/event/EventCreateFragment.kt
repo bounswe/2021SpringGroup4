@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.TimePicker
 import androidx.navigation.fragment.findNavController
 import com.example.sportshub.R
@@ -46,7 +47,6 @@ class EventCreateFragment : Fragment() {
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
             findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
         }
-
         return view
     }
 
