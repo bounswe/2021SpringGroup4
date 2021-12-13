@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TimePicker
+import androidx.navigation.fragment.findNavController
 import com.example.sportshub.R
 import java.util.*
 
@@ -25,11 +27,6 @@ class EventCreateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.event_create_fragment, container, false)
 
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         view.findViewById<DatePicker>(R.id.createDatePicker).apply {
             val now = Calendar.getInstance()
             minDate = now.timeInMillis
@@ -46,7 +43,13 @@ class EventCreateFragment : Fragment() {
             minute = 0
         }
 
+        view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
+            findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
+        }
+
+        return view
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

@@ -33,7 +33,11 @@
         android:id="@+id/eventCreateFragment"
         android:name="com.example.sportshub.event.EventCreateFragment"
         android:label="event_create_fragment"
-        tools:layout="@layout/event_create_fragment" />
+        tools:layout="@layout/event_create_fragment" >
+        <action
+            android:id="@+id/action_eventCreateFragment_to_createEventMapFragment"
+            app:destination="@id/createEventMapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
         android:name="com.example.sportshub.event.EventDetailFragment"
@@ -44,4 +48,9 @@
             android:name="eventModel"
             app:argType="com.example.sportshub.event.model.EventModel" />
     </fragment>
+    <fragment
+        android:id="@+id/createEventMapFragment"
+        android:name="com.example.sportshub.event.CreateEventMapFragment"
+        android:label="fragment_create_event_map"
+        tools:layout="@layout/fragment_create_event_map" />
 </navigation>

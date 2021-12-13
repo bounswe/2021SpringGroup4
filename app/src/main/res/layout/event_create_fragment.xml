@@ -88,7 +88,7 @@
 
 
     <Button
-        android:id="@+id/editTextLocation"
+        android:id="@+id/btnCreateEventLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -111,7 +111,7 @@
         android:overScrollMode="ifContentScrolls"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLocation"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateEventLocation"
         />
 
     <TimePicker
