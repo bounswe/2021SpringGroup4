@@ -34,7 +34,7 @@ class EventListCreateView(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EventDetailView(views.APIView):
-    permissions_classes = [IsOwnerOrReadOnly]
+    permissions_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, pk, format=None):
         event = Event.objects.get(pk=pk)
@@ -63,7 +63,7 @@ class EventDetailView(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-    
+     
 
         
 

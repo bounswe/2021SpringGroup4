@@ -27,7 +27,7 @@ class EventBodySerializer(serializers.ModelSerializer):
     class Meta:
         model = EventBody
         fields = ('title', 'description', 'date', 'time', 'duration', 
-                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'comments',)
+                'location', 'sportType', 'maxPlayers', 'applicants', 'participants', 'comments', 'skill_level', 'lat', 'long')
 
 
 class EventSerializer(serializers.ModelSerializer):
