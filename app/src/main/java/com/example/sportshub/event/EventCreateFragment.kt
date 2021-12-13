@@ -1,5 +1,6 @@
 package com.example.sportshub.event
 
+import android.location.Geocoder
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -41,6 +42,8 @@ class EventCreateFragment : Fragment() {
 
         viewModel.eventCreateRequestModel.value!!.lat = args.latitude!!
         viewModel.eventCreateRequestModel.value!!.long = args.longitude!!
+        var location = Geocoder(activity).getFromLocation(args.latitude!! as Double,args.longitude!! as Double,1)[0]
+        viewModel.eventCreateRequestModel.value!!.location = location.toString()
 
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
             findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)

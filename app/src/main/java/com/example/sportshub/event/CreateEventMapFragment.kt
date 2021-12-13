@@ -43,6 +43,7 @@ class CreateEventMapFragment : Fragment() {
             previousMarker.remove()
             markerLocation = it
             previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))!!
+
         }
 
     }
