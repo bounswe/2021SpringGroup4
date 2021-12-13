@@ -12,6 +12,7 @@ import RegisterForm from './RegisterForm';
 import Equipment from './Equipment';
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
+
 function Home2() {
     const [click, setClick] = useState(false);
 
