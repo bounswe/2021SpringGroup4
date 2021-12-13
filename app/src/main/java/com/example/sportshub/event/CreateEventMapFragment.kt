@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.sportshub.R
@@ -62,9 +63,11 @@ class CreateEventMapFragment : Fragment() {
 
 
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
+            val action : NavDirections = CreateEventMapFragmentDirections.
+            actionCreateEventMapFragmentToEventCreateFragment().
+            setLatitude(markerLocation.latitude.toString()).setLongitude(markerLocation.longitude.toString())
+            findNavController().navigate(action)
 
-            findNavController().popBackStack(R.id.eventCreateFragment,false)
-            //TODO
         }
 
 
