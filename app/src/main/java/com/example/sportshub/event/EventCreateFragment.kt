@@ -39,10 +39,9 @@ class EventCreateFragment : Fragment() {
             minute = 0
         }
 
-
-        viewModel.eventCreateRequestModel.value!!.lat = args.latitude!!
-        viewModel.eventCreateRequestModel.value!!.long = args.longitude!!
-        var location = Geocoder(activity).getFromLocation(args.latitude!! as Double,args.longitude!! as Double,1)[0]
+        viewModel.eventCreateRequestModel.value!!.lat = args.latitude.toDouble()
+        viewModel.eventCreateRequestModel.value!!.long = args.longitude.toDouble()
+        var location = Geocoder(activity).getFromLocation(args.latitude.toDouble(), args.longitude.toDouble(),1)[0]
         viewModel.eventCreateRequestModel.value!!.location = location.toString()
 
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {

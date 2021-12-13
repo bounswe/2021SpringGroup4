@@ -66,7 +66,7 @@ class CreateEventMapFragment : Fragment() {
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
             val action : NavDirections = CreateEventMapFragmentDirections.
             actionCreateEventMapFragmentToEventCreateFragment().
-            setLatitude(markerLocation.latitude.toString()).setLongitude(markerLocation.longitude.toString())
+            setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
             findNavController().navigate(action)
 
         }

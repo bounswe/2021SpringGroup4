@@ -13,7 +13,7 @@ data class CreateEventRequestModel(
     var location: String = "",
     var sportType: String = "",
     var maxPlayers: Int = 0,
-    var skillLevel: String = "",
-    var lat: String = "",
-    var long: String = ""
+    var skillLevel: String = "Beginner",
+    var lat: Double? = null,
+    var long: Double? = null
 ): Parcelable

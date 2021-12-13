@@ -41,12 +41,12 @@
             app:popUpToInclusive="false" />
         <argument
             android:name="latitude"
-            app:argType="string"
-            android:defaultValue=""/>
+            app:argType="float"
+            android:defaultValue="41.0863"/>
         <argument
             android:name="longitude"
-            app:argType="string"
-            android:defaultValue=""/>
+            app:argType="float"
+            android:defaultValue="29.0441"/>
     </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
