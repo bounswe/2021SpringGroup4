@@ -27,12 +27,10 @@ import EventCreator from './pages/EventCreator';
 import { EventSuccess } from './pages/EventSucces';
 import SearchEvents from './pages/SearchEvents';
 import UploadFile from './components/UploadFile';
-import UserProfilePage from './pages/UserProfilePage';
 import UserProfile from './pages/UserProfile';
 import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
-
 
 
 function App() {
@@ -42,11 +40,11 @@ function App() {
   return (
     
       <Router>
-      <Home/>
+      
         <AuthProvider>
+          <Home/>
           <Header/>
           <PrivateRoute component={HomePage} path="/" exact/>
-          
           <Route component={LoginPage} path="/login"/>
           <Route path='/createevent' component={EventCreator} />
 
@@ -54,7 +52,7 @@ function App() {
           <Route path='/eventsuccess' component={EventSuccess} />
 
 
-          <Route path='/home' exact component={Home} />
+        <Route path='/home' exact component={Home} />
         <Route path='/about' exact component={About} />
         <Route path='/contact' component={Contact} />
         <Route path='/register' component={RegisterForm} />
@@ -73,9 +71,7 @@ function App() {
         
         <Route path='/googlemap' component={Maps} />
         <Route path='/geolocation' component={UserGeolocation} />
-       
-       
-
+        
 
         </AuthProvider>
 

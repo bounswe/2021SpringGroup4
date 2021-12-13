@@ -48,8 +48,6 @@ class UserGeolocation extends Component {
         .then(data=> this.setState({
             userAdress:data.results[0].formatted_address
         })    )
-
-
         .then(data => console.log(data))
         .catch(error => alert(error))
     }

@@ -17,7 +17,7 @@ const Header = () => {
                 <Link to="/register" >Register</Link>
             )}
 
-         {user &&   <p>Hello {myusername}</p>}
+         
         
          
 

@@ -27,7 +27,7 @@ const HomePage = () => {
 
 
         <div>
-            {user &&   <p>Hello user: {myusername}</p>}
+            {user &&   <p>Hello : {myusername}</p>}
             <p>You are logged to the home page!</p>
 
                         <li >
