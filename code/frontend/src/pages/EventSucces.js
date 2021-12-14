@@ -27,4 +27,4 @@ export class EventSuccess extends Component {
     }
 }
 
-export default EventCreator
+export default EventSuccess
