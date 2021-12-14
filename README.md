@@ -1,3 +1,8 @@
+SPORTSHUB - AMATEUR SPORTS PLATFORM
+
+OUR DEPLOYED APP : http://ec2-18-216-171-234.us-east-2.compute.amazonaws.com:3000/login
+
+
 This project repository was prepared by the 4th group for CMPE 352/451 course.
 
 You can find more information on the [Wiki page](https://github.com/bounswe/2021SpringGroup4/wiki) of our repository.
