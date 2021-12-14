@@ -16,4 +16,6 @@ urlpatterns = [
     path('api/docs/', include_docs_urls(title='API')),
     path('api/equipment/', include('api.equipment.urls')),
     path('api/search/', include('api.search.urls')),
+    path('api/notifications/', include('api.notifications.urls')),
+    path('activity/', include('activity_handler.urls'))
 ]

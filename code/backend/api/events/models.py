@@ -4,15 +4,22 @@ from api.authentication.models import User
 class EventBody(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True) 
-    date = models.DateField() # 'YYYY/MM/DD'
-    time = models.TimeField() # 'HH:MM'
-    duration = models.TimeField() # 'HH:MM'
+    date = models.DateField() 
+    time = models.TimeField() 
+    duration = models.TimeField() 
     location = models.CharField(max_length=50)
     sportType = models.CharField(max_length=30)
     maxPlayers = models.IntegerField()
     applicants = models.ManyToManyField(User, related_name="applied")
     participants = models.ManyToManyField(User, related_name="going")
-    followers = models.ManyToManyField(User, related_name="following")
+    SKILL_LEVELS =(
+    ("1","Beginner"),
+    ("2","Intermediate"),
+    ("3", "Advanced"))
+
+    skill_level = models.CharField(max_length=10,choices=SKILL_LEVELS, default="Beginner")
+    lat = models.FloatField(null=True, blank=True)
+    long = models.FloatField(null=True, blank=True)
 
     class Meta:
         ordering = ['date']
