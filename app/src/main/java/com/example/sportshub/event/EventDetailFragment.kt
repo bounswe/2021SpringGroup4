@@ -29,6 +29,8 @@ class EventDetailFragment : Fragment() {
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
 
+        var months = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
         fun visibility(button: Button, visible: Boolean){
             button.isEnabled = visible
             button.isClickable = visible
@@ -65,14 +67,21 @@ class EventDetailFragment : Fragment() {
         eventDetailViewModel.event!!.value = args.eventModel
         eventDetailViewModel.event!!.observe(viewLifecycleOwner,{
             binding.eventDetailEventTitle.text = it.title
-            binding.eventDetailEventDescription.text = it.description
-            binding.eventDetailEventCreator.text = it.creator
-            binding.eventDetailEventDate.text = it.date
-            binding.eventDetailEventTime.text = it.time
-            binding.eventDetailEventDuration.text = it.duration
+            if(it.description == ""){
+                binding.eventDetailEventDescription.isVisible = false
+            } else{
+                binding.eventDetailEventDescription.text = it.description
+            }
+            binding.eventDetailEventCreator.text = "${it.creator} created this event"
+            val dateParse = it.date.split("-")
+            binding.eventDetailEventDate.text = "${dateParse[2]} ${months[dateParse[1].toInt()-1]} ${dateParse[0]}"
+            val timeParse = it.time.split(":")
+            binding.eventDetailEventTime.text = "${timeParse[0]}:${timeParse[1]}"
+            val durationParse = it.duration.split(":")
+            binding.eventDetailEventDuration.text = "${durationParse[0]}:${durationParse[1]}"
             binding.eventDetailEventLocation.text = it.location
             binding.eventDetailEventSportType.text = it.sportType
-            binding.eventDetailEventRemainingSpots.text = (it.maxPlayers - it.participants.size).toString()
+            binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers - it.participants.size).toString()} spots left"
 
 
         })
