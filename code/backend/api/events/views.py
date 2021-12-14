@@ -10,6 +10,7 @@ from .permissions import IsOwnerOrReadOnly
 from rest_framework.exceptions import APIException
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 from django.db.models import Q
+from activity_handler.handlers import event_activity_handler
 
 
 class EventNotFoundException(APIException):
@@ -33,7 +34,7 @@ class EventListCreateView(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EventDetailView(views.APIView):
-    permissions_classes = [IsOwnerOrReadOnly]
+    permissions_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, pk, format=None):
         event = Event.objects.get(pk=pk)
@@ -45,6 +46,7 @@ class EventDetailView(views.APIView):
             event = Event.objects.get(pk=pk)
         except Event.DoesNotExist:
             return Response({"status": "Event with the given ID does not exists"}, status=status.HTTP_400_BAD_REQUEST)
+        event_activity_handler(type="Delete", actor=request.user, object=event)
         event.delete()
         return Response({"status": "Event deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
@@ -61,7 +63,7 @@ class EventDetailView(views.APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-    
+     
 
         
 

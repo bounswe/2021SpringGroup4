@@ -5,7 +5,9 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404 
 from rest_framework.test import APITestCase
 from api.authentication.models import User 
-from .models import EquipmentPost
+
+from .models import Equipment
+
 
 class EquipmentTests(APITestCase):
     #creating without user
@@ -16,18 +18,24 @@ class EquipmentTests(APITestCase):
         data = {
             "title": "test_equipment_create",
             "location": "Test Equipment Location",
-            "description": "This equipment is created for testing",     
+
+            "description": "This equipment is created for testing",  
+            "sportType" : "This sportType is created for testing",   
+
         }
         url = reverse('equipment_list')
         response = self.client.post(url, data=data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        event = EquipmentPost.objects.get(id=response.data.get('id'))
 
-        self.assertEqual(event.title, "test_equipment_create")
-        self.assertEqual(event.location, "Test Equipment Location")   
-        self.assertEqual(event.description, "This equipment is created for testing")
+        event = Equipment.objects.get(id=response.data.get('id'))
+
+        self.assertEqual(event.body.title, "test_equipment_create")
+        self.assertEqual(event.body.location, "Test Equipment Location")   
+        self.assertEqual(event.body.description, "This equipment is created for testing")
+        self.assertEqual(event.body.sportType, "This sportType is created for testing")
+
 
 
     def test_equipment_remove(self):
@@ -38,7 +46,10 @@ class EquipmentTests(APITestCase):
         data = {
             "title": "test_equipment_remove",
             "location": "Test Equipment Location",
-            "description": "This equipment is created for testing",     
+
+            "description": "This equipment is created for testing", 
+            "sportType" : "This sportType is created for testing",    
+
         }
 
         url = reverse('equipment_list')
@@ -77,10 +88,12 @@ class EquipmentTests(APITestCase):
 
         eqp_counter = 0
         for eqp in response.data:
-            self.assertEqual(eqp.get('id'), EquipmentPost.objects.get(id=eqp.get('id')).id)
+
+            self.assertEqual(eqp.body.get('id'), Equipment.objects.get(id=eqp.get('id')).id)
             eqp_counter += 1
         
-        self.assertEqual(eqp_counter, EquipmentPost.objects.all().count())        
+        self.assertEqual(eqp_counter, Equipment.objects.all().count())        
+
 
 
     def test_equipment_update(self):
@@ -92,7 +105,10 @@ class EquipmentTests(APITestCase):
         data = {
             "title": "test_equipment_update",
             "location": "Test Equipment Location",
-            "description": "This equipment is created for testing",     
+
+            "description": "This equipment is created for testing",
+            "sportType" : "This sportType is created for testing",     
+
         }
         url = reverse('equipment_list')
         response = self.client.post(url, data=data, format='json')
@@ -110,4 +126,6 @@ class EquipmentTests(APITestCase):
         response = self.client.patch(url2, data=data2 ,format='json')
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         self.assertEqual(response.data.get("description"), "This equipment is created for testing. It is updated")     
+

@@ -1,7 +1,8 @@
 from django.urls import path, include
-from .views import EquipmentPostListCreateView, EquipmentPostRetrieveUpdateDestroyView
+from .views import EquipmentCreateView, EquipmentDetailView
 
 urlpatterns = [
-    path('', EquipmentPostListCreateView.as_view(), name='equipment_list'),
-    path('<int:pk>/', EquipmentPostRetrieveUpdateDestroyView.as_view(), name='equipment_rud'),
+    path('', EquipmentCreateView.as_view(), name='equipment_list'),
+    path('<int:pk>/', EquipmentDetailView.as_view(), name='equipment_rud'),
+
 ]

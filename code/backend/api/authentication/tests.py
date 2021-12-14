@@ -1,4 +1,4 @@
-from django.urls import reverse 
+from django.urls import reverse
 from rest_framework import status 
 from rest_framework.test import APITestCase
 from api.authentication.models import User 
@@ -36,6 +36,7 @@ class RegistrationTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
+
 class LoginTests(APITestCase):
     def test_login(self):
         """
@@ -63,6 +64,3 @@ class LoginTests(APITestCase):
         data = {'username': 'TestUser', 'password': 'testpassword'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
-
-
