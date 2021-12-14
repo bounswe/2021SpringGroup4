@@ -49,9 +49,10 @@ class UserGeolocation extends Component {
             userAdress:data.results[0].formatted_address
         })    )
 
-
+        
         .then(data => console.log(data))
         .catch(error => alert(error))
+        
     }
 
 
