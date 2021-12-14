@@ -16,7 +16,7 @@ class EventCreateViewModel : ViewModel() {
     val eventCreateRequestModel : MutableLiveData<CreateEventRequestModel> = MutableLiveData(CreateEventRequestModel())
 
     private val QUERY_FOR_CREATE_EVENT = "http://3.67.188.187:8000/api/events/"
-    private var warning: String = "Event "
+    private var warning: String = ""
 
     fun stringConstruction(number: Int, word: String){
         if(number != 0){
@@ -30,39 +30,25 @@ class EventCreateViewModel : ViewModel() {
         val url = QUERY_FOR_CREATE_EVENT
         warning = "Event "
 
-        val createData = JSONObject()
-        if(eventCreateRequestModel.value!!.title != ""){
-            createData.put("title", eventCreateRequestModel.value!!.title)
+        val gson = GsonBuilder().create()
+        val createData = JSONObject(gson.toJson(eventCreateRequestModel.value))
+        if(eventCreateRequestModel.value!!.title == ""){
+            createData.remove("title")
         }
-        if(eventCreateRequestModel.value!!.description != ""){
-            createData.put("description", eventCreateRequestModel.value!!.title)
+        if(eventCreateRequestModel.value!!.maxPlayers == 0){
+            createData.remove("maxPlayers")
         }
-        if(eventCreateRequestModel.value!!.date != ""){
-            createData.put("date", eventCreateRequestModel.value!!.title)
+        if(eventCreateRequestModel.value!!.location == ""){
+            createData.remove("location")
         }
-        if(eventCreateRequestModel.value!!.time != ""){
-            createData.put("time", eventCreateRequestModel.value!!.title)
+        if(eventCreateRequestModel.value!!.date == ""){
+            createData.remove("date")
         }
-        if(eventCreateRequestModel.value!!.duration != ""){
-            createData.put("duration", eventCreateRequestModel.value!!.title)
+        if(eventCreateRequestModel.value!!.time == ""){
+            createData.remove("time")
         }
-        if(eventCreateRequestModel.value!!.location != ""){
-            createData.put("location", eventCreateRequestModel.value!!.title)
-        }
-        if(eventCreateRequestModel.value!!.sportType != ""){
-            createData.put("sportType", eventCreateRequestModel.value!!.title)
-        }
-        if(eventCreateRequestModel.value!!.maxPlayers != 0){
-            createData.put("maxPlayers", eventCreateRequestModel.value!!.title)
-        }
-        if(eventCreateRequestModel.value!!.skillLevel != ""){
-            createData.put("skillLevel", eventCreateRequestModel.value!!.title)
-        }
-        if(eventCreateRequestModel.value!!.lat != 0.0){
-            createData.put("lat", eventCreateRequestModel.value!!.title)
-        }
-        if(eventCreateRequestModel.value!!.long != 0.0){
-            createData.put("long", eventCreateRequestModel.value!!.title)
+        if(eventCreateRequestModel.value!!.duration == "" || eventCreateRequestModel.value!!.duration == "0:0"){
+            createData.remove("duration")
         }
 
         val request = object: JsonObjectRequest(
@@ -72,11 +58,19 @@ class EventCreateViewModel : ViewModel() {
             },
             {
                 val statusCode: Int? = it.networkResponse?.statusCode
-                val errorBody: JSONObject = JSONObject(String(it.networkResponse.data))
                 var num: Int = 0
                 if(statusCode == 400){
+                    val errorBody = JSONObject(String(it.networkResponse.data))
                     if(errorBody.has("title")){
                         warning = warning + "title"
+                        num = num + 1
+                    }
+                    if(errorBody.has("maxPlayers")){
+                        stringConstruction(num, "player number")
+                        num = num + 1
+                    }
+                    if(errorBody.has("location")){
+                        stringConstruction(num, "location")
                         num = num + 1
                     }
                     if(errorBody.has("date")){
@@ -89,14 +83,6 @@ class EventCreateViewModel : ViewModel() {
                     }
                     if(errorBody.has("duration")){
                         stringConstruction(num, "duration")
-                        num = num + 1
-                    }
-                    if(errorBody.has("location")){
-                        stringConstruction(num, "location")
-                        num = num + 1
-                    }
-                    if(errorBody.has("maxPlayers")){
-                        stringConstruction(num, "player number")
                         num = num + 1
                     }
                     warning = warning + " required!"

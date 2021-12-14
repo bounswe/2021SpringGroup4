@@ -62,20 +62,21 @@ class EventCreateFragment : Fragment() {
             viewModel.eventCreateRequestModel.value!!.title = view.findViewById<EditText>(R.id.editTextTitle).text.toString()
             viewModel.eventCreateRequestModel.value!!.description = view.findViewById<EditText>(R.id.editTextDescription).text.toString()
             viewModel.eventCreateRequestModel.value!!.sportType = view.findViewById<EditText>(R.id.editTextSportType).text.toString()
-            viewModel.eventCreateRequestModel.value!!.skillLevel = view.findViewById<EditText>(R.id.editTextSkillLevel).text.toString()
+            viewModel.eventCreateRequestModel.value!!.skill_level = view.findViewById<EditText>(R.id.editTextSkillLevel).text.toString()
             if(view.findViewById<EditText>(R.id.editTextMaxPlayers).text.toString() != ""){
                 viewModel.eventCreateRequestModel.value!!.maxPlayers = view.findViewById<EditText>(R.id.editTextMaxPlayers).text.toString().toInt()
             }
             viewModel.eventCreateRequestModel.value!!.location = "sarıyer"
-            viewModel.eventCreateRequestModel.value!!.date = "${view.findViewById<DatePicker>(R.id.createDatePicker).year}-${view.findViewById<DatePicker>(R.id.createDatePicker).month}-${view.findViewById<DatePicker>(R.id.createDatePicker).dayOfMonth}"
+            viewModel.eventCreateRequestModel.value!!.date = "${view.findViewById<DatePicker>(R.id.createDatePicker).year}-${view.findViewById<DatePicker>(R.id.createDatePicker).month+1}-${view.findViewById<DatePicker>(R.id.createDatePicker).dayOfMonth}"
             viewModel.eventCreateRequestModel.value!!.time = "${view.findViewById<TimePicker>(R.id.createTimePicker).hour}:${view.findViewById<TimePicker>(R.id.createTimePicker).minute}"
             viewModel.eventCreateRequestModel.value!!.duration = "${view.findViewById<TimePicker>(R.id.timePickerDuration).hour}:${view.findViewById<TimePicker>(R.id.timePickerDuration).minute}"
             viewModel.createEvent(requireContext(),
                 object: CreateEventListener() {
                     override fun onError(warning: String) {
                         if(warning != "Event "){
-                            Toast.makeText(context, warning, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, warning, Toast.LENGTH_LONG).show()
                         }
+                        viewModel.eventCreateRequestModel.value!!.maxPlayers = 0
                     }
 
                     override fun onResponse() {
