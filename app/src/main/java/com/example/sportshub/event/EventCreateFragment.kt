@@ -50,8 +50,8 @@ class EventCreateFragment : Fragment() {
 
         viewModel.eventCreateRequestModel.value!!.lat = args.latitude.toDouble()
         viewModel.eventCreateRequestModel.value!!.long = args.longitude.toDouble()
-        /*var location = Geocoder(activity).getFromLocation(args.latitude.toDouble(), args.longitude.toDouble(),1)[0]
-        viewModel.eventCreateRequestModel.value!!.location = location.toString()*/
+        var location = Geocoder(activity).getFromLocation(args.latitude.toDouble(), args.longitude.toDouble(),1)[0]
+        viewModel.eventCreateRequestModel.value!!.location = location.getAddressLine(0)
 
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
             findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
@@ -66,7 +66,6 @@ class EventCreateFragment : Fragment() {
             if(view.findViewById<EditText>(R.id.editTextMaxPlayers).text.toString() != ""){
                 viewModel.eventCreateRequestModel.value!!.maxPlayers = view.findViewById<EditText>(R.id.editTextMaxPlayers).text.toString().toInt()
             }
-            viewModel.eventCreateRequestModel.value!!.location = "sarıyer"
             viewModel.eventCreateRequestModel.value!!.date = "${view.findViewById<DatePicker>(R.id.createDatePicker).year}-${view.findViewById<DatePicker>(R.id.createDatePicker).month+1}-${view.findViewById<DatePicker>(R.id.createDatePicker).dayOfMonth}"
             viewModel.eventCreateRequestModel.value!!.time = "${view.findViewById<TimePicker>(R.id.createTimePicker).hour}:${view.findViewById<TimePicker>(R.id.createTimePicker).minute}"
             viewModel.eventCreateRequestModel.value!!.duration = "${view.findViewById<TimePicker>(R.id.timePickerDuration).hour}:${view.findViewById<TimePicker>(R.id.timePickerDuration).minute}"
