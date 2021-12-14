@@ -17,5 +17,6 @@ urlpatterns = [
     path('api/equipment/', include('api.equipment.urls')),
     path('api/search/', include('api.search.urls')),
     path('api/notifications/', include('api.notifications.urls')),
-    path('activity/', include('activity_handler.urls'))
+    path('activity/', include('activity_handler.urls')),
+    path('api/badges/', include('api.badges.urls')),
 ]
