@@ -11,33 +11,36 @@
         android:id="@+id/event_detail_event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="64dp"
+        android:textAlignment="center"
+        android:textColor="#447744"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="16dp"
-        android:layout_marginTop="64dp"
-        tools:text="Title"
-        android:textSize="48sp"
-        android:textColor="#447744"/>
+        tools:text="Title" />
 
     <TextView
         android:id="@+id/event_detail_event_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="#DDDDDD"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_detail_event_title"
-        tools:text="Description"
-        android:background="#DDDDDD"
-        android:textSize="16sp"/>
+        tools:text="Description" />
 
     <TextView
         android:id="@+id/event_detail_event_creator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/event_detail_event_description"
         tools:text="Creator" />
@@ -56,11 +59,10 @@
         android:id="@+id/event_detail_event_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@+id/event_detail_event_date"
-        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_creator"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_location"
         tools:text="hh:mm:ss" />
 
     <TextView
@@ -78,13 +80,10 @@
         android:id="@+id/event_detail_event_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/event_detail_event_time"
-        app:layout_constraintTop_toTopOf="@+id/event_detail_event_time"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/event_detail_event_creator"
         tools:text="Location" />
 
     <TextView
