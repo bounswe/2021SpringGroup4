@@ -254,4 +254,5 @@ class Registerform extends Component {
     }
 }
 
+
 export default withRouter(Registerform);

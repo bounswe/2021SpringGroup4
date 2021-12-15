@@ -11,26 +11,40 @@ export const AuthProvider = ({children}) => {
     let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     let [loading, setLoading] = useState(true)
+    let [myusername, setMyUser]= useState('')
+   
 
     const history = useHistory()
 
     let loginUser = async (e )=> {
         e.preventDefault()
+        setMyUser(e.target.username.value)
+
         let response = await fetch('http://3.67.188.187:8000/api/auth/login/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({'username':e.target.username.value, 'password':e.target.password.value})
+         
         })
+        
         let data = await response.json()
 
         if(response.status === 200){
+            
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
+            console.log(data)
             history.push('/')
-        }else{
+        }
+        else if(response.status === 401){
+            alert('Your username or password is wrong')
+        }
+        
+        else{
+            console.log(response.data)
             alert('Please check your credentials')
         }
     }
@@ -72,6 +86,13 @@ export const AuthProvider = ({children}) => {
     }
 
 
+
+    
+
+
+
+
+
     let updateToken = async ()=> {
 
         let response = await fetch('http://3.67.188.187:8000/api/auth/login/', {
@@ -102,6 +123,7 @@ export const AuthProvider = ({children}) => {
         authTokens:authTokens,
         loginUser:loginUser,
         logoutUser:logoutUser,
+        myusername:myusername,
     }
 
 
@@ -111,7 +133,7 @@ export const AuthProvider = ({children}) => {
             updateToken()
         }
 
-        let fourMinutes = 1000 * 60 * 4
+        let fourMinutes = 1000 * 60 * 60
 
         let interval =  setInterval(()=> {
             if(authTokens){

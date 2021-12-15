@@ -32,7 +32,7 @@ const Events = () => {
  //un-comment when the db connection work
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/events/', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/events/`, {
             method: 'GET'
         })
             .then(res => {
