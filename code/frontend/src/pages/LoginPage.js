@@ -28,7 +28,7 @@ const LoginPage = () => {
                     </tr>
                     <tr>
                         <td colSpan="2">
-                            <input type="submit" value="Login" name="login" className="btn btn-dark"/>
+                            <input type="submit" value="Login" name="login" className="btn btn-dark" />
                             
                         </td>
                     </tr>
