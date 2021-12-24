@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.EventDetailFragmentBinding
@@ -64,6 +65,10 @@ class EventDetailFragment : Fragment() {
             binding.eventDetailInfo2.isVisible = false
         }
 
+        if(args.eventModel.comments.size == 0){
+            binding.eventDetailEventComment.text = "No comments available!"
+        }
+
         eventDetailViewModel.event!!.value = args.eventModel
         eventDetailViewModel.event!!.observe(viewLifecycleOwner,{
             binding.eventDetailEventTitle.text = it.title
@@ -82,7 +87,11 @@ class EventDetailFragment : Fragment() {
             binding.eventDetailEventLocation.text = it.location
             binding.eventDetailEventSportType.text = it.sportType
             binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers - it.participants.size).toString()} spots left"
-
+            val rw: RecyclerView = binding.listComment
+            val adapter = CommentAdapter()
+            rw.adapter = adapter
+            adapter.commentList = it.comments
+            adapter.notifyDataSetChanged()
 
         })
 

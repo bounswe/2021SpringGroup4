@@ -2,6 +2,7 @@ package com.example.sportshub.event.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 
 @Parcelize
@@ -18,8 +19,8 @@ data class EventModel(
     var maxPlayers: Int = 0,
     var applicants: MutableList<String> = mutableListOf(),
     var participants: MutableList<String> = mutableListOf(),
-    var comments: MutableList<MutableMap<String,String>> = mutableListOf(),
+    var comments: @RawValue MutableList<CommentModel> = mutableListOf(),
     var skillLevel: String = "",
-    var lat: String = "",
-    var long: String = ""
+    var lat: Double = 0.0,
+    var long: Double = 0.0
 ):Parcelable
