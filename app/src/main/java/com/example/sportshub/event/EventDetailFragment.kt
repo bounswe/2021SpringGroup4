@@ -95,6 +95,20 @@ class EventDetailFragment : Fragment() {
 
         })
 
+        binding.btnAddComment.setOnClickListener {
+            eventDetailViewModel.addComment(requireContext(), binding.editTextAddComment.text.toString(),
+                object: AddCommentListener() {
+                    override fun onError() {
+                        // error
+                    }
+
+                    override fun onResponse() {
+                        Toast.makeText(requireContext(),"Your comment has been successfully added!", Toast.LENGTH_SHORT).show()
+                        binding.editTextAddComment.text.clear()
+                    }
+                })
+        }
+
         binding.btnApplyEvent.setOnClickListener {
             eventDetailViewModel.applyEvent(requireContext(),
                 object: ApplyEventListener() {
