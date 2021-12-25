@@ -78,6 +78,7 @@ class EventSerializer(serializers.ModelSerializer):
             if field in validated_data:
                 update = True
                 setattr(body, field, validated_data[field])
+                body.save()
         if update:
             request = self.context.get('request')
             event_activity_handler(type="Update", actor=request.user, object=instance)
