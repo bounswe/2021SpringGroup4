@@ -124,6 +124,21 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
+        android:id="@+id/btn_delete_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#981A1A"
+        android:padding="12dp"
+        android:text="DELETE EVENT"
+        android:textSize="24sp"
+        app:cornerRadius="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btn_undo_apply_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -138,25 +153,11 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/event_detail_info1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:background="#DDDDDD"
-        android:text="Information1"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/event_detail_info2"
+        android:id="@+id/event_detail_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#DDDDDD"
-        android:text="Information2"
+        android:text="Information"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"

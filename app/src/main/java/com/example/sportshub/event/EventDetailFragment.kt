@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
@@ -38,31 +39,31 @@ class EventDetailFragment : Fragment() {
             button.isVisible = visible
         }
 
-        if(args.eventModel.creator.equals(SingletonRequestQueueProvider.getUsername())){
+        if(args.eventModel.creator == SingletonRequestQueueProvider.getUsername()){
             visibility(binding.btnApplyEvent, false)
             visibility(binding.btnUndoApplyEvent, false)
-            binding.eventDetailInfo1.text = "You created this event!"
-            binding.eventDetailInfo2.isVisible = false
+            binding.eventDetailEventCreator.text = "You created this event"
+            binding.eventDetailInfo.isVisible = false
         } else if(args.eventModel.participants.contains(SingletonRequestQueueProvider.getUsername())){
             binding.btnApplyEvent.isEnabled = false
             binding.btnApplyEvent.isClickable = false
             visibility(binding.btnUndoApplyEvent, false)
-            binding.eventDetailInfo2.text = "You are already a participant\nof this event!"
-            binding.eventDetailInfo1.isVisible = false
+            binding.eventDetailInfo.text = "You are already a participant\nof this event!"
+            visibility(binding.btnDeleteEvent, false)
         } else if(args.eventModel.applicants.contains(SingletonRequestQueueProvider.getUsername())){
             visibility(binding.btnApplyEvent, false)
-            binding.eventDetailInfo1.isVisible = false
-            binding.eventDetailInfo2.isVisible = false
+            binding.eventDetailInfo.isVisible = false
+            visibility(binding.btnDeleteEvent, false)
         } else if(args.eventModel.participants.size >= args.eventModel.maxPlayers){
             binding.btnApplyEvent.isEnabled = false
             binding.btnApplyEvent.isClickable = false
             visibility(binding.btnUndoApplyEvent, false)
-            binding.eventDetailInfo2.text = "No more spots available\nat this event!"
-            binding.eventDetailInfo1.isVisible = false
+            binding.eventDetailInfo.text = "No more spots available\nat this event!"
+            visibility(binding.btnDeleteEvent, false)
         } else{
             visibility(binding.btnUndoApplyEvent, false)
-            binding.eventDetailInfo1.isVisible = false
-            binding.eventDetailInfo2.isVisible = false
+            binding.eventDetailInfo.isVisible = false
+            visibility(binding.btnDeleteEvent, false)
         }
 
         if(args.eventModel.comments.size == 0){
@@ -77,7 +78,9 @@ class EventDetailFragment : Fragment() {
             } else{
                 binding.eventDetailEventDescription.text = it.description
             }
-            binding.eventDetailEventCreator.text = "${it.creator} created this event"
+            if(it.creator != SingletonRequestQueueProvider.getUsername()){
+                binding.eventDetailEventCreator.text = "${it.creator} created this event"
+            }
             val dateParse = it.date.split("-")
             binding.eventDetailEventDate.text = "${dateParse[2]} ${months[dateParse[1].toInt()-1]} ${dateParse[0]}"
             val timeParse = it.time.split(":")
@@ -138,6 +141,20 @@ class EventDetailFragment : Fragment() {
                     }
                 })
         }
+
+        binding.btnDeleteEvent.setOnClickListener {
+            eventDetailViewModel.deleteEvent(requireContext(),
+                object: DeleteEventListener() {
+                    override fun onError() {
+                        // error
+                    }
+
+                    override fun onResponse() {
+                        Toast.makeText(requireContext(),"Your event is successfully deleted!", Toast.LENGTH_SHORT).show()
+                        findNavController().navigateUp()
+                    }
+                })
+        }   
 
 
         return root
