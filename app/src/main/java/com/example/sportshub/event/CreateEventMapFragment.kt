@@ -40,16 +40,32 @@ class CreateEventMapFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Marker in North Campus"))!!
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
-        googleMap.setMinZoomPreference(10.0F)
 
-        googleMap.setOnMapClickListener {
-            previousMarker.remove()
-            markerLocation = it
-            previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))!!
+        if(args.createOrUpdate == "c"){
+            previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Marker in North Campus"))!!
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
+            googleMap.setMinZoomPreference(10.0F)
 
+            googleMap.setOnMapClickListener {
+                previousMarker.remove()
+                markerLocation = it
+                previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))!!
+
+            }
+        } else if(args.createOrUpdate == "u"){
+            markerLocation = LatLng(sharedViewModel.lat, sharedViewModel.long)
+            previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Previous Location of Event"))!!
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
+            googleMap.setMinZoomPreference(10.0F)
+
+            googleMap.setOnMapClickListener {
+                previousMarker.remove()
+                markerLocation = it
+                previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Event Location"))!!
+
+            }
         }
+
 
     }
 
