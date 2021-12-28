@@ -67,7 +67,7 @@ class EventDetailFragment : Fragment() {
             binding.eventDetailInfo.isVisible = false
             visibility(binding.btnDeleteEvent, false)
             visibilityFAB(binding.btnUpdateEvent, false)
-        } else if(args.eventModel.participants.size >= args.eventModel.maxPlayers){
+        } else if(args.eventModel.participants.size >= args.eventModel.maxPlayers!!){
             binding.btnApplyEvent.isEnabled = false
             binding.btnApplyEvent.isClickable = false
             visibility(binding.btnUndoApplyEvent, false)
@@ -86,7 +86,8 @@ class EventDetailFragment : Fragment() {
         }
 
         eventDetailViewModel.event!!.value = args.eventModel
-        eventDetailViewModel.event!!.observe(viewLifecycleOwner,{
+        sharedViewModel.event.value = args.eventModel
+        sharedViewModel.event.observe(viewLifecycleOwner,{
             binding.eventDetailEventTitle.text = it.title
             if(it.description == ""){
                 binding.eventDetailEventDescription.isVisible = false
@@ -104,7 +105,7 @@ class EventDetailFragment : Fragment() {
             binding.eventDetailEventDuration.text = "${durationParse[0]}:${durationParse[1]}"
             binding.eventDetailEventLocation.text = it.location
             binding.eventDetailEventSportType.text = it.sportType
-            binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers - it.participants.size).toString()} spots left"
+            binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers?.minus(it.participants.size)).toString()} spots left"
             val rw: RecyclerView = binding.listComment
             val adapter = CommentAdapter()
             rw.adapter = adapter
@@ -114,8 +115,9 @@ class EventDetailFragment : Fragment() {
         })
 
         binding.btnUpdateEvent.setOnClickListener {
-            sharedViewModel.updateEvent(args.eventModel)
-            val action: NavDirections = EventDetailFragmentDirections.actionEventDetailFragmentToEventUpdateFragment().setLatitude(args.eventModel.lat.toFloat()).setLongitude(args.eventModel.long.toFloat())
+            sharedViewModel.lat = sharedViewModel.event.value!!.lat
+            sharedViewModel.long = sharedViewModel.event.value!!.long
+            val action: NavDirections = EventDetailFragmentDirections.actionEventDetailFragmentToEventUpdateFragment()
             findNavController().navigate(action)
         }
 

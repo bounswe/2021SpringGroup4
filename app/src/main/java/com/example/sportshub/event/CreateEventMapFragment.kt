@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CreateEventMapFragment : Fragment() {
     private val args by navArgs<CreateEventMapFragmentArgs>()
+    private lateinit var sharedViewModel: SharedViewModel
     private var markerLocation = LatLng(41.0863, 29.0441)
     private lateinit var previousMarker: Marker
     private val callback = OnMapReadyCallback { googleMap ->
@@ -64,7 +66,7 @@ class CreateEventMapFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
             if(args.createOrUpdate == "c"){
@@ -74,10 +76,9 @@ class CreateEventMapFragment : Fragment() {
                 findNavController().navigate(action)
             }
             else if(args.createOrUpdate == "u"){
-                val action : NavDirections = CreateEventMapFragmentDirections.
-                actionCreateEventMapFragmentToEventUpdateFragment().
-                setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
-                findNavController().navigate(action)
+                sharedViewModel.lat = markerLocation.latitude
+                sharedViewModel.long = markerLocation.longitude
+                findNavController().navigateUp()
             }
         }
 
