@@ -13,7 +13,7 @@ import org.json.JSONException
 class EventViewModel : ViewModel() {
 
     private val QUERY_FOR_EVENT_LIST = "http://3.67.188.187:8000/api/events"
-
+    var eventList = listOf<EventModel>()
     fun getAllEvents(context: Context, eventListListener: EventListListener) {
         val url = QUERY_FOR_EVENT_LIST
         val eventModels: MutableList<EventModel> = mutableListOf()
@@ -43,10 +43,15 @@ class EventViewModel : ViewModel() {
         )
         SingletonRequestQueueProvider.getQueue().add(request)
     }
-
-    fun searchByLocation(toString: String): MutableList<EventModel> {
-        return mutableListOf()
-
+    fun searchByCreator(username : String): List<EventModel> {
+        return listOf<EventModel>()
     }
+    fun searchByType(sprotType : String): List<EventModel>{
+        return listOf<EventModel>()
+    }
+    fun searchByLevel(skill_level : String): List<EventModel>{
+        return listOf<EventModel>()
+    }
+
     //TODO Implement ViewModel
 }

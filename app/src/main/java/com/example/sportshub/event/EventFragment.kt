@@ -1,12 +1,14 @@
 package com.example.sportshub.event
 
-import android.content.Context
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.event.model.EventModel
 import com.example.sportshub.databinding.FragmentEventBinding
-import java.lang.Exception
 
 
 class EventFragment : Fragment() {
@@ -52,19 +53,42 @@ class EventFragment : Fragment() {
                 }
             })
 
-        binding.btnSearchByLocation.setOnClickListener{
-            try {
-                adapter.eventList = eventViewModel.searchByLocation(binding.editTextSearchEventLocation.text.toString())
-                adapter.notifyDataSetChanged()
-            }catch (e:Exception){
-                Toast.makeText(requireContext(),"Error occurred: "+e.message,Toast.LENGTH_SHORT).show()
-            }finally {
-                binding.editTextSearchEventLocation.text.clear()
-                val manager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                manager.hideSoftInputFromWindow(root.windowToken,0)
-            }
+        var dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.search_event_dialog)
+        dialog.window!!.setBackgroundDrawable(getDrawable(requireContext(),R.drawable.dialog_drawable_background))
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
 
+        dialog.findViewById<Button>(R.id.btn_cancel_search).setOnClickListener {
+            dialog.cancel()
         }
+
+        binding.findByCreator.setOnClickListener {
+            dialog.findViewById<TextView>(R.id.search_dialog_title).text = "Find by Creator"
+            dialog.show()
+            dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
+                eventViewModel.searchByCreator(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+            }
+        }
+
+        binding.findByType.setOnClickListener {
+            dialog.findViewById<TextView>(R.id.search_dialog_title).text = "Find by Sport Type"
+            dialog.show()
+            dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
+                eventViewModel.searchByType(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+            }
+            //TODO
+        }
+
+        binding.findByLevel.setOnClickListener {
+            dialog.findViewById<TextView>(R.id.search_dialog_title).text = "Find by Skill Level"
+            dialog.show()
+            dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
+                eventViewModel.searchByLevel(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+            }
+            //TODO
+        }
+
+
 
         binding.btnCreateEvent.setOnClickListener{
             findNavController().navigate(R.id.action_navigation_event_to_eventCreateFragment)
