@@ -11,15 +11,19 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.EventDetailFragmentBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class EventDetailFragment : Fragment() {
     private lateinit var eventDetailViewModel: EventDetailViewModel
+    private lateinit var sharedViewModel: SharedViewModel
     private var _binding: EventDetailFragmentBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<EventDetailFragmentArgs>()
@@ -28,12 +32,19 @@ class EventDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         eventDetailViewModel = ViewModelProvider(this).get(EventDetailViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
 
         var months = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 
         fun visibility(button: Button, visible: Boolean){
+            button.isEnabled = visible
+            button.isClickable = visible
+            button.isVisible = visible
+        }
+
+        fun visibilityFAB(button: FloatingActionButton, visible: Boolean){
             button.isEnabled = visible
             button.isClickable = visible
             button.isVisible = visible
@@ -50,20 +61,24 @@ class EventDetailFragment : Fragment() {
             visibility(binding.btnUndoApplyEvent, false)
             binding.eventDetailInfo.text = "You are already a participant\nof this event!"
             visibility(binding.btnDeleteEvent, false)
+            visibilityFAB(binding.btnUpdateEvent, false)
         } else if(args.eventModel.applicants.contains(SingletonRequestQueueProvider.getUsername())){
             visibility(binding.btnApplyEvent, false)
             binding.eventDetailInfo.isVisible = false
             visibility(binding.btnDeleteEvent, false)
+            visibilityFAB(binding.btnUpdateEvent, false)
         } else if(args.eventModel.participants.size >= args.eventModel.maxPlayers){
             binding.btnApplyEvent.isEnabled = false
             binding.btnApplyEvent.isClickable = false
             visibility(binding.btnUndoApplyEvent, false)
             binding.eventDetailInfo.text = "No more spots available\nat this event!"
             visibility(binding.btnDeleteEvent, false)
+            visibilityFAB(binding.btnUpdateEvent, false)
         } else{
             visibility(binding.btnUndoApplyEvent, false)
             binding.eventDetailInfo.isVisible = false
             visibility(binding.btnDeleteEvent, false)
+            visibilityFAB(binding.btnUpdateEvent, false)
         }
 
         if(args.eventModel.comments.size == 0){
@@ -97,6 +112,12 @@ class EventDetailFragment : Fragment() {
             adapter.notifyDataSetChanged()
 
         })
+
+        binding.btnUpdateEvent.setOnClickListener {
+            sharedViewModel.updateEvent(args.eventModel)
+            val action: NavDirections = EventDetailFragmentDirections.actionEventDetailFragmentToEventUpdateFragment().setLatitude(args.eventModel.lat.toFloat()).setLongitude(args.eventModel.long.toFloat())
+            findNavController().navigate(action)
+        }
 
         binding.btnAddComment.setOnClickListener {
             eventDetailViewModel.addComment(requireContext(), binding.editTextAddComment.text.toString(),
@@ -154,7 +175,7 @@ class EventDetailFragment : Fragment() {
                         findNavController().navigateUp()
                     }
                 })
-        }   
+        }
 
 
         return root

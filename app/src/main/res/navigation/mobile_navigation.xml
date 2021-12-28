@@ -36,9 +36,7 @@
         tools:layout="@layout/event_create_fragment" >
         <action
             android:id="@+id/action_eventCreateFragment_to_createEventMapFragment"
-            app:destination="@id/createEventMapFragment"
-            app:popUpTo="@id/eventCreateFragment"
-            app:popUpToInclusive="false" />
+            app:destination="@id/createEventMapFragment" />
         <argument
             android:name="latitude"
             app:argType="float"
@@ -53,10 +51,29 @@
         android:name="com.example.sportshub.event.EventDetailFragment"
         android:label="event_detail_fragment"
         tools:layout="@layout/event_detail_fragment" >
-
+        <action
+            android:id="@+id/action_eventDetailFragment_to_eventUpdateFragment"
+            app:destination="@id/eventUpdateFragment" />
         <argument
             android:name="eventModel"
             app:argType="com.example.sportshub.event.model.EventModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventUpdateFragment"
+        android:name="com.example.sportshub.event.EventUpdateFragment"
+        android:label="event_update_fragment"
+        tools:layout="@layout/event_update_fragment" >
+        <action
+            android:id="@+id/action_eventUpdateFragment_to_createEventMapFragment"
+            app:destination="@id/createEventMapFragment" />
+        <argument
+            android:name="latitude"
+            app:argType="float"
+            android:defaultValue="41.0863"/>
+        <argument
+            android:name="longitude"
+            app:argType="float"
+            android:defaultValue="29.0441"/>
     </fragment>
     <fragment
         android:id="@+id/createEventMapFragment"
@@ -66,7 +83,16 @@
         <action
             android:id="@+id/action_createEventMapFragment_to_eventCreateFragment"
             app:destination="@id/eventCreateFragment"
-            app:popUpTo="@id/createEventMapFragment"
+            app:popUpTo="@id/eventCreateFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_createEventMapFragment_to_eventUpdateFragment"
+            app:destination="@id/eventUpdateFragment"
+            app:popUpTo="@id/eventUpdateFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="create_or_update"
+            app:argType="string"
+            android:defaultValue=""/>
     </fragment>
 </navigation>

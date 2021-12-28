@@ -12,7 +12,7 @@ data class CreateEventRequestModel(
     var duration: String = "",
     var location: String = "",
     var sportType: String = "",
-    var maxPlayers: Int = 0,
+    var maxPlayers: Int? = 0,
     var skill_level: String = "Beginner",
     var lat: Double = 0.0,
     var long: Double = 0.0

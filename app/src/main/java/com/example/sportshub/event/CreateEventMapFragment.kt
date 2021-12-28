@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.sportshub.R
+import com.example.sportshub.event.model.EventModel
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -23,6 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CreateEventMapFragment : Fragment() {
+    private val args by navArgs<CreateEventMapFragmentArgs>()
     private var markerLocation = LatLng(41.0863, 29.0441)
     private lateinit var previousMarker: Marker
     private val callback = OnMapReadyCallback { googleMap ->
@@ -64,11 +67,18 @@ class CreateEventMapFragment : Fragment() {
 
 
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
-            val action : NavDirections = CreateEventMapFragmentDirections.
-            actionCreateEventMapFragmentToEventCreateFragment().
-            setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
-            findNavController().navigate(action)
-
+            if(args.createOrUpdate == "c"){
+                val action : NavDirections = CreateEventMapFragmentDirections.
+                actionCreateEventMapFragmentToEventCreateFragment().
+                setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
+                findNavController().navigate(action)
+            }
+            else if(args.createOrUpdate == "u"){
+                val action : NavDirections = CreateEventMapFragmentDirections.
+                actionCreateEventMapFragmentToEventUpdateFragment().
+                setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
+                findNavController().navigate(action)
+            }
         }
 
 

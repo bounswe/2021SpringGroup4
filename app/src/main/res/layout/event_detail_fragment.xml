@@ -230,4 +230,18 @@
         app:layout_constraintStart_toEndOf="@+id/edit_text_add_comment"
         app:layout_constraintTop_toTopOf="@+id/edit_text_add_comment" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_update_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#7AA17C"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/event_detail_event_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/event_detail_event_title"
+        app:layout_constraintTop_toTopOf="@+id/event_detail_event_title" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
