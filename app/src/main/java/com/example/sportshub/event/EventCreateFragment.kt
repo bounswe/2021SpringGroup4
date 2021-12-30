@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.sportshub.MainActivity
@@ -54,8 +55,9 @@ class EventCreateFragment : Fragment() {
         viewModel.eventCreateRequestModel.value!!.location = location.getAddressLine(0)
 
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
-            findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
-
+            //findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
+            val action: NavDirections = EventCreateFragmentDirections.actionEventCreateFragmentToCreateEventMapFragment().setCreateOrUpdate("c")
+            findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.buttonCreateEvent).setOnClickListener {
