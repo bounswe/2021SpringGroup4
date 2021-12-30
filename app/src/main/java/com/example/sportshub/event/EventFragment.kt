@@ -67,6 +67,7 @@ class EventFragment : Fragment() {
             dialog.show()
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
                 eventViewModel.searchByCreator(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+                dialog.cancel()
             }
         }
 
@@ -75,6 +76,7 @@ class EventFragment : Fragment() {
             dialog.show()
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
                 eventViewModel.searchByType(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+                dialog.cancel()
             }
             //TODO
         }
@@ -83,10 +85,15 @@ class EventFragment : Fragment() {
             dialog.findViewById<TextView>(R.id.search_dialog_title).text = "Find by Skill Level"
             dialog.show()
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
-                eventViewModel.searchByLevel(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
+                eventViewModel.searchByLevel(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString().trim())
+                dialog.cancel()
             }
             //TODO
         }
+        eventViewModel.eventList.observe(viewLifecycleOwner, {
+            adapter.eventList = it.toMutableList()
+            adapter.notifyDataSetChanged()
+        })
 
 
 
