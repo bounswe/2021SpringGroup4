@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        tools:context=".event.EventCreateFragment">
+
+        <EditText
+            android:id="@+id/editTextTitle2"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="Event title"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextDescription2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Event description"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTitle2" />
+
+        <EditText
+            android:id="@+id/editTextSportType2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Sport type"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription2" />
+
+        <EditText
+            android:id="@+id/editTextSkillLevel2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Skill level"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSportType2" />
+
+        <EditText
+            android:id="@+id/editTextMaxPlayers2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Maximum number of players"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSkillLevel2" />
+
+
+        <Button
+            android:id="@+id/btnCreateEventLocation2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@android:drawable/ic_menu_mylocation"
+            android:text="Change Location"
+            app:cornerRadius="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaxPlayers2" />
+
+        <DatePicker
+            android:id="@+id/createDatePicker2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Date"
+            android:background="#99FF99"
+            android:datePickerMode="calendar"
+            android:overScrollMode="ifContentScrolls"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCreateEventLocation2"
+            />
+
+        <TimePicker
+            android:id="@+id/createTimePicker2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Time"
+            android:inputType="time"
+            android:timePickerMode="spinner"
+            android:background="#99FF99"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createDatePicker2" />
+
+        <TextView
+            android:id="@+id/textDuration2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:textAlignment="center"
+            android:text="Duration"
+            android:textSize="24sp"
+            android:background="#9999FF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createTimePicker2" />
+
+        <TimePicker
+            android:id="@+id/timePickerDuration2"
+            android:layout_width="0dp"
+            android:layout_height= "wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:background="#9999FF"
+            android:hint="Duration"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textDuration2" />
+
+
+        <Button
+            android:id="@+id/buttonUpdateEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save Changes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timePickerDuration2" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
