@@ -6,6 +6,8 @@ from api.authentication.models import User
 from rest_framework.response import Response
 from collections import OrderedDict
 
+import logging
+logger = logging.getLogger(__name__)
 
 class CommentSerializer(serializers.ModelSerializer):
     owner = serializers.SlugRelatedField(read_only=True, slug_field="username")
@@ -70,7 +72,7 @@ class EventSerializer(serializers.ModelSerializer):
         return event 
 
     def update(self, instance, validated_data):
-        regular_fields = ['title', 'description', 'date', 'time', 'duration', 'location', 'maxPlayers']
+        regular_fields = ['title', 'description', 'date', 'time', 'duration', 'location', 'maxPlayers', 'sportType', 'skill_level']
         list_fields = ['applicants', 'participants']
         body = instance.body
         update = False
