@@ -43,3 +43,19 @@ class EventSearch(views.APIView):
             qs = Event.objects.filter(Q(id__in=ids))
             serializer = EventSerializer(qs, many=True)
             return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'sport':
+            sportType = request.data.get("sportType")
+            qs = Event.objects.filter(body__sportType__iexact=sportType)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'owner':
+            username = request.data.get("username")
+            qs = Event.objects.filter(owner__username=username)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'skill':
+            skill_level = request.data.get("skill_level")
+            qs = Event.objects.filter(body__skill_level=skill_level)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+

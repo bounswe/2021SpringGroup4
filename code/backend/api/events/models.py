@@ -7,7 +7,7 @@ class EventBody(models.Model):
     date = models.DateField() 
     time = models.TimeField() 
     duration = models.TimeField() 
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=500)
     sportType = models.CharField(max_length=30)
     maxPlayers = models.IntegerField()
     applicants = models.ManyToManyField(User, related_name="applied")
@@ -17,7 +17,7 @@ class EventBody(models.Model):
     ("2","Intermediate"),
     ("3", "Advanced"))
 
-    skill_level = models.CharField(max_length=10,choices=SKILL_LEVELS, default="Beginner")
+    skill_level = models.CharField(max_length=50,choices=SKILL_LEVELS, default="Beginner")
     lat = models.FloatField(null=True, blank=True)
     long = models.FloatField(null=True, blank=True)
 
