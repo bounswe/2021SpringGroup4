@@ -30,10 +30,19 @@ class EquipmentFragment : Fragment() {
         _binding = FragmentEquipmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        equipmentViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        val recyclerView = binding.equipmentList
+        val adapter = EquipmentAdapter()
+        recyclerView.adapter = adapter
+        equipmentViewModel.getAllEquipments()
+
+        equipmentViewModel.equipments.observe(viewLifecycleOwner,{
+            adapter.equipmentList = it
+            adapter.notifyDataSetChanged()
         })
+        
+
+
+
         return root
     }
 
