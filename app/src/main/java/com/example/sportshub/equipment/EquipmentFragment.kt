@@ -39,10 +39,11 @@ class EquipmentFragment : Fragment() {
             adapter.equipmentList = it
             adapter.notifyDataSetChanged()
         })
-        
 
-
-
+        binding.btnFilterEquipmentBySportType.setOnClickListener {
+            equipmentViewModel.searchEquipmentsbySportType(binding.editTextFilterEquipmentBySportType.text.toString())
+            binding.editTextFilterEquipmentBySportType.text.clear()
+        }
         return root
     }
 
