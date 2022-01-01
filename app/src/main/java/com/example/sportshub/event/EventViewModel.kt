@@ -9,6 +9,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.JsonRequest
+import com.example.sportshub.CustomRequest
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.event.model.EventModel
 import com.google.gson.Gson
@@ -63,20 +64,94 @@ class EventViewModel : ViewModel() {
         val req = JSONObject()
         req.put("username",username)
 
+        val request = CustomRequest(
+            Request.Method.POST, url, req,
+            {
+                try {
+                    val gson = GsonBuilder().create()
+                    for (i in 0 until it.length()) {
+                        val one_event = it.getJSONObject(i)
+                        val one_event_model = gson.fromJson(one_event.getJSONObject("body").toString(), EventModel::class.java)
+                        one_event_model.id = one_event.getInt("id")
+                        one_event_model.creator = one_event.getString("creator")
+                        eventModels.add(one_event_model)
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                eventList.value = eventModels
+            },
+            {
+                eventList.value = eventModels
+            }
+        )
+        SingletonRequestQueueProvider.getQueue().add(request)
 
     }
     fun searchByType(sportType : String){
         val url = QUERY_FOR_SEARCH_BY_SPORT_TYPE
         val eventModels: MutableList<EventModel> = mutableListOf()
 
+        val req = JSONObject()
+        req.put("sportType",sportType)
+
+        val request = CustomRequest(
+            Request.Method.POST, url, req,
+            {
+                try {
+                    val gson = GsonBuilder().create()
+                    for (i in 0 until it.length()) {
+                        val one_event = it.getJSONObject(i)
+                        val one_event_model = gson.fromJson(one_event.getJSONObject("body").toString(), EventModel::class.java)
+                        one_event_model.id = one_event.getInt("id")
+                        one_event_model.creator = one_event.getString("creator")
+                        eventModels.add(one_event_model)
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                eventList.value = eventModels
+            },
+            {
+                eventList.value = eventModels
+            }
+        )
+        SingletonRequestQueueProvider.getQueue().add(request)
 
     }
     fun searchByLevel(skill_level : String){
         val url = QUERY_FOR_SEARCH_BY_SKILL_LEVEL
         val eventModels: MutableList<EventModel> = mutableListOf()
 
+        val req = JSONObject()
+        req.put("skill_level",skill_level)
+
+        val request = CustomRequest(
+            Request.Method.POST, url, req,
+            {
+                try {
+                    val gson = GsonBuilder().create()
+                    for (i in 0 until it.length()) {
+                        val one_event = it.getJSONObject(i)
+                        val one_event_model = gson.fromJson(one_event.getJSONObject("body").toString(), EventModel::class.java)
+                        one_event_model.id = one_event.getInt("id")
+                        one_event_model.creator = one_event.getString("creator")
+                        eventModels.add(one_event_model)
+                    }
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                eventList.value = eventModels
+            },
+            {
+                eventList.value = eventModels
+            }
+        )
+        SingletonRequestQueueProvider.getQueue().add(request)
 
     }
 
-    //TODO Implement ViewModel
 }

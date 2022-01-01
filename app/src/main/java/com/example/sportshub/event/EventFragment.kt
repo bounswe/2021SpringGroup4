@@ -68,6 +68,7 @@ class EventFragment : Fragment() {
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
                 eventViewModel.searchByCreator(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
                 dialog.cancel()
+                dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.clear()
             }
         }
 
@@ -77,6 +78,7 @@ class EventFragment : Fragment() {
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
                 eventViewModel.searchByType(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString())
                 dialog.cancel()
+                dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.clear()
             }
             //TODO
         }
@@ -87,6 +89,7 @@ class EventFragment : Fragment() {
             dialog.findViewById<Button>(R.id.btn_confirm_search).setOnClickListener {
                 eventViewModel.searchByLevel(dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.toString().trim())
                 dialog.cancel()
+                dialog.findViewById<EditText>(R.id.edit_text_search_dialog).text.clear()
             }
             //TODO
         }
