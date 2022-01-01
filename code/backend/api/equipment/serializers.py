@@ -2,10 +2,10 @@ from .models import EquipmentPost
 from rest_framework import serializers
 
 class EquipmentSerializer(serializers.ModelSerializer):
-    creator = serializers.CharField(source='owner.username', read_only=True)
+    owner = serializers.CharField(source='owner.username', read_only=True)
     class Meta:
         model = EquipmentPost
-        fields = ['id', 'creator', 'title', 'description', 'location']
+        fields = ['id', 'owner', 'title', 'description', 'location', 'image_url', 'contact', 'sportType']
 
     def create(self, validated_data):
         if (self.context['request'].user != None):
