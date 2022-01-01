@@ -1,4 +1,4 @@
-package com.example.sportshub.dashboard
+package com.example.sportshub.equipment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sportshub.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class EquipmentFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var equipmentViewModel: EquipmentViewModel
     private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
@@ -24,14 +24,14 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+        equipmentViewModel =
+                ViewModelProvider(this).get(EquipmentViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        equipmentViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
