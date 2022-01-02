@@ -66,7 +66,7 @@ function Home() {
                             </li>
     
                             <li className='home2-item'>
-                                <Link to='/equipmentlist' className='home2-links' onClick={closeMobileMenu}>
+                                <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
                                     Find Equipment
                                 </Link>
                             </li>

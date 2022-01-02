@@ -77,7 +77,7 @@ function Card({username,email,firstname,location,about,profile_picture, user}) {
               
                
                 <div className = "button-block-modal">
-                    <Link to ="./login" className = "btn btn-dark btn-lg">Follow!</Link>
+                    <Link to ="./login" className = "btn btn-dark btn-lg">Give a badge!</Link>
                 </div>    
             </Modal>
         }

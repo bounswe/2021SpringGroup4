@@ -33,7 +33,7 @@ const HomePage = () => {
             <p>You are logged to the home page!</p>
 
                         <li >
-                            <Link to='/equipment' >
+                            <Link to='/equipmentcreate' >
                                 Sell Equipment 
                             </Link>
                         </li>
@@ -43,7 +43,7 @@ const HomePage = () => {
                             </Link>
                         </li>
                         <li >
-                            <Link to='/equipmentlist' >
+                            <Link to='/equipment' >
                                 Find an Equipment 
                             </Link>
                         </li>

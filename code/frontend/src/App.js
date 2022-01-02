@@ -33,10 +33,10 @@ import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
 import EquipSuccess from './pages/EquipSuccess';
-
+import Equipment from './pages/Equipment';
 import EquipmentSearch from './pages/EquipmentSearch';
 
-import UserCards from './pages/UserCards'
+import UserCards from './pages/UserCards';
 
 
 
@@ -66,9 +66,10 @@ function App() {
         <Route path="/registereduser" component={RegisteredUser}/>
 
         <Route path='/equipmentcreate' component={EquipmentCreator} />
-        <Route path='/equipmentlist' component={EquipmentList} />
+        <Route path='/equipment' component={Equipment} />
         <Route path='/equipsuccess' component={EquipSuccess} />
         <Route path='/equipmentsearch' component={EquipmentSearch} />
+
 
 
         <Route path='/events' component={Events} />
