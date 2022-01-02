@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.sportshub.R
 import com.example.sportshub.databinding.FragmentEquipmentBinding
 
 class EquipmentFragment : Fragment() {
@@ -44,6 +47,11 @@ class EquipmentFragment : Fragment() {
             equipmentViewModel.searchEquipmentsbySportType(binding.editTextFilterEquipmentBySportType.text.toString())
             binding.editTextFilterEquipmentBySportType.text.clear()
         }
+
+        binding.btnCreateEquipment.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_equipment_to_createEquipmentFragment)
+        }
+
         return root
     }
 

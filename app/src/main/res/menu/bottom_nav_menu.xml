@@ -7,8 +7,8 @@
         android:title="@string/title_event" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:id="@+id/navigation_equipment"
+        android:icon="@drawable/ic_equipment_black_24dp"
         android:title="@string/title_equipment" />
 
     <item
