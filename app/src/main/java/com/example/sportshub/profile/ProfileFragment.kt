@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -17,12 +16,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.FragmentProfileBinding
 import com.example.sportshub.event.AddCommentListener
 import com.example.sportshub.event.EventDetailFragmentArgs
 import com.example.sportshub.event.model.EventModel
 import com.example.sportshub.profile.model.ProfileModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProfileFragment : Fragment() {
 
@@ -40,6 +41,24 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        fun visibility(button: Button, visible: Boolean){
+            button.isEnabled = visible
+            button.isClickable = visible
+            button.isVisible = visible
+        }
+
+        fun visibilityFAB(button: FloatingActionButton, visible: Boolean){
+            button.isEnabled = visible
+            button.isClickable = visible
+            button.isVisible = visible
+        }
+
+        fun visibilitySpinner(spinner: Spinner, visible: Boolean){
+            spinner.isEnabled = visible
+            spinner.isClickable = visible
+            spinner.isVisible = visible
+        }
+
         val profile = MutableLiveData<ProfileModel>()
 
         var currentProfile: String
@@ -52,13 +71,23 @@ class ProfileFragment : Fragment() {
         profileViewModel.getProfile(requireContext(), currentProfile,
             object: GetProfileListener() {
                 override fun onError(statusCode: Int?) {
-                    Toast.makeText(requireContext(),"Something wrong. Please try again!", Toast.LENGTH_SHORT).show()
+                    // error
                 }
 
                 override fun onResponse(profileModel: ProfileModel) {
                     profile.value = profileModel
                 }
             })
+
+        val spinner_badge: Spinner = binding.spinnerBadgeType
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.badge_types,
+            android.R.layout.simple_spinner_item
+        ).also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner_badge.adapter = it
+        }
 
         val rw_upcoming: RecyclerView = binding.listUpcomingEvents
         val adapter_upcoming = ProfileEventAdapter()
@@ -74,6 +103,8 @@ class ProfileFragment : Fragment() {
         rw_badges.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
         profile.observe(viewLifecycleOwner, {
+            visibilitySpinner(binding.spinnerBadgeType, false)
+            visibilityFAB(binding.btnSendBadge, false)
             binding.username.text = it.username
             if(it.first_name == ""){
                 binding.firstName.isVisible = false
@@ -172,11 +203,40 @@ class ProfileFragment : Fragment() {
             if(it.badges_list.size == 0){
                 binding.noBadges.isVisible = true
                 binding.listBadges.isVisible = false
+                val params1 = binding.btnGrantBadge.layoutParams as ConstraintLayout.LayoutParams
+                params1.topToBottom = binding.noBadges.id
+                params1.topMargin = 64
+                binding.badgesText.requestLayout()
+                val params2 = binding.spinnerBadgeType.layoutParams as ConstraintLayout.LayoutParams
+                params2.topToBottom = binding.noBadges.id
+                params2.topMargin = 64
+                binding.badgesText.requestLayout()
+                val params3 = binding.btnSendBadge.layoutParams as ConstraintLayout.LayoutParams
+                params3.topToBottom = binding.noBadges.id
+                params3.topMargin = 64
+                binding.badgesText.requestLayout()
             } else{
                 binding.listBadges.isVisible = true
                 binding.noBadges.isVisible = false
+                val params1 = binding.btnGrantBadge.layoutParams as ConstraintLayout.LayoutParams
+                params1.topToBottom = binding.listBadges.id
+                params1.topMargin = 0
+                binding.badgesText.requestLayout()
+                val params2 = binding.spinnerBadgeType.layoutParams as ConstraintLayout.LayoutParams
+                params2.topToBottom = binding.listBadges.id
+                params2.topMargin = 0
+                binding.badgesText.requestLayout()
+                val params3 = binding.btnSendBadge.layoutParams as ConstraintLayout.LayoutParams
+                params3.topToBottom = binding.listBadges.id
+                params3.topMargin = 0
+                binding.badgesText.requestLayout()
                 adapter_badges.badgeList = it.badges_list
                 adapter_badges.notifyDataSetChanged()
+            }
+            if(it.username == SingletonRequestQueueProvider.getUsername()){
+                visibility(binding.btnGrantBadge, false)
+            } else{
+                visibility(binding.btnGrantBadge, true)
             }
         })
 
@@ -197,6 +257,32 @@ class ProfileFragment : Fragment() {
                         override fun onResponse(profileModel: ProfileModel) {
                             val action : NavDirections = ProfileFragmentDirections.actionNavigationProfileToNavigationProfile().setUsername(profileModel.username)
                             findNavController().navigate(action)
+                        }
+                    })
+            }
+        }
+
+        binding.btnGrantBadge.setOnClickListener {
+            visibility(binding.btnGrantBadge, false)
+            visibilitySpinner(binding.spinnerBadgeType, true)
+            visibilityFAB(binding.btnSendBadge, true)
+        }
+
+        binding.btnSendBadge.setOnClickListener {
+            if(binding.spinnerBadgeType.selectedItem.toString() == "--Badge Type--"){
+                Toast.makeText(requireContext(),"Badge type is required!", Toast.LENGTH_SHORT).show()
+            } else{
+                profileViewModel.grantBadge(requireContext(), profile.value!!.username, 1, binding.spinnerBadgeType.selectedItem.toString(),
+                    object: GrantBadgeListener() {
+                        override fun onError() {
+                            Toast.makeText(requireContext(),"Something wrong. Please try again!", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onResponse() {
+                            Toast.makeText(requireContext(),"Badge granted successfully!", Toast.LENGTH_SHORT).show()
+                            visibility(binding.btnGrantBadge, true)
+                            visibilitySpinner(binding.spinnerBadgeType, false)
+                            visibilityFAB(binding.btnSendBadge, false)
                         }
                     })
             }

@@ -8,19 +8,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.event.AddCommentListener
+import com.example.sportshub.event.EventListListener
 import com.example.sportshub.event.model.EventModel
 import com.example.sportshub.profile.model.BadgeModel
 import com.example.sportshub.profile.model.ProfileModel
 import com.google.gson.GsonBuilder
 import org.json.JSONException
+import org.json.JSONObject
 
 class ProfileViewModel : ViewModel() {
 
     private val QUERY_FOR_GET_PROFILE = "http://3.67.188.187:8000/api/profiles/"
     private val QUERY_FOR_GET_EVENT_DETAIL = "http://3.67.188.187:8000/api/events/"
+    private val QUERY_FOR_GRANT_BADGE = "http://3.67.188.187:8000/api/badges/"
 
     fun getProfile(context: Context, username: String, getProfileListener: GetProfileListener){
         val url = QUERY_FOR_GET_PROFILE + "$username/"
@@ -78,6 +82,38 @@ class ProfileViewModel : ViewModel() {
             },
             {
                 getEventDetailListener.onError()
+            }
+        ) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String>{
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer ${SingletonRequestQueueProvider.getAccessToken()}"
+                headers["Content-Type"] = "application/json"
+                return headers
+            }
+        }
+        SingletonRequestQueueProvider.getQueue().add(request)
+    }
+
+    fun grantBadge(context: Context, username: String, eventId: Int, badgeType: String, grantBadgeListener: GrantBadgeListener){
+        val url = QUERY_FOR_GRANT_BADGE
+
+        val badgeData = JSONObject()
+        try {
+            badgeData.put("owner", username)
+            badgeData.put("event", eventId)
+            badgeData.put("type", badgeType)
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        val request = object: JsonObjectRequest(
+            Request.Method.POST, url, badgeData,
+            {
+                grantBadgeListener.onResponse()
+            },
+            {
+                grantBadgeListener.onError()
             }
         ) {
             @Throws(AuthFailureError::class)
