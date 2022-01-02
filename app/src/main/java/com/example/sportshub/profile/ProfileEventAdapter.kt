@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.event.EventFragmentDirections
@@ -25,9 +27,10 @@ class ProfileEventAdapter: RecyclerView.Adapter<ProfileEventAdapter.ProfileEvent
             date.text = "${dateParse[2]} ${months[dateParse[1].toInt()-1]} ${dateParse[0]}"
             val timeParse = eventModel.time.split(":")
             time.text = "${timeParse[0]}:${timeParse[1]}"
-            /*itemView.setOnClickListener {
-                // TODO: implement clicking on an event
-            }*/
+            itemView.setOnClickListener {
+                val action : NavDirections = ProfileFragmentDirections.actionNavigationProfileToEventDetailFragment(eventModel)
+                Navigation.findNavController(itemView).navigate(action)
+            }
         }
     }
 

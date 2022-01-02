@@ -11,11 +11,16 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.FragmentProfileBinding
 import com.example.sportshub.event.AddCommentListener
+import com.example.sportshub.event.EventDetailFragmentArgs
 import com.example.sportshub.event.model.EventModel
 import com.example.sportshub.profile.model.ProfileModel
 
@@ -24,6 +29,7 @@ class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private val args by navArgs<ProfileFragmentArgs>()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,7 +42,14 @@ class ProfileFragment : Fragment() {
 
         val profile = MutableLiveData<ProfileModel>()
 
-        profileViewModel.getProfile(requireContext(), SingletonRequestQueueProvider.getUsername(),
+        var currentProfile: String
+        if(args.username == ""){
+            currentProfile = SingletonRequestQueueProvider.getUsername()
+        } else{
+            currentProfile = args.username
+        }
+
+        profileViewModel.getProfile(requireContext(), currentProfile,
             object: GetProfileListener() {
                 override fun onError(statusCode: Int?) {
                     Toast.makeText(requireContext(),"Something wrong. Please try again!", Toast.LENGTH_SHORT).show()
@@ -182,7 +195,8 @@ class ProfileFragment : Fragment() {
                         }
 
                         override fun onResponse(profileModel: ProfileModel) {
-                            profile.value = profileModel
+                            val action : NavDirections = ProfileFragmentDirections.actionNavigationProfileToNavigationProfile().setUsername(profileModel.username)
+                            findNavController().navigate(action)
                         }
                     })
             }
