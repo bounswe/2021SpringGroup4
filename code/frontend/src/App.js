@@ -18,8 +18,9 @@ import './bootstrap.min.css';
 import Register from './pages/Register';
 import RegisterForm from './pages/RegisterForm';
 import RegisteredUser from './pages/RegisteredUser';
-import Home2 from './pages/Home2';
-import Equipment from './pages/Equipment';
+
+
+import EquipmentCreator from './pages/EquipmentCreator';
 import CreateEvent from './pages/CreateEvent';
 import EquipmentList from './pages/EquipmentList';
 import Events from './pages/Events';
@@ -31,6 +32,12 @@ import UserProfile from './pages/UserProfile';
 import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
+import EquipSuccess from './pages/EquipSuccess';
+
+import EquipmentSearch from './pages/EquipmentSearch';
+
+import UserCards from './pages/UserCards'
+
 
 
 function App() {
@@ -49,7 +56,7 @@ function App() {
           <Route path='/createevent' component={EventCreator} />
 
 
-          <Route path='/eventsuccess' component={EventSuccess} />
+         
 
 
         <Route path='/home' exact component={Home} />
@@ -58,11 +65,15 @@ function App() {
         <Route path='/register' component={RegisterForm} />
         <Route path="/registereduser" component={RegisteredUser}/>
 
-        <Route path='/equipment' component={Equipment} />
-        
-        <Route path='/equipmentList' component={EquipmentList} />
+        <Route path='/equipmentcreate' component={EquipmentCreator} />
+        <Route path='/equipmentlist' component={EquipmentList} />
+        <Route path='/equipsuccess' component={EquipSuccess} />
+        <Route path='/equipmentsearch' component={EquipmentSearch} />
+
+
         <Route path='/events' component={Events} />
         <Route path='/searchEvents' component={SearchEvents} />
+        <Route path='/eventsuccess' component={EventSuccess} />
         <Route path='/fileupload' component={UploadFile} />
 
         <Route path='/profile' component={UserProfile} />
@@ -71,7 +82,10 @@ function App() {
         
         <Route path='/googlemap' component={Maps} />
         <Route path='/geolocation' component={UserGeolocation} />
+
+
         
+        <Route path='/usercards' component={UserCards} />
 
         </AuthProvider>
 

@@ -9,10 +9,12 @@ import Contact from './Contact';
 import Login from './Login';
 import Register from './Register';
 import RegisterForm from './RegisterForm';
-import Equipment from './Equipment';
+
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
 import EventCreator from './EventCreator';
+import UserCard from "./UserCards";
+import UserPages from './UserPages';
 
 
 const HomePage = () => {
@@ -41,7 +43,7 @@ const HomePage = () => {
                             </Link>
                         </li>
                         <li >
-                            <Link to='/equipmentList' >
+                            <Link to='/equipmentlist' >
                                 Find an Equipment 
                             </Link>
                         </li>
@@ -69,6 +71,23 @@ const HomePage = () => {
                                User Geolocation
                             </Link>
                         </li>
+                        
+
+                        <li >
+                            <Link to='/equipmentsearch' >
+                               Equipment Search
+                            </Link>
+                        </li>
+
+                
+
+                        <li >
+                            <Link to='/usercards' >
+                               User Cards
+                            </Link>
+                        </li>
+
+                    
                         
         
 

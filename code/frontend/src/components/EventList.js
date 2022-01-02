@@ -35,7 +35,7 @@ const onFindEvent = ()=> {
                     {selectedMap && <Modal isOpen={!!selectedMap} onClose={() => setSelectedMap(null)}> 
                         <Maps events={events}></Maps>  
                     </Modal>
-                    }-
+                    }
                 </div>
             <div className = "event-grid">{events.map((event) => (
                 <div className="event-preview" key={event.id} onClick= {()=> setSelectedEvent(event)}>
@@ -49,6 +49,7 @@ const onFindEvent = ()=> {
                     </div>  
                 </div>
             ))}</div>
+
             {selectedEvent && <Modal isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)}> 
                 <h2>{ selectedEvent.title }</h2>
                 <p> { selectedEvent.description }</p>

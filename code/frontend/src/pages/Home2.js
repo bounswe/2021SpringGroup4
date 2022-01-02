@@ -9,7 +9,7 @@ import Contact from './Contact';
 import Login from './Login';
 import Register from './Register';
 import RegisterForm from './RegisterForm';
-import Equipment from './Equipment';
+
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
 
@@ -81,7 +81,7 @@ function Home2() {
                             </Link>
                         </li>
                         <li className='home2-item'>
-                            <Link to='/equipmentList' className='home2-links' onClick={closeMobileMenu}>
+                            <Link to='/equipmentlist' className='home2-links' onClick={closeMobileMenu}>
                                 Equipment List
                             </Link>
                         </li>
