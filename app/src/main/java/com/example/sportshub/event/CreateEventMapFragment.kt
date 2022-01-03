@@ -7,28 +7,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.sportshub.R
-import com.example.sportshub.event.model.EventModel
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CreateEventMapFragment : Fragment() {
     private val args by navArgs<CreateEventMapFragmentArgs>()
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var sharedViewModelUpdateEvent: SharedViewModelUpdateEvent
     private lateinit var sharedViewModelCreateEvent: SharedViewModelCreateEvent
     private lateinit var markerLocation: LatLng
     private lateinit var previousMarker: Marker
@@ -56,7 +50,7 @@ class CreateEventMapFragment : Fragment() {
 
             }
         } else if(args.createOrUpdate == "u"){
-            markerLocation = LatLng(sharedViewModel.lat, sharedViewModel.long)
+            markerLocation = LatLng(sharedViewModelUpdateEvent.lat, sharedViewModelUpdateEvent.long)
             previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Previous Location of Event"))!!
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
             googleMap.setMinZoomPreference(10.0F)
@@ -85,7 +79,7 @@ class CreateEventMapFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModelUpdateEvent = ViewModelProvider(requireActivity()).get(SharedViewModelUpdateEvent::class.java)
         sharedViewModelCreateEvent = ViewModelProvider(requireActivity()).get(SharedViewModelCreateEvent::class.java)
 
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
@@ -97,8 +91,8 @@ class CreateEventMapFragment : Fragment() {
                 findNavController().navigateUp()
             }
             else if(args.createOrUpdate == "u"){
-                sharedViewModel.lat = markerLocation.latitude
-                sharedViewModel.long = markerLocation.longitude
+                sharedViewModelUpdateEvent.lat = markerLocation.latitude
+                sharedViewModelUpdateEvent.long = markerLocation.longitude
                 findNavController().navigateUp()
             }
         }

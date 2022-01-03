@@ -1,7 +1,6 @@
 package com.example.sportshub.event
 
 import android.app.Dialog
-import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class EventDetailFragment : Fragment() {
     private lateinit var eventDetailViewModel: EventDetailViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var sharedViewModel: SharedViewModelUpdateEvent
     private var _binding: EventDetailFragmentBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<EventDetailFragmentArgs>()
@@ -34,7 +32,7 @@ class EventDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         eventDetailViewModel = ViewModelProvider(this).get(EventDetailViewModel::class.java)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModelUpdateEvent::class.java)
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
 
