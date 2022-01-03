@@ -1,15 +1,16 @@
 import './EventListDetail.css';
 import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
 
-
-const EventListDetail = ({events, title}) => {
+const EventListDetail = ({events: eventsFromParent, title}) => {
 const history = useHistory()
 const [participants, setParticipants] = useState([
     'Tolga', 'Yigit', 'Test'
 ]);
+
+const [events, setEvents] = useState(eventsFromParent)
 
 const [selectedUser, setSelectedUser] = useState(null)
 const [selectedSportType, setSelectedSportType] = useState(null)
@@ -52,8 +53,18 @@ const onApplyEvent = ()=> {
                     }     
                 }
             )
-        })
-            .then(res => {
+        }).then(res => {
+            console.log(res);
+            if(!res.ok){
+                console.log(res);
+                throw Error('could not fetch the data for that resource');
+            }
+            console.log(res);
+            return res.json();
+        }).then(()=>{
+            fetch('http://3.67.188.187:8000/api/events/' + selectedEvent.id + '/', {
+                method: 'GET'
+            }).then(res => {
                 console.log(res);
                 if(!res.ok){
                     console.log(res);
@@ -62,9 +73,16 @@ const onApplyEvent = ()=> {
                 console.log(res);
                 return res.json();
             })
-        const params = new URLSearchParams()
-        params.append('eventId', selectedEvent.id)
-        history.push('/eventDetail?' + params)
+            .then(data => {
+                console.log(data)
+                setEvents(data);
+            })
+        })
+
+
+
+        //window.location.href = window.location.href
+
     }
 }
 
@@ -92,10 +110,10 @@ const onApplyEvent = ()=> {
                             <p> Skill Level: { events.body.skill_level }</p>
                         </div>
                         <div className = "participants"> Applicants:{ events.body.applicants.map((user) => (
-                            <button style={{display:"block"}} onClick={() => {
+                            <p style={{display:"block", cursor:"pointer"}} onClick={() => {
                                 setSelectedUser(user.toLowerCase());
                                 onFindUser();
-                              }} className = "btn btn-dark" > {user.toUpperCase()}</button>
+                              }}> {user.toUpperCase()}</p>
                         ))
                         }
                         </div>
@@ -104,7 +122,7 @@ const onApplyEvent = ()=> {
                         <button style={{display:"block"}} onClick={() => {
                                     setSelectedEvent(events);
                                     onApplyEvent();
-                                }} className = "btn btn-dark" > Apply!</button>
+                                }} className = "btn btn-dark"> Apply!</button>
                     </div>  
                 </div>
             }

@@ -55,7 +55,7 @@ function App() {
 
           <Route path='/eventsuccess' component={EventSuccess} />
 
-
+      
         <Route path='/home' exact component={Home} />
         <Route path='/about' exact component={About} />
         <Route path='/contact' component={Contact} />
