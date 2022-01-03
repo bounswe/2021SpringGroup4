@@ -33,6 +33,7 @@ import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
 import EventListDetail from './components/EventListDetail';
 import EventDetail from './pages/EventDetail';
+import UserProfileSelect from './pages/UserProfileSelect';
 
 
 
@@ -72,6 +73,7 @@ function App() {
 
         <Route path='/profile' component={UserProfile} />
         <Route path='/editprofile' component={EditUserProfile} />
+        <Route path='/userProfileSelect' component={UserProfileSelect} />
 
         
         <Route path='/googlemap' component={Maps} />

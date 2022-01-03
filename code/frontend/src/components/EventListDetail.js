@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 const EventListDetail = ({events, title}) => {
 const history = useHistory()
 const [participants, setParticipants] = useState([
-    'Ali', 'Alperen', 'Durak'
+    'Tolga', 'Yigit', 'Test'
 ]);
 
 const [selectedUser, setSelectedUser] = useState(null)
@@ -16,7 +16,7 @@ const onFindUser = ()=> {
     if(!!selectedUser){
         const params = new URLSearchParams()
         params.append('userName', selectedUser)
-        history.push('/profiles?' + params)
+        history.push('/userProfileSelect?' + params)
     }
 }
 
@@ -47,15 +47,15 @@ const onFindSportType = ()=> {
                                 <button onClick={() => {
                                     setSelectedSportType(events.sportType);
                                     onFindSportType();
-                                }} className = "btn btn-dark">Sport Type: {events.sportType}</button>
+                                }} className = "btn btn-dark" >Sport Type: {events.sportType}</button>
                             }
                             </div>
                         </div>
                         <div className = "participants"> { participants.map((user) => (
                             <button onClick={() => {
-                                setSelectedUser(user);
+                                setSelectedUser(user.toLowerCase());
                                 onFindUser();
-                              }} className = "btn btn-dark">{user}</button>
+                              }} className = "btn btn-dark" > {user}</button>
                         ))
                         }
                         </div>
