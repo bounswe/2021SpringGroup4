@@ -31,6 +31,9 @@ import UserProfile from './pages/UserProfile';
 import EditUserProfile from './pages/EditUserProfile';
 import Maps from './components/Maps';
 import UserGeolocation from './components/UserGeolocation';
+import EventListDetail from './components/EventListDetail';
+import EventDetail from './pages/EventDetail';
+
 
 
 function App() {
@@ -62,6 +65,8 @@ function App() {
         
         <Route path='/equipmentList' component={EquipmentList} />
         <Route path='/events' component={Events} />
+        <Route path='/eventListDetail' component={EventListDetail} />
+        <Route path='/eventDetail' component={EventDetail} />
         <Route path='/searchEvents' component={SearchEvents} />
         <Route path='/fileupload' component={UploadFile} />
 

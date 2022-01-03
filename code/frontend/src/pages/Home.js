@@ -13,6 +13,7 @@ import Equipment from './Equipment';
 import CreateEvent from './CreateEvent';
 import EquipmentList from './EquipmentList';
 import Events from './Events';
+import EventDetail from './EventDetail';
 import AuthContext from '../context/AuthContext'
 
 function Home() {
