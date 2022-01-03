@@ -14,6 +14,7 @@ function Contact() {
                 <p> Phones: +90 212 359 54 00  </p>
                 <p> Fax: +90 212 265 63 57  </p>
                 </div>
+               
 
         </div>
     )

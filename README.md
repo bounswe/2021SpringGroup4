@@ -1,34 +1,34 @@
-This project repository was prepared by the 4th group for CMPE 352/451 course.
 
-You can find more information on the [Wiki page](https://github.com/bounswe/2021SpringGroup4/wiki) of our repository.
+# CMPE 451 - SportsHub Frontend
+Deployed app can be reached via following url: http://ec2-18-216-171-234.us-east-2.compute.amazonaws.com:3000/
 
-# CMPE 451 Members
-* [Fatih Akgöz](https://github.com/bounswe/2021SpringGroup4/wiki/Fatih-Akg%C3%B6z)
-* [Ece Dilara Aslan](https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan)
-* [Muhammed İrfan Bozkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt)
-* [Mehmet Hilmi Dündar](https://github.com/bounswe/2021SpringGroup4/wiki/Mehmet-Hilmi-D%C3%BCndar)
-* [Tolga Kerimoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Tolga-Kerimo%C4%9Flu)
-* [Yiğit Sarıoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Yi%C4%9Fit-Sar%C4%B1o%C4%9Flu)
-* [Yağmur Selek](https://github.com/bounswe/2021SpringGroup4/wiki/Ya%C4%9Fmur-Selek)
-
-
-
-
-# CMPE 352 - Practice-App 
-
-URL : http://group4-practiceapp.eba-hs5hejqp.us-west-2.elasticbeanstalk.com/
-
-# CMPE 352 Members
-* [Salih Furkan Akkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Salih-Furkan-Akkurt)
-* [Ece Dilara Aslan](https://github.com/bounswe/2021SpringGroup4/wiki/Ece-Dilara-Aslan)
-* [İhsan Mert Atalay](https://github.com/bounswe/2021SpringGroup4/wiki/%C4%B0hsan-Mert-Atalay)
-* [Muhammed İrfan Bozkurt](https://github.com/bounswe/2021SpringGroup4/wiki/Muhammed-Irfan-Bozkurt)
-* [Mehmet Hilmi Dündar](https://github.com/bounswe/2021SpringGroup4/wiki/Mehmet-Hilmi-D%C3%BCndar)
-* [Berkay Gümüş](https://github.com/bounswe/2021SpringGroup4/wiki/Berkay-G%C3%BCm%C3%BC%C5%9F)
-* [Tolga Kerimoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Tolga-Kerimo%C4%9Flu)
-* [Yiğit Sarıoğlu](https://github.com/bounswe/2021SpringGroup4/wiki/Yi%C4%9Fit-Sar%C4%B1o%C4%9Flu)
-* [Yağmur Selek](https://github.com/bounswe/2021SpringGroup4/wiki/Ya%C4%9Fmur-Selek)
+<br><b>To run the frontend code in your local please follow the instructions below.</b>
+<br>1-  Open the ssh client
+<br> 2- Clone the repository if it is not clonned: **$ git clone https://github.com/bounswe/2021SpringGroup4.git**
+<br> 3- Change directory to cloned project
+<br> 4- Change branch to the **frontendmain**: **$ git checkout frontendmain**
+<br> 5- Change directory to the code/frontend: **$ cd code/frontend**
+<br> 6- Open **docker desktop**
+<br> 7- Build docker: **$ docker-compose build --no-cache**
+<br> 8- Up container: **$ docker-compose up**
+<br> 9- Open your browser and go to the following url: **http://localhost:3000/**
+<br><br> **Important Note**: For development purpose don't forget to create new branch. After finished working, 
+new branch should be pushed to the github and pull request should be created with **frontendmain**. 
+The new branch will be merged after necessary reviews.
+<br>New branch creation: **$ git checkout -b (your_new_branch_name)**
 
 
-:cop: **Supervising Teaching Assistant:** Emre Bilgili
+
+
+
+
+
+
+
+
+
+
+
+<br>You can find more information on the [Wiki page](https://github.com/bounswe/2021SpringGroup4/wiki) of our repository.
+
 

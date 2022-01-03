@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
- 
+ import Autocomplete2 from "../components/Autocomplete2"
 
 class CreateEvent extends Component {
     constructor(){
@@ -104,7 +104,7 @@ class CreateEvent extends Component {
                     <tr>
                         <th>Location</th>
                         <td>
-                            <input value={this.state.location} name="location" onChange={this.changeHandler} type="text" className="form-control" />
+                            <Autocomplete2/>
                         </td>
                     </tr>
 

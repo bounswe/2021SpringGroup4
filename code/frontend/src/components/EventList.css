@@ -61,3 +61,10 @@
   margin-right: 10px;
   block-size: 40px;
 }
+
+.map-view {
+  display: flex;
+}
+.map {
+  margin-left: left;
+}
