@@ -1,13 +1,16 @@
 package com.example.sportshub
 
 import android.content.Context
-import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.*
+import com.android.volley.toolbox.*
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser.parseString
+
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.UnsupportedEncodingException
 
 object SingletonRequestQueueProvider {
     private lateinit var requestQueue : RequestQueue
@@ -56,5 +59,34 @@ object SingletonRequestQueueProvider {
         )
         requestQueue.add(request)
     }
+
+}
+
+class CustomRequest( method : Int, url:String, requestBody : JSONObject
+                        , listener: Response.Listener<JSONArray>,errorListener: Response.ErrorListener
+                       ) : JsonRequest<JSONArray>(
+    method,
+    url,
+    requestBody.toString(),
+    listener,
+    errorListener){
+
+    override fun parseNetworkResponse(response: NetworkResponse): Response<JSONArray?>? {
+        return try {
+            val jsonString = String(
+                response.data,
+            )
+            Response.success(
+                JSONArray(jsonString), HttpHeaderParser.parseCacheHeaders(response)
+            )
+        } catch (e: UnsupportedEncodingException) {
+            Response.error(ParseError(e))
+        } catch (je: JSONException) {
+            Response.error(ParseError(je))
+        }
+    }
+
+
+
 
 }
