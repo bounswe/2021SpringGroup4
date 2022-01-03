@@ -108,6 +108,7 @@ class EventDetailFragment : Fragment() {
             val durationParse = it.duration.split(":")
             binding.eventDetailEventDuration.text = "${durationParse[0]}:${durationParse[1]}"
             binding.eventDetailEventLocation.text = it.location
+            binding.eventDetailEventSkillLevel.text = it.skillLevel
             binding.eventDetailEventSportType.text = it.sportType
             binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers?.minus(it.participants.size)).toString()} spots left"
             rw.adapter = adapter
