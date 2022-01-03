@@ -20,9 +20,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.sportshub.dashboard.DashboardFragment"
+        android:name="com.example.sportshub.equipment.EquipmentFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_equipment" />
 
     <fragment
         android:id="@+id/navigation_profile"
