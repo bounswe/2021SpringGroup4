@@ -1,5 +1,6 @@
 package com.example.sportshub.event
 
+import android.location.Geocoder
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
@@ -28,7 +29,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class CreateEventMapFragment : Fragment() {
     private val args by navArgs<CreateEventMapFragmentArgs>()
     private lateinit var sharedViewModel: SharedViewModel
-    private var markerLocation = LatLng(41.0863, 29.0441)
+    private lateinit var sharedViewModelCreateEvent: SharedViewModelCreateEvent
+    private lateinit var markerLocation: LatLng
     private lateinit var previousMarker: Marker
     private val callback = OnMapReadyCallback { googleMap ->
         /**
@@ -42,7 +44,8 @@ class CreateEventMapFragment : Fragment() {
          */
 
         if(args.createOrUpdate == "c"){
-            previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Marker in North Campus"))!!
+            markerLocation = LatLng(sharedViewModelCreateEvent.latitude, sharedViewModelCreateEvent.longitude)
+            previousMarker = googleMap.addMarker(MarkerOptions().position(markerLocation).title("Event Location"))!!
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerLocation))
             googleMap.setMinZoomPreference(10.0F)
 
@@ -83,13 +86,15 @@ class CreateEventMapFragment : Fragment() {
         mapFragment?.getMapAsync(callback)
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModelCreateEvent = ViewModelProvider(requireActivity()).get(SharedViewModelCreateEvent::class.java)
 
         view.findViewById<FloatingActionButton>(R.id.btnsaveMarkerLocation).setOnClickListener {
             if(args.createOrUpdate == "c"){
-                val action : NavDirections = CreateEventMapFragmentDirections.
-                actionCreateEventMapFragmentToEventCreateFragment().
-                setLatitude(markerLocation.latitude.toFloat()).setLongitude(markerLocation.longitude.toFloat())
-                findNavController().navigate(action)
+                sharedViewModelCreateEvent.latitude = markerLocation.latitude
+                sharedViewModelCreateEvent.longitude = markerLocation.longitude
+                var location = Geocoder(activity).getFromLocation(markerLocation.latitude, markerLocation.longitude,1)[0]
+                sharedViewModelCreateEvent.location = location.getAddressLine(0)
+                findNavController().navigateUp()
             }
             else if(args.createOrUpdate == "u"){
                 sharedViewModel.lat = markerLocation.latitude

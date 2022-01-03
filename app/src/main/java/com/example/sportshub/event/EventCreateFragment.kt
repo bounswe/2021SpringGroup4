@@ -22,8 +22,8 @@ import java.math.RoundingMode
 import java.util.*
 
 class EventCreateFragment : Fragment() {
-    private val args by navArgs<EventCreateFragmentArgs>()
     private lateinit var viewModel: EventCreateViewModel
+    private lateinit var sharedViewModel: SharedViewModelCreateEvent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +32,7 @@ class EventCreateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.event_create_fragment, container, false)
         viewModel = ViewModelProvider(this).get(EventCreateViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModelCreateEvent::class.java)
 
         view.findViewById<DatePicker>(R.id.createDatePicker).apply {
             val now = Calendar.getInstance()
@@ -49,13 +50,7 @@ class EventCreateFragment : Fragment() {
             minute = 0
         }
 
-        viewModel.eventCreateRequestModel.value!!.lat = args.latitude.toDouble()
-        viewModel.eventCreateRequestModel.value!!.long = args.longitude.toDouble()
-        var location = Geocoder(activity).getFromLocation(args.latitude.toDouble(), args.longitude.toDouble(),1)[0]
-        viewModel.eventCreateRequestModel.value!!.location = location.getAddressLine(0)
-
         view.findViewById<Button>(R.id.btnCreateEventLocation).setOnClickListener {
-            //findNavController().navigate(R.id.action_eventCreateFragment_to_createEventMapFragment)
             val action: NavDirections = EventCreateFragmentDirections.actionEventCreateFragmentToCreateEventMapFragment().setCreateOrUpdate("c")
             findNavController().navigate(action)
         }
@@ -71,6 +66,9 @@ class EventCreateFragment : Fragment() {
             viewModel.eventCreateRequestModel.value!!.date = "${view.findViewById<DatePicker>(R.id.createDatePicker).year}-${view.findViewById<DatePicker>(R.id.createDatePicker).month+1}-${view.findViewById<DatePicker>(R.id.createDatePicker).dayOfMonth}"
             viewModel.eventCreateRequestModel.value!!.time = "${view.findViewById<TimePicker>(R.id.createTimePicker).hour}:${view.findViewById<TimePicker>(R.id.createTimePicker).minute}"
             viewModel.eventCreateRequestModel.value!!.duration = "${view.findViewById<TimePicker>(R.id.timePickerDuration).hour}:${view.findViewById<TimePicker>(R.id.timePickerDuration).minute}"
+            viewModel.eventCreateRequestModel.value!!.location = sharedViewModel.location
+            viewModel.eventCreateRequestModel.value!!.lat = sharedViewModel.latitude
+            viewModel.eventCreateRequestModel.value!!.long = sharedViewModel.longitude
             viewModel.createEvent(requireContext(),
                 object: CreateEventListener() {
                     override fun onError(warning: String) {
@@ -81,6 +79,9 @@ class EventCreateFragment : Fragment() {
                     }
 
                     override fun onResponse() {
+                        sharedViewModel.latitude = 41.0863
+                        sharedViewModel.longitude = 29.0441
+                        sharedViewModel.location = ""
                         Toast.makeText(context,"Your event is successfully created!", Toast.LENGTH_SHORT).show()
                         findNavController().navigateUp()
                     }
