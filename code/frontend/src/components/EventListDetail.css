@@ -16,7 +16,7 @@
   .event-preview-detail h2 {
     font-size: 40px;
     color: #f1356d;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     text-align: center;
   }
   .event-preview-detail p {
@@ -67,4 +67,15 @@
   
   .inner-link {
     white-space: pre-line;
+  }
+
+  .sport-type {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .sport-type p{
+    text-align: center;
+    margin-left: 0px;
+    margin-top: 10px
   }

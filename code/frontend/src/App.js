@@ -21,6 +21,7 @@ import RegisteredUser from './pages/RegisteredUser';
 import Home2 from './pages/Home2';
 import Equipment from './pages/Equipment';
 import CreateEvent from './pages/CreateEvent';
+import EquipmentCreator from './pages/EquipmentCreator';
 import EquipmentList from './pages/EquipmentList';
 import Events from './pages/Events';
 import EventCreator from './pages/EventCreator';
@@ -34,6 +35,10 @@ import UserGeolocation from './components/UserGeolocation';
 import EventListDetail from './components/EventListDetail';
 import EventDetail from './pages/EventDetail';
 import UserProfileSelect from './pages/UserProfileSelect';
+import EquipSuccess from './pages/EquipSuccess';
+import EquipmentSearch from './pages/EquipmentSearch';
+
+import UserCards from './pages/UserCards';
 
 
 
@@ -62,7 +67,10 @@ function App() {
         <Route path='/register' component={RegisterForm} />
         <Route path="/registereduser" component={RegisteredUser}/>
 
+        <Route path='/equipmentcreate' component={EquipmentCreator} />
         <Route path='/equipment' component={Equipment} />
+        <Route path='/equipsuccess' component={EquipSuccess} />
+        <Route path='/equipmentsearch' component={EquipmentSearch} />
         
         <Route path='/equipmentList' component={EquipmentList} />
         <Route path='/events' component={Events} />
@@ -79,6 +87,8 @@ function App() {
         <Route path='/googlemap' component={Maps} />
         <Route path='/geolocation' component={UserGeolocation} />
         
+        <Route path='/usercards' component={UserCards} />
+
 
         </AuthProvider>
 

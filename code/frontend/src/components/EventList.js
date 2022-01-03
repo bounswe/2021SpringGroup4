@@ -1,6 +1,6 @@
 import './EventList.css';
 import React, { useState } from 'react'
-import Modal from './Modal'
+import ModalEvent from './ModalEvent'
 import { Link, useHistory } from 'react-router-dom';
 import Autocomplete2 from './Autocomplete2';
 import  Maps from './Maps';
@@ -27,9 +27,9 @@ const onFindEvent = ()=> {
                 <div className="map" onClick= {()=> setSelectedMap(Maps)}>
                     <button className = "btn btn-dark">Map View!</button>
                 </div>
-                    {selectedMap && <Modal isOpen={!!selectedMap} onClose={() => setSelectedMap(null)}> 
+                    {selectedMap && <ModalEvent isOpen={!!selectedMap} onClose={() => setSelectedMap(null)}> 
                         <Maps></Maps>  
-                    </Modal>
+                    </ModalEvent>
                     }
             </div>
             <div className = "event-grid">{events.map((event) => (
@@ -42,7 +42,7 @@ const onFindEvent = ()=> {
                 </div>
             ))}
             </div>
-            {selectedEvent && <Modal isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)}> 
+            {selectedEvent && <ModalEvent isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)}> 
                 <h2>{ selectedEvent.body.title }</h2>
                 <p> { selectedEvent.body.description }</p>
                 <p> Date: { selectedEvent.body.date }</p>
@@ -52,8 +52,8 @@ const onFindEvent = ()=> {
                 <p> Sport Type: { selectedEvent.body.sportType }</p>
                 <p> Max Players: { selectedEvent.body.maxPlayers }</p>
                 <p> Skill Level: { selectedEvent.body.skill_level }</p>
-                <button onClick ={onFindEvent} className = "btn btn-dark">Details</button>   
-            </Modal>
+                <button onClick ={onFindEvent} className = "btn btn-dark">Go to Event Page!</button>   
+            </ModalEvent>
             }
         </div>
         

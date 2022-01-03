@@ -92,9 +92,18 @@ class Registerform extends Component {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-
+        
         .then((response) => {
+            
             if(!response.ok) {
+              if(response.status== 400){
+                
+                alert("Username or email exist, please select different");
+                console.log ("usernamame or email exist ");
+                          
+              }
+
+
               throw new Error(response.status);
             }  
             else { 
@@ -108,7 +117,8 @@ class Registerform extends Component {
             console.log("DATA STORED");
           })
         .catch((error) => {
-          
+            
+
             console.log('error: ' + error);
             
             this.setState({ requestFailed: true });

@@ -1,6 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import EquipmentCard from '../components/EquipmentCard'
+import '../design/UserCards.css'
 
-export class EquipmentList extends Component {
+
+
+class Equipment extends Component {
     constructor(){
         super();
         this.state={
@@ -34,32 +38,29 @@ export class EquipmentList extends Component {
                 <td>{eqp.title}</td>
                 <td>{eqp.description}</td>
                 <td>{eqp.location}</td>
+                
+                <td>{eqp.image_url}</td>
                 <td>{eqp.contact}</td>
                 <td>{eqp.sportType}</td>
+                
+                
             </tr>
+            
         );
 
         return (
-            <div>
-                <table className="table table-bordered" >
-                <thead>
-                    <tr>
-                        
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Location</th>
-                        <th>Contact</th>
-                        <th>Sport Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
+            <div className="events">
+                { equipmentdata.map((eqp)  => 
+                    <EquipmentCard title={eqp.title}  description= {eqp.description}   location ={eqp.location}  image_url= {eqp.image_url} contact={eqp.contact}  sportType={eqp.sportType} eqps={eqp}   />
+                ) }
                 
+
+
+
+
             </div>
         )
     }
 }
 
-export default EquipmentList
+export default Equipment;

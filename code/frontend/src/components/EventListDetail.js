@@ -33,6 +33,14 @@ const onFindSportType = ()=> {
             <div className = "event-grid-detail">{
                 <div className="event-preview-detail" key={events.id}>
                     <h2>{ events.title }</h2>
+                    <div className = "sport-type"> {
+                            <button onClick={() => {
+                                setSelectedSportType(events.sportType);
+                                onFindSportType();
+                            }} className = "btn btn-dark" >{events.sportType}</button>
+                            }
+                            <p>Click to see equipments of {events.sportType}</p>
+                            </div>
                     <div className="event-features-detail">
                         <div className="event-inner-detail">
                             <p> Date: { events.date }</p>
@@ -40,19 +48,11 @@ const onFindSportType = ()=> {
                             <p> Date: { events.date }</p>
                             <p> Time: { events.time }</p>
                             <p> Duration: { events.duration }</p>
-                            <p> Location: { events.location }</p>
                             <p> Max Players: { events.maxPlayers }</p>
                             <p> Skill Level: { events.skill_level }</p>
-                            <div className = "sport-type"> { 
-                                <button onClick={() => {
-                                    setSelectedSportType(events.sportType);
-                                    onFindSportType();
-                                }} className = "btn btn-dark" >Sport Type: {events.sportType}</button>
-                            }
-                            </div>
                         </div>
-                        <div className = "participants"> { participants.map((user) => (
-                            <button onClick={() => {
+                        <div className = "participants"> Participants:{ participants.map((user) => (
+                            <button style={{display:"block"}} onClick={() => {
                                 setSelectedUser(user.toLowerCase());
                                 onFindUser();
                               }} className = "btn btn-dark" > {user}</button>
