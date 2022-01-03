@@ -1,5 +1,6 @@
 package com.example.sportshub.event
 
+import android.app.Dialog
 import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.EventDetailFragmentBinding
+import com.example.sportshub.equipment.EquipmentAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class EventDetailFragment : Fragment() {
@@ -178,7 +180,28 @@ class EventDetailFragment : Fragment() {
                     }
                 })
         }
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.layout_equipment_dialog)
+        dialog.window!!.setBackgroundDrawable(
+            ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.dialog_drawable_background
+            )
+        )
+        val eqadapter = EquipmentAdapter()
+        dialog.findViewById<RecyclerView>(R.id.dialog_equipment_list).adapter = eqadapter
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
 
+        eventDetailViewModel.equipments.observe(viewLifecycleOwner,{
+            eqadapter.equipmentList = it
+            eqadapter.notifyDataSetChanged()
+
+        })
+
+        binding.listRelatedEquipment.setOnClickListener {
+            eventDetailViewModel.searchEquipmentsbySportType(eventDetailViewModel.event!!.value!!.sportType)
+            dialog.show()
+        }
 
 
         return root
