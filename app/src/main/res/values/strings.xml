@@ -3,4 +3,15 @@
     <string name="title_event">Event</string>
     <string name="title_equipment">Equipment</string>
     <string name="title_profile">Profile</string>
+    <string-array name="badge_types">
+        <item>--Badge Type--</item>
+        <item>Skilled</item>
+        <item>Friendly</item>
+        <item>Master</item>
+        <item>Novice</item>
+        <item>Top Organizer</item>
+        <item>Sore Loser</item>
+        <item>Crybaby</item>
+        <item>Gentleman</item>
+    </string-array>
 </resources>
