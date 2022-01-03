@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from api.authentication.models import User 
 
 class EquipmentPost(models.Model):
@@ -9,4 +10,5 @@ class EquipmentPost(models.Model):
     contact = models.CharField(max_length=500, blank=True)
     image_url = models.CharField(max_length=500, blank=True, null=True)
     sportType = models.CharField(max_length=100, blank=True, null=True)
+    creationDate=models.DateTimeField(default=timezone.now)
 
