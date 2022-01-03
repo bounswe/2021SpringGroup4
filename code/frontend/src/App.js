@@ -67,10 +67,10 @@ function App() {
         <Route path='/register' component={RegisterForm} />
         <Route path="/registereduser" component={RegisteredUser}/>
 
-        <Route path='/equipmentcreate' component={EquipmentCreator} />
         <Route path='/equipment' component={Equipment} />
         <Route path='/equipsuccess' component={EquipSuccess} />
         <Route path='/equipmentsearch' component={EquipmentSearch} />
+        <Route path='/equipmentcreate' component={EquipmentCreator} />
         
         <Route path='/equipmentList' component={EquipmentList} />
         <Route path='/events' component={Events} />
@@ -88,6 +88,7 @@ function App() {
         <Route path='/geolocation' component={UserGeolocation} />
         
         <Route path='/usercards' component={UserCards} />
+        
 
 
         </AuthProvider>

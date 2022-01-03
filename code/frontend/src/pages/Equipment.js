@@ -1,98 +1,66 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import EquipmentCard from '../components/EquipmentCard'
+import '../design/UserCards.css'
 
 
 
 class Equipment extends Component {
-    
-
     constructor(){
         super();
-        this.state={ 
-            title:'',
-            description:'',
-            location:''
-
-
+        this.state={
+            data:[]
         };
-    
-
-    this.changeHandler=this.changeHandler.bind(this);
-    this.submitForm=this.submitForm.bind(this);
-    
     }
 
-    //ınput change handler
-    changeHandler(event){
-        console.log("Input has been changed..");
-        this.setState({
-            [event.target.name]:event.target.value
-        });
-    }
+    fetchData(){
+        fetch('http://3.67.188.187:8000/api/equipment/', { 
+            method:'GET', } )
 
-
-    //submitform
-    submitForm(){
-        console.log("Equipment Data submitted.");
-
-        fetch('http://3.67.188.187:8000/api/equipment/' ,{
-            method:'POST',
-            body:JSON.stringify(this.state),
-          
-            headers:{
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-
-        .then(response=>response.json())
-        .then((data)=>console.log(data));
-
-        this.setState({
-            title:'',
-            description:'',
-            location:''
-
-        })
+            
+        .then(response=>response.json() )
+        .then((data) =>{
+            this.setState({
+                data:data
+            });
+        } );
 
     }
-    
 
+    componentDidMount(){
+        this.fetchData();
+    }
 
     render() {
-        return (
-            <div>
-                <h1>Create New Equipment</h1>
-                <table className="table table-bordered">
-                <tbody>
-                    <tr> 
-                        <th>Title</th>
-                        <td>
-                            <input value={this.state.title} name="title" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Description</th>
-                        <td>
-                            <input value={this.state.description} name="description" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Location</th>
-                        <td>
-                            <input value={this.state.location} name="location" onChange={this.changeHandler} type="text" className="form-control" />
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colSpan="2">
-                            <input type="submit" value="Submit" onClick={this.submitForm} className="btn btn-dark" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        const equipmentdata= this.state.data;
+        const rows=equipmentdata.map((eqp)  => 
+            <tr key={eqp.id}>
                 
+                <td>{eqp.title}</td>
+                <td>{eqp.description}</td>
+                <td>{eqp.location}</td>
+                
+                <td>{eqp.image_url}</td>
+                <td>{eqp.contact}</td>
+                <td>{eqp.sportType}</td>
+                
+                
+            </tr>
+            
+        );
+
+        return (
+            <div className="events">
+                { equipmentdata.map((eqp)  => 
+                    <EquipmentCard title={eqp.title}  description= {eqp.description}   location ={eqp.location}  image_url= {eqp.image_url} contact={eqp.contact}  sportType={eqp.sportType} eqps={eqp}   />
+                ) }
+                
+
+
+
+
             </div>
         )
     }
 }
 
-export default Equipment
+export default Equipment;

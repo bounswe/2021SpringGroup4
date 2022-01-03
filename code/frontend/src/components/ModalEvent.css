@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(221, 178, 178, 0.4);
+    background: rgba(0,0,0,.4);
 }
 
 .modal-content-wrapper-event {
@@ -17,7 +17,6 @@
 }
 
 .modal-content-event {
-    min-width: 50%;
     max-width: 800px; 
     display: inline;
     background: white;
@@ -35,9 +34,3 @@
     margin-left: 16px;
     padding: 3px 16px;
 }
-
-.modal-content-event button {
-    margin: 0 auto;
-    padding: 3px 16px;
-}
-

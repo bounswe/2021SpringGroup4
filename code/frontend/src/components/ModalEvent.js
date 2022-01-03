@@ -23,4 +23,4 @@ const ModalEvent = props => {
   );
 };
 
-export default ModalEvent;
+export default ModalEvent; 
