@@ -244,4 +244,13 @@
         app:layout_constraintStart_toEndOf="@+id/event_detail_event_title"
         app:layout_constraintTop_toTopOf="@+id/event_detail_event_title" />
 
+    <Button
+        android:id="@+id/list_related_equipment"
+        android:layout_width="128dp"
+        android:layout_height="72dp"
+        android:layout_margin="16dp"
+        android:text="Related Equipment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

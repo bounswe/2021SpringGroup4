@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.sportshub.R
 import com.example.sportshub.databinding.FragmentEquipmentBinding
 
 class EquipmentFragment : Fragment() {
@@ -30,10 +33,25 @@ class EquipmentFragment : Fragment() {
         _binding = FragmentEquipmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        equipmentViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        val recyclerView = binding.equipmentList
+        val adapter = EquipmentAdapter()
+        recyclerView.adapter = adapter
+        equipmentViewModel.getAllEquipments()
+
+        equipmentViewModel.equipments.observe(viewLifecycleOwner,{
+            adapter.equipmentList = it
+            adapter.notifyDataSetChanged()
         })
+
+        binding.btnFilterEquipmentBySportType.setOnClickListener {
+            equipmentViewModel.searchEquipmentsbySportType(binding.editTextFilterEquipmentBySportType.text.toString())
+            binding.editTextFilterEquipmentBySportType.text.clear()
+        }
+
+        binding.btnCreateEquipment.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_equipment_to_createEquipmentFragment)
+        }
+
         return root
     }
 
