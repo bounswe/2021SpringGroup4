@@ -1,6 +1,8 @@
 import './EventListDetail.css';
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
+
 
 
 const EventListDetail = ({events, title}) => {
@@ -11,6 +13,9 @@ const [participants, setParticipants] = useState([
 
 const [selectedUser, setSelectedUser] = useState(null)
 const [selectedSportType, setSelectedSportType] = useState(null)
+const [selectedEvent, setSelectedEvent] = useState(null)
+let {myusername, user} = useContext(AuthContext);
+let {authTokens, logoutUser} = useContext(AuthContext)
 
 const onFindUser = ()=> {
     if(!!selectedUser){
@@ -28,40 +33,78 @@ const onFindSportType = ()=> {
     }
 }
 
+const onApplyEvent = ()=> {
+    if(!!selectedEvent){
+        console.log(selectedEvent)
+        console.log(authTokens)
+        console.log(myusername)
+        window.alert("Succesfully Applied!")
+        fetch('http://3.67.188.187:8000/api/events/' + selectedEvent.id + '/', {
+            method: 'PATCH',
+            headers:{
+                'Content-type': 'application/json; charset=UTF-8',
+                'Authorization':'Bearer ' + String(authTokens.access)
+            },
+            body: JSON.stringify(
+                {
+                    "applicants": {
+                        "add": [myusername]  
+                    }     
+                }
+            )
+        })
+            .then(res => {
+                console.log(res);
+                if(!res.ok){
+                    console.log(res);
+                    throw Error('could not fetch the data for that resource');
+                }
+                console.log(res);
+                return res.json();
+            })
+        const params = new URLSearchParams()
+        params.append('eventId', selectedEvent.id)
+        history.push('/eventDetail?' + params)
+    }
+}
+
     return (  
         <div className="event-list-detail">
             <div className = "event-grid-detail">{
                 <div className="event-preview-detail" key={events.id}>
-                    <h2>{ events.title }</h2>
+                    <h2>{ events.body.title }</h2>
+                    <div className = "sport-type"> {
+                            <button onClick={() => {
+                                setSelectedSportType(events.body.sportType);
+                                onFindSportType();
+                            }} className = "btn btn-dark" >{events.body.sportType}</button>
+                            }
+                            <p>Click to see equipments of {events.body.sportType}</p>
+                            </div>
                     <div className="event-features-detail">
                         <div className="event-inner-detail">
-                            <p> Date: { events.date }</p>
-                            <p> Location: { events.location }</p>
-                            <p> Date: { events.date }</p>
-                            <p> Time: { events.time }</p>
-                            <p> Duration: { events.duration }</p>
-                            <p> Location: { events.location }</p>
-                            <p> Max Players: { events.maxPlayers }</p>
-                            <p> Skill Level: { events.skill_level }</p>
-                            <div className = "sport-type"> { 
-                                <button onClick={() => {
-                                    setSelectedSportType(events.sportType);
-                                    onFindSportType();
-                                }} className = "btn btn-dark" >Sport Type: {events.sportType}</button>
-                            }
-                            </div>
+                            <p> Date: { events.body.date }</p>
+                            <p> Location: { events.body.location }</p>
+                            <p> Date: { events.body.date }</p>
+                            <p> Time: { events.body.time }</p>
+                            <p> Duration: { events.body.duration }</p>
+                            <p> Max Players: { events.body.maxPlayers }</p>
+                            <p> Skill Level: { events.body.skill_level }</p>
                         </div>
-                        <div className = "participants"> { participants.map((user) => (
-                            <button onClick={() => {
+                        <div className = "participants"> Applicants:{ events.body.applicants.map((user) => (
+                            <button style={{display:"block"}} onClick={() => {
                                 setSelectedUser(user.toLowerCase());
                                 onFindUser();
-                              }} className = "btn btn-dark" > {user}</button>
+                              }} className = "btn btn-dark" > {user.toUpperCase()}</button>
                         ))
                         }
                         </div>
                     </div>
                     <div className = "button-block">
-                            <Link to ="./login" className = "btn btn-dark">Apply!</Link>
+                        <button style={{display:"block"}} onClick={() => {
+                                    setSelectedEvent(events);
+                                    onApplyEvent();
+                                }} className = "btn btn-dark" > Apply!</button>
                     </div>  
                 </div>
             }

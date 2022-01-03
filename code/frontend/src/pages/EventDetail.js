@@ -25,7 +25,7 @@ const Events = () => {
                 return res.json();
             })
             .then(data => {
-                setEvents(data.body);
+                setEvents(data);
                 setIsPending(false);
                 setError(null);
             })

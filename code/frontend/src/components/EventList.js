@@ -52,7 +52,7 @@ const onFindEvent = ()=> {
                 <p> Sport Type: { selectedEvent.body.sportType }</p>
                 <p> Max Players: { selectedEvent.body.maxPlayers }</p>
                 <p> Skill Level: { selectedEvent.body.skill_level }</p>
-                <button onClick ={onFindEvent} className = "btn btn-dark">Details</button>   
+                <button onClick ={onFindEvent} className = "btn btn-dark">See the Event Page!</button>   
             </Modal>
             }
         </div>
