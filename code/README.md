@@ -222,3 +222,162 @@ Deployed application lives at http://3.67.188.187:8000/
 ```
 
 **Returns a list of event objects as in List Events endpoint**
+
+
+
+
+---
+### **Get equipment by their id**
+**http://3.67.188.187:8000/api/equipment/<id\>/ [GET]** **authorization required**
+
+**Example Response:**
+
+```json
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "summary": "hilmi posted an equipment",
+    "type": "Create",
+    "actor": {
+        "type": "Person",
+        "name": "hilmi"
+    },
+    "object": {
+        "type": "Equipment",
+        "title": "helmet",
+        "description": "blue, standard sized, for pros",
+        "location": "istanbul/sarıyer",
+        "contact": "www.amazon.com/215555",
+        "image_url": "",
+        "sportType": "skate",
+        "creationDate": "2022-01-03T03:00:14.110513Z"
+    }
+}
+```
+
+**Parameters: id** <br>
+**Response Messages can be HTTP_204_NO_CONTENT, HTTP_200_OK**
+
+---
+### **List equipments**
+**http://3.67.188.187:8000/api/equipment/ [GET]** **authorization required**
+
+**Example Response:**
+
+```json
+{"items":[
+        {
+            "@context": "https://www.w3.org/ns/activitystreams",
+            "summary": "hilmi posted an equipment",
+            "type": "Create",
+            "actor": {
+                "type": "Person",
+                "name": "hilmi"
+            },
+            "object": {
+                "type": "Equipment",
+                "title": "skateboard",
+                "description": "black, 20x50, for pros",
+                "location": "istanbul/sarıyer",
+                "contact": "www.amazon.com/215684",
+                "image_url": "img/p1.png",
+                "sportType": "skate",
+                "creationDate": "2022-01-03T02:56:37.521171Z"
+            }
+        },
+        {
+            "@context": "https://www.w3.org/ns/activitystreams",
+            "summary": "hilmi posted an equipment",
+            "type": "Create",
+            "actor": {
+                "type": "Person",
+                "name": "hilmi"
+            },
+            "object": {
+                "type": "Equipment",
+                "title": "helmet",
+                "description": "blue, standard sized, for pros",
+                "location": "istanbul/sarıyer",
+                "contact": "www.amazon.com/215555",
+                "image_url": "",
+                "sportType": "skate",
+                "creationDate": "2022-01-03T03:00:14.110513Z"
+            }
+        }
+    ]
+ }
+```
+**Parameters: none** <br>
+**Response Messages can be  HTTP_200_OK**
+
+
+### **Create equipment**
+**http://3.67.188.187:8000/api/equipment/ [POST]** **authorization required**
+
+---
+
+**Example Request:**
+
+```json
+{
+    "title":"skateboard",
+    "description":"black,20x50, for pros", 
+    "location":"istanbul/sarıyer", 
+    "sportType":"skate",
+    "contact":"www.amazon.com/215684",
+    "image_url":"img/p1.png"
+}
+```
+**Parameters: title(required), description(required, can be blank), location(required, can be blank), contact(required, can be blank), image_url(required, can be blank), sportType(required, can be blank)** <br>
+**Response Messages can be HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST, HTTP_201_CREATED**
+
+---
+
+### **Delete equipment**
+**http://3.67.188.187:8000/api/equipment/<id\>/ [Delete]** **authorization required**
+
+**Example Response:**
+
+```json
+{}
+```
+
+**Parameters: id** <br>
+**Response Messages can be HTTP_204_NO_CONTENT, HTTP_200_OK**
+
+---
+### **Partially  Update equipment**
+**http://3.67.188.187:8000/api/equipment/<id\>/ [Patch]** **authorization required**
+
+**Example Request:**
+
+```json
+    {
+        "location":"istanbul/kadıköy"
+    }
+```
+**Example Response:**
+
+```json
+{
+    "@context": "https://www.w3.org/ns/activitystreams",
+    "summary": "hilmi posted an equipment",
+    "type": "Create",
+    "actor": {
+        "type": "Person",
+        "name": "hilmi"
+    },
+    "object": {
+        "type": "Equipment",
+        "title": "helmet",
+        "description": "blue, standard sized, for pros",
+        "location": "istanbul/kadıköy",
+        "contact": "www.amazon.com/215555",
+        "image_url": "",
+        "sportType": "skate",
+        "creationDate": "2022-01-03T03:00:14.110513Z"
+    }
+}
+```
+
+**Parameters: id, title(optional), description(optional), location(optional), contact(optional), image_url(optional), sportType(optional)** <br>
+**Response Messages can be HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST, HTTP_200_OK**
