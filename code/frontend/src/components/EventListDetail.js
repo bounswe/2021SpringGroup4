@@ -10,6 +10,8 @@ const [participants, setParticipants] = useState([
     'Tolga', 'Yigit', 'Test'
 ]);
 
+
+const [badgePic,setBadgePic] = useState(null)
 const [events, setEvents] = useState(eventsFromParent)
 
 const [selectedUser, setSelectedUser] = useState(null)
@@ -24,6 +26,12 @@ const onFindUser = ()=> {
         params.append('userName', selectedUser)
         history.push('/userProfileSelect?' + params)
     }
+}
+
+const onSelectBadge = (selectedItem)=> {
+    setBadgePic(selectedItem)
+
+    
 }
 
 const onFindSportType = ()=> {
@@ -86,6 +94,7 @@ const onApplyEvent = ()=> {
     }
 }
 
+console.log(badgePic,`../../public/${badgePic}.png`)
     return (  
         <div className="event-list-detail">
             <div className = "event-grid-detail">{
@@ -123,7 +132,38 @@ const onApplyEvent = ()=> {
                                     setSelectedEvent(events);
                                     onApplyEvent();
                                 }} className = "btn btn-dark"> Apply!</button>
-                    </div>  
+                    </div> 
+                    
+                    
+                    
+                    
+                    <div style= {{display: "flex",
+                    justifyContent: "center"
+                    }}>        
+                    <tr>
+                        <th> <label for="badges">Choose a badge to give :</label>  </th>
+                        <td>
+                            <select  name="badges" id="badges"
+                            onClick= {event => onSelectBadge(event.target.value) }
+                            >
+                                <option value="skilled">Skilled</option>
+                                <option value="friendly">Friendly</option>
+                                <option value="master">Master</option>
+ 				                <option value="novice">Novice</option>
+                                <option value="top_organizer">Top Organizer</option>
+                                <option value="sore_loser">Sore Loser</option>
+				<option value="crybaby2">Crybaby</option>
+				<option value="gentleman">Gentleman</option>
+                            </select>
+                        </td>
+                    </tr>
+
+
+                        <img src={`/${badgePic}.png`} width="200" height="200" />
+                    </div>
+
+
+
                 </div>
             }
             </div>
