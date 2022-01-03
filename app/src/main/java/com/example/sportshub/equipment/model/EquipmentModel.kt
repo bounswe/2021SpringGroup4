@@ -8,7 +8,7 @@ data class EquipmentModel(var id:Int,
                           var owner : String,
                           var title : String,
                           var description : String,
-                          var lcoation : String,
+                          var location : String,
                           var image_url : String,
                           var contact : String,
                           var sportType : String

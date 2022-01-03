@@ -24,7 +24,7 @@ class EquipmentAdapter:RecyclerView.Adapter<EquipmentAdapter.EquipmentViewHolder
             description.text = equipmentModel.description
             owner.text = equipmentModel.owner
             contact.text = equipmentModel.contact
-            location.text = equipmentModel.lcoation
+            location.text = equipmentModel.location
             sportType.text = equipmentModel.sportType
         }
 

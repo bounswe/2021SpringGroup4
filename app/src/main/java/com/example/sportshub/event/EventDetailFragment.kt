@@ -180,6 +180,7 @@ class EventDetailFragment : Fragment() {
         }
 
 
+
         return root
     }
 

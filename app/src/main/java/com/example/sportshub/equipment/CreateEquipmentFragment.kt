@@ -33,7 +33,6 @@ class CreateEquipmentFragment : Fragment() {
     private val binding get() = _binding!!
     var markerLocation = LatLng(41.0863, 29.0441)
     private lateinit var previousMarker: Marker
-    private lateinit var th : Thread
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -52,6 +51,11 @@ class CreateEquipmentFragment : Fragment() {
             previousMarker.remove()
             markerLocation = it
             previousMarker = googleMap.addMarker(MarkerOptions().position(it).title("Equipment Location"))!!
+            val df = DecimalFormat()
+            df.maximumFractionDigits = 3
+            val lat: Double = df.format(markerLocation.latitude).toDouble()
+            val lon: Double = df.format(markerLocation.longitude).toDouble()
+            viewModel.requestmodel.location = Geocoder(context).getFromLocation(lat, lon, 1)[0].getAddressLine(0)
 
         }
 
@@ -74,7 +78,6 @@ class CreateEquipmentFragment : Fragment() {
             viewModel.requestmodel.sportType = binding.editTextSportType.text.toString()
 
             viewModel.createEquipment()
-            th.join()
             findNavController().navigateUp()
         }
 
@@ -100,21 +103,6 @@ class CreateEquipmentFragment : Fragment() {
 
             var btn = dialog.findViewById<FloatingActionButton>(R.id.btnsaveEquipmentLocation)
             btn.setOnClickListener {
-                th = thread(start = true, priority = 1) {
-                    try {
-                        val df = DecimalFormat()
-                        df.setMaximumFractionDigits(2)
-                        val lat: Double = df.format(markerLocation.latitude).toDouble()
-                        val lon: Double = df.format(markerLocation.longitude).toDouble()
-
-                        viewModel.requestmodel.location = Geocoder(context).getFromLocation(lat, lon, 1)[0].getAddressLine(0)
-                        Toast.makeText(requireContext(), viewModel.requestmodel.location, Toast.LENGTH_LONG)
-                            .show()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-
                 dialog.cancel()
             }
 
