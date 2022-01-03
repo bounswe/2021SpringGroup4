@@ -83,6 +83,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/first_name"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.37"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture" />
 
             <TextView
@@ -93,7 +94,7 @@
                 android:text="First Name"
                 app:layout_constraintBottom_toTopOf="@+id/age"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.33"
+                app:layout_constraintHorizontal_bias="0.23"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture" />
 
             <TextView
@@ -114,7 +115,7 @@
                 android:text="Age"
                 app:layout_constraintBottom_toBottomOf="@+id/profile_picture"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toEndOf="@+id/profile_picture"
                 app:layout_constraintTop_toTopOf="@+id/profile_picture"
                 app:layout_constraintVertical_bias="1.0" />
@@ -297,6 +298,28 @@
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toEndOf="@+id/spinner_badge_type"
                 app:layout_constraintTop_toBottomOf="@+id/list_badges" />
+
+            <TextView
+                android:id="@+id/logout_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:background="#A9CA1212"
+                android:text="Logout"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_logout"
+                app:layout_constraintEnd_toStartOf="@+id/btn_logout"
+                app:layout_constraintTop_toTopOf="@+id/btn_logout" />
+
+            <ImageButton
+                android:id="@+id/btn_logout"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:background="#CA1212"
+                android:src="@drawable/ic_logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

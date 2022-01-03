@@ -1,5 +1,6 @@
 package com.example.sportshub.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sportshub.LoginActivity
+import com.example.sportshub.MainActivity
 import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.FragmentProfileBinding
@@ -286,6 +289,12 @@ class ProfileFragment : Fragment() {
                         }
                     })
             }
+        }
+
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         return root
