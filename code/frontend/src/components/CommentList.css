@@ -1,0 +1,31 @@
+/* event previews / list */
+
+.event-preview-comment {
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #fafafa;
+  }
+  .event-preview-comment:hover {
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  }
+  .event-preview-comment h2 {
+    font-size: 22px;
+    color: #f1356d;
+    margin-bottom: 20px;
+  }
+  .event-preview-comment p {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  
+  .event-list-comment {
+    padding: 10px 16px;
+    margin-left: 60px;
+    margin-right: 40px;
+    border-bottom: 1px solid #fafafa;
+  }
+  .event-grid-comment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  

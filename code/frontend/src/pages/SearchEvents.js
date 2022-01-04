@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import EventList from '../components/EventList';
 import { useLocation } from 'react-router-dom'
+import AuthContext from '../context/AuthContext';
+
 
 
 const Events = () => {
@@ -9,15 +11,14 @@ const Events = () => {
     const [error, setError] = useState(null);
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const locationParam = params.get('location') || '';
-    const distParam = params.get('dist') || '' ;
+    let {myusername, user} = useContext(AuthContext);
+
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/search/event/location/', {
+        fetch('http://3.67.188.187:8000/api/search/event/applicant/', {
             method: 'POST',
             body: JSON.stringify({
-                'location': locationParam,
-                'dist': distParam
+                'username': myusername
             }),
             headers:{
                 'Content-type': 'application/json; charset=UTF-8',
@@ -33,7 +34,7 @@ const Events = () => {
                 return res.json();
             })
             .then(data => {
-                setEvents(data.map(d => d.body ));
+                setEvents(data);
                 setIsPending(false);
                 setError(null);
             })
@@ -47,7 +48,7 @@ const Events = () => {
         <div className="events">
             {  error && <div>{ error }</div>  }
             {  isPending && <div>Loading...</div> }
-            {events && <EventList events={events} title = "All Events"/>}
+            {events && <EventList events={events} title = "Going"/>}
         </div>
      );
 }

@@ -1,17 +1,18 @@
 import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
-import { useHistory, BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import Events from './SearchEvents'
+import { useHistory, BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
 // import profile from '.../public/profile.png';
 
 //Bu metodu kullanıyoruz
 // use this method
-function UserProfile() {
+function UserProfileSelect() {
     const history = useHistory()
     const [selectedUser, setSelectedUser] = useState(null)
     const onFindUser = ()=> {
         if(!!selectedUser){
+            console.log(selectedUser)
             const params = new URLSearchParams()
             params.append('userName', selectedUser)
             history.push('/userProfileSelect?' + params)
@@ -52,14 +53,16 @@ function UserProfile() {
             setError(err.message);
         })
     }
-
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const myusername = params.get('userName') || '';
     
-    let {myusername, user, authTokens} = useContext(AuthContext);
     const data = []
     const [userdata, setUserdata] = useState({ username: "", email: "" , first_name: "", last_name: null, age: "" , location: "" });
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
     const [badgePic,setBadgePic] = useState(null);
+    let {authTokens, logoutUser} = useContext(AuthContext);
     const onSelectBadge = (selectedItem)=> {
         setBadgePic(selectedItem)
     }
@@ -117,6 +120,7 @@ function UserProfile() {
             setError(err.message);
         })
     }
+    
     
 
     useEffect(() => {
@@ -242,11 +246,11 @@ function UserProfile() {
                     </tr>
 
                     <tr>
-                   <h2>My Badges</h2>
+                   <h2>Badges</h2>
                     { userdata.badges && 
                     userdata.badges.map( (badg)  => 
                     <tr key={badg.id}>
-                         <p style={{display:"block", cursor:"pointer"}} onClick={() => {
+                        <p style={{display:"block", cursor:"pointer", marginBottom:'-20px'}} onClick={() => {
                             setSelectedUser(badg.giver);
                             onFindUser();
                         }}> {badg.giver.toUpperCase()}</p>
@@ -277,17 +281,36 @@ function UserProfile() {
                 </thead>
               
             </table>
+            <div style= {{display: "flex",
+                    justifyContent: "center"
+                    }}>        
+                    <tr>
+                        <th> <label for="badges">Choose a badge to give :</label>  </th>
+                        <td>
+                            <select  name="badges" id="badges"
+                            onClick= {event => onSelectBadge(event.target.value) }
+                            >
+                                <option value="Skilled">Skilled</option>
+                                <option value="Friendly">Friendly</option>
+                                <option value="Master">Master</option>
+ 				                <option value="Novice">Novice</option>
+                                <option value="Top Organizer">Top Organizer</option>
+                                <option value="Sore Loser">Sore Loser</option>
+				                <option value="Crybaby">Crybaby</option>
+			                	<option value="Gentleman">Gentleman</option>
+                            </select>
+                        </td>
+                    </tr>
 
- 
-           <Events></Events>
 
-            <div className="createAccount">
-
-                <small> You could edit your profile </small>
-                    <div>
-                    <Link to="/editprofile">Edit Profile</Link>
-
+                  
+                   
                     </div>
+                    <center><img src={`/${badgePic}.png`}  width="200" height="200"/></center>
+                    <div style= {{display: "flex",
+                    justifyContent: "center"
+                    }}>        
+                    <button onClick ={onGiveBadge}>Give Badge</button> 
 
             </div>
             
@@ -295,4 +318,4 @@ function UserProfile() {
     )
 }
 
-export default UserProfile
+export default UserProfileSelect

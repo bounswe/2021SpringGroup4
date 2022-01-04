@@ -30,10 +30,12 @@ export class EquipmentList extends Component {
         const equipmentdata= this.state.data;
         const rows=equipmentdata.map((eqp)  => 
             <tr key={eqp.id}>
-                <td>{eqp.creator}</td>
+                
                 <td>{eqp.title}</td>
                 <td>{eqp.description}</td>
                 <td>{eqp.location}</td>
+                <td>{eqp.contact}</td>
+                <td>{eqp.sportType}</td>
             </tr>
         );
 
@@ -42,10 +44,12 @@ export class EquipmentList extends Component {
                 <table className="table table-bordered" >
                 <thead>
                     <tr>
-                        <th>Creator</th>
+                        
                         <th>Title</th>
                         <th>Description</th>
                         <th>Location</th>
+                        <th>Contact</th>
+                        <th>Sport Type</th>
                     </tr>
                 </thead>
                 <tbody>
