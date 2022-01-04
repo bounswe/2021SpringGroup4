@@ -29,18 +29,6 @@ const handleSelect = async event => {
   window.google.maps.Map(document.getElementsByClassName("GoogleMap")).panTo(latLng);
 }; 
 
-const reverseGeocodeCoordinates = async latLng => {
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latLng.lat},${latLng.lng}&sensor=false&key=AIzaSyANMJr1NuQJaRbCQXasdAE1DH1Wzbz005o`)
-  .then(response => response.json() )
-  .then(data=> this.setState({
-      userAdress:data.results[0].formatted_address
-  })    )
-  .then(data => console.log(data))
-  .catch(error => alert(error))
-  setAddress(address)
-}
-
-
 
     const [clickedLatLng, setClickedLatLng] = useState(null);
     const [events, setEvents] = useState([]);
@@ -140,6 +128,8 @@ const reverseGeocodeCoordinates = async latLng => {
             <p> { selectedEvent.description }</p>
             <p> Date: { selectedEvent.date }</p>
             <p> Sport Type: { selectedEvent.sportType }</p>
+            <p> Time: { selectedEvent.time }</p>
+            <p> Duration: { selectedEvent.duration }</p>
             <p> Max Players: { selectedEvent.maxPlayers }</p>
             <p> Skill Level: { selectedEvent.skill_level }</p>
             <div className = "button-block-modal">
