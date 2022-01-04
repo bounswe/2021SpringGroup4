@@ -52,14 +52,6 @@
         <action
             android:id="@+id/action_eventCreateFragment_to_createEventMapFragment"
             app:destination="@id/createEventMapFragment" />
-        <argument
-            android:name="latitude"
-            app:argType="float"
-            android:defaultValue="41.0863"/>
-        <argument
-            android:name="longitude"
-            app:argType="float"
-            android:defaultValue="29.0441"/>
     </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
@@ -87,11 +79,6 @@
         android:name="com.example.sportshub.event.CreateEventMapFragment"
         android:label="fragment_create_event_map"
         tools:layout="@layout/fragment_create_event_map" >
-        <action
-            android:id="@+id/action_createEventMapFragment_to_eventCreateFragment"
-            app:destination="@id/eventCreateFragment"
-            app:popUpTo="@id/eventCreateFragment"
-            app:popUpToInclusive="true" />
         <argument
             android:name="create_or_update"
             app:argType="string"

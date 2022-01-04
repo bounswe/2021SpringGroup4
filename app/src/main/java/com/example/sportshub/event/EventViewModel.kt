@@ -43,6 +43,7 @@ class EventViewModel : ViewModel() {
                         val one_event_model = gson.fromJson(one_event.getJSONObject("body").toString(), EventModel::class.java)
                         one_event_model.id = one_event.getInt("id")
                         one_event_model.creator = one_event.getString("creator")
+                        one_event_model.skillLevel = one_event.getJSONObject("body").getString("skill_level")
                         eventModels.add(one_event_model)
                     }
 

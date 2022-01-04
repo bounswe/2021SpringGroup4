@@ -1,5 +1,6 @@
 package com.example.sportshub.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +17,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sportshub.LoginActivity
+import com.example.sportshub.MainActivity
 import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.FragmentProfileBinding
 import com.example.sportshub.event.AddCommentListener
 import com.example.sportshub.event.EventDetailFragmentArgs
+import com.example.sportshub.event.model.CommentModel
 import com.example.sportshub.event.model.EventModel
+import com.example.sportshub.profile.model.BadgeModel
 import com.example.sportshub.profile.model.ProfileModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -279,6 +284,26 @@ class ProfileFragment : Fragment() {
                         }
 
                         override fun onResponse() {
+                            if(profile.value!!.badges_list.size == 0){
+                                binding.listBadges.isVisible = true
+                                binding.noBadges.isVisible = false
+                                val params1 = binding.btnGrantBadge.layoutParams as ConstraintLayout.LayoutParams
+                                params1.topToBottom = binding.listBadges.id
+                                params1.topMargin = 0
+                                binding.badgesText.requestLayout()
+                                val params2 = binding.spinnerBadgeType.layoutParams as ConstraintLayout.LayoutParams
+                                params2.topToBottom = binding.listBadges.id
+                                params2.topMargin = 0
+                                binding.badgesText.requestLayout()
+                                val params3 = binding.btnSendBadge.layoutParams as ConstraintLayout.LayoutParams
+                                params3.topToBottom = binding.listBadges.id
+                                params3.topMargin = 0
+                                binding.badgesText.requestLayout()
+                            }
+                            val badge = BadgeModel(0, SingletonRequestQueueProvider.getUsername(), profile.value!!.username, 1, binding.spinnerBadgeType.selectedItem.toString())
+                            profile.value!!.badges_list.add(badge)
+                            adapter_badges.badgeList = profile.value!!.badges_list
+                            adapter_badges.notifyDataSetChanged()
                             Toast.makeText(requireContext(),"Badge granted successfully!", Toast.LENGTH_SHORT).show()
                             visibility(binding.btnGrantBadge, true)
                             visibilitySpinner(binding.spinnerBadgeType, false)
@@ -286,6 +311,12 @@ class ProfileFragment : Fragment() {
                         }
                     })
             }
+        }
+
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
         return root

@@ -1,7 +1,6 @@
 package com.example.sportshub.event
 
 import android.app.Dialog
-import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavDirections
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +19,12 @@ import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.databinding.EventDetailFragmentBinding
 import com.example.sportshub.equipment.EquipmentAdapter
+import com.example.sportshub.event.model.CommentModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class EventDetailFragment : Fragment() {
     private lateinit var eventDetailViewModel: EventDetailViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var sharedViewModel: SharedViewModelUpdateEvent
     private var _binding: EventDetailFragmentBinding? = null
     private val binding get() = _binding!!
     private val args by navArgs<EventDetailFragmentArgs>()
@@ -34,7 +33,7 @@ class EventDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         eventDetailViewModel = ViewModelProvider(this).get(EventDetailViewModel::class.java)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModelUpdateEvent::class.java)
         _binding = EventDetailFragmentBinding.inflate(inflater, container, false)
         val root : View = binding.root
 
@@ -87,6 +86,9 @@ class EventDetailFragment : Fragment() {
             binding.eventDetailEventComment.text = "No comments available!"
         }
 
+        val rw: RecyclerView = binding.listComment
+        val adapter = CommentAdapter()
+
         eventDetailViewModel.event!!.value = args.eventModel
         sharedViewModel.event.value = args.eventModel
         sharedViewModel.event.observe(viewLifecycleOwner,{
@@ -106,10 +108,9 @@ class EventDetailFragment : Fragment() {
             val durationParse = it.duration.split(":")
             binding.eventDetailEventDuration.text = "${durationParse[0]}:${durationParse[1]}"
             binding.eventDetailEventLocation.text = it.location
+            binding.eventDetailEventSkillLevel.text = it.skillLevel
             binding.eventDetailEventSportType.text = it.sportType
             binding.eventDetailEventRemainingSpots.text = "${(it.maxPlayers?.minus(it.participants.size)).toString()} spots left"
-            val rw: RecyclerView = binding.listComment
-            val adapter = CommentAdapter()
             rw.adapter = adapter
             adapter.commentList = it.comments
             adapter.notifyDataSetChanged()
@@ -131,6 +132,13 @@ class EventDetailFragment : Fragment() {
                     }
 
                     override fun onResponse() {
+                        if(sharedViewModel.event.value!!.comments.size == 0){
+                            binding.eventDetailEventComment.text = "Comments:"
+                        }
+                        val comment = CommentModel(0, SingletonRequestQueueProvider.getUsername(), eventDetailViewModel.event!!.value!!.id, binding.editTextAddComment.text.toString())
+                        sharedViewModel.event.value!!.comments.add(comment)
+                        adapter.commentList = sharedViewModel.event.value!!.comments
+                        adapter.notifyDataSetChanged()
                         Toast.makeText(requireContext(),"Your comment has been successfully added!", Toast.LENGTH_SHORT).show()
                         binding.editTextAddComment.text.clear()
                     }

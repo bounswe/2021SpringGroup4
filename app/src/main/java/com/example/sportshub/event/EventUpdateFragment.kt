@@ -14,12 +14,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.sportshub.R
 import com.example.sportshub.event.model.EventModel
+import com.google.gson.GsonBuilder
 import java.util.*
 
 class EventUpdateFragment : Fragment() {
-    //private val args by navArgs<EventUpdateFragmentArgs>()
     private lateinit var viewModel: EventUpdateViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var sharedViewModel: SharedViewModelUpdateEvent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +27,7 @@ class EventUpdateFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.event_update_fragment, container, false)
         viewModel = ViewModelProvider(this).get(EventUpdateViewModel::class.java)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        val currentChanges = MutableLiveData<EventModel>()
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModelUpdateEvent::class.java)
 
         var warning: String = ""
         var num: Int = 0
@@ -57,46 +56,35 @@ class EventUpdateFragment : Fragment() {
             return retval
         }
 
-        currentChanges.value = sharedViewModel.event.value
-        currentChanges.observe(viewLifecycleOwner, {
-            view.findViewById<EditText>(R.id.editTextTitle2).setText(it.title)
-            view.findViewById<EditText>(R.id.editTextDescription2).setText(it.description)
-            view.findViewById<EditText>(R.id.editTextSportType2).setText(it.sportType)
-            view.findViewById<EditText>(R.id.editTextSkillLevel2).setText(it.skillLevel)
-            if(it.maxPlayers == null){
-                view.findViewById<EditText>(R.id.editTextMaxPlayers2).setText("")
-            } else{
-                view.findViewById<EditText>(R.id.editTextMaxPlayers2).setText(it.maxPlayers.toString())
-            }
-            view.findViewById<DatePicker>(R.id.createDatePicker2).apply {
-                val now = Calendar.getInstance()
-                minDate = now.timeInMillis
-                val dateParse = it.date.split("-")
-                updateDate(dateParse[0].toInt(), dateParse[1].toInt()-1, dateParse[2].toInt())
-            }
-            view.findViewById<TimePicker>(R.id.createTimePicker2).apply {
-                setIs24HourView(true)
-                val timeParse = it.time.split(":")
-                hour = timeParse[0].toInt()
-                minute = timeParse[1].toInt()
-            }
-            view.findViewById<TimePicker>(R.id.timePickerDuration2).apply {
-                setIs24HourView(true)
-                val durationParse = it.duration.split(":")
-                hour = durationParse[0].toInt()
-                minute = durationParse[1].toInt()
-            }
-        })
+        view.findViewById<EditText>(R.id.editTextTitle2).setText(sharedViewModel.event.value!!.title)
+        view.findViewById<EditText>(R.id.editTextDescription2).setText(sharedViewModel.event.value!!.description)
+        view.findViewById<EditText>(R.id.editTextSportType2).setText(sharedViewModel.event.value!!.sportType)
+        view.findViewById<EditText>(R.id.editTextSkillLevel2).setText(sharedViewModel.event.value!!.skillLevel)
+        if(sharedViewModel.event.value!!.maxPlayers == null){
+            view.findViewById<EditText>(R.id.editTextMaxPlayers2).setText("")
+        } else{
+            view.findViewById<EditText>(R.id.editTextMaxPlayers2).setText(sharedViewModel.event.value!!.maxPlayers.toString())
+        }
+        view.findViewById<DatePicker>(R.id.createDatePicker2).apply {
+            val now = Calendar.getInstance()
+            minDate = now.timeInMillis
+            val dateParse = sharedViewModel.event.value!!.date.split("-")
+            updateDate(dateParse[0].toInt(), dateParse[1].toInt()-1, dateParse[2].toInt())
+        }
+        view.findViewById<TimePicker>(R.id.createTimePicker2).apply {
+            setIs24HourView(true)
+            val timeParse = sharedViewModel.event.value!!.time.split(":")
+            hour = timeParse[0].toInt()
+            minute = timeParse[1].toInt()
+        }
+        view.findViewById<TimePicker>(R.id.timePickerDuration2).apply {
+            setIs24HourView(true)
+            val durationParse = sharedViewModel.event.value!!.duration.split(":")
+            hour = durationParse[0].toInt()
+            minute = durationParse[1].toInt()
+        }
 
         view.findViewById<Button>(R.id.btnCreateEventLocation2).setOnClickListener {
-            currentChanges.value!!.title = view.findViewById<EditText>(R.id.editTextTitle2).text.toString()
-            currentChanges.value!!.description = view.findViewById<EditText>(R.id.editTextDescription2).text.toString()
-            currentChanges.value!!.sportType = view.findViewById<EditText>(R.id.editTextSportType2).text.toString()
-            currentChanges.value!!.skillLevel = view.findViewById<EditText>(R.id.editTextSkillLevel2).text.toString()
-            currentChanges.value!!.maxPlayers = view.findViewById<EditText>(R.id.editTextMaxPlayers2).text.toString().toIntOrNull()
-            currentChanges.value!!.date = "${view.findViewById<DatePicker>(R.id.createDatePicker2).year}-${view.findViewById<DatePicker>(R.id.createDatePicker2).month+1}-${view.findViewById<DatePicker>(R.id.createDatePicker2).dayOfMonth}"
-            currentChanges.value!!.time = "${view.findViewById<TimePicker>(R.id.createTimePicker2).hour}:${view.findViewById<TimePicker>(R.id.createTimePicker2).minute}"
-            currentChanges.value!!.duration = "${view.findViewById<TimePicker>(R.id.timePickerDuration2).hour}:${view.findViewById<TimePicker>(R.id.timePickerDuration2).minute}"
             val action: NavDirections = EventUpdateFragmentDirections.actionEventUpdateFragmentToCreateEventMapFragment().setCreateOrUpdate("u")
             findNavController().navigate(action)
         }
