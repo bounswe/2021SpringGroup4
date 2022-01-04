@@ -72,7 +72,7 @@ class EventSerializer(serializers.ModelSerializer):
         return event 
 
     def update(self, instance, validated_data):
-        regular_fields = ['title', 'description', 'date', 'time', 'duration', 'location', 'maxPlayers', 'sportType', 'skill_level']
+        regular_fields = ['title', 'description', 'date', 'time', 'duration', 'location', 'maxPlayers', 'sportType', 'skill_level', 'lat', 'long']
         list_fields = ['applicants', 'participants']
         body = instance.body
         update = False

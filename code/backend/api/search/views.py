@@ -60,6 +60,16 @@ class EventSearch(views.APIView):
             qs = Event.objects.filter(body__skill_level=skill_level)
             serializer = EventSerializer(qs, many=True)
             return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'applicant':
+            username = request.data.get("username")
+            user = User.objects.get(username=username)
+            EventBody = user.applied 
+            ids = []
+            for event in EventBody.only('id'):
+                ids.append(event.id)
+            qs = Event.objects.filter(Q(id__in=ids))
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
 
 class EquipmentSearch(views.APIView):
     permission_classes = [AllowAny]
