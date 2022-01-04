@@ -1,10 +1,10 @@
 
 # CMPE 451 - SportsHub Frontend
-Deployed app can be reached following url: http://ec2-18-216-171-234.us-east-2.compute.amazonaws.com:3000/
+Deployed app can be reached via following url: http://ec2-18-216-171-234.us-east-2.compute.amazonaws.com:3000/
 
 <br><b>To run the frontend code in your local please follow the instructions below.</b>
 <br>1-  Open the ssh client
-<br> 2- Clone the repository: **$ git clone https://github.com/bounswe/2021SpringGroup4.git**
+<br> 2- Clone the repository if it is not clonned: **$ git clone https://github.com/bounswe/2021SpringGroup4.git**
 <br> 3- Change directory to cloned project
 <br> 4- Change branch to the **frontendmain**: **$ git checkout frontendmain**
 <br> 5- Change directory to the code/frontend: **$ cd code/frontend**

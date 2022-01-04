@@ -1,18 +1,8 @@
-
 import React, {useState, useEffect,useContext} from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import { Button } from '../components/Button';
 import './Home2.css';
-import About from './About';
-import Contact from './Contact';
-import Login from './Login';
-import Register from './Register';
-import RegisterForm from './RegisterForm';
-import Equipment from './Equipment';
-import CreateEvent from './CreateEvent';
-import EquipmentList from './EquipmentList';
-import Events from './Events';
 import AuthContext from '../context/AuthContext'
 
 function Home() {
@@ -69,13 +59,13 @@ function Home() {
                             </li>
     
                             <li className='home2-item'>
-                                <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
+                                <Link to='/equipmentcreate' className='home2-links' onClick={closeMobileMenu}>
                                     Sell Equipment
                                 </Link>
                             </li>
     
                             <li className='home2-item'>
-                                <Link to='/equipmentList' className='home2-links' onClick={closeMobileMenu}>
+                                <Link to='/equipment' className='home2-links' onClick={closeMobileMenu}>
                                     Find Equipment
                                 </Link>
                             </li>
