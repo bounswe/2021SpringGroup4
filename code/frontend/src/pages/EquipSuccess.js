@@ -12,13 +12,13 @@ export class EquipSuccess extends Component {
                 <p> You could find sport equipments</p>
 
                 <h3>
-                <Link to='/equipmentlist' > Find/Buy Sport Equipment </Link>
+                <Link to='/equipment' > Find/Buy Sport Equipment </Link>
                 </h3>
 
                 <p> You could sell other equipment</p>
 
                 <h3>
-                <Link to='/equipment' > Sell Equipment </Link>
+                <Link to='/equipmentcreate' > Sell Equipment </Link>
                 </h3>
                 
             </div>

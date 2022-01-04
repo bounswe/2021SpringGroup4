@@ -2,7 +2,8 @@ import './EventListDetail.css';
 import React, { useState, useContext } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-
+import Comments from './Comments'
+import CommentList from './CommentList'
 
 const EventListDetail = ({events: eventsFromParent, title}) => {
 const history = useHistory()
@@ -16,7 +17,7 @@ const [selectedUser, setSelectedUser] = useState(null)
 const [selectedSportType, setSelectedSportType] = useState(null)
 const [selectedEvent, setSelectedEvent] = useState(null)
 let {myusername, user} = useContext(AuthContext);
-let {authTokens, logoutUser} = useContext(AuthContext)
+let {authTokens, logoutUser} = useContext(AuthContext);
 
 const onFindUser = ()=> {
     if(!!selectedUser){
@@ -29,8 +30,9 @@ const onFindUser = ()=> {
 const onFindSportType = ()=> {
     if(!!selectedSportType){
         const params = new URLSearchParams()
-        params.append('sportType', selectedSportType)
-        history.push('/equipment?' + params)
+        console.log(selectedSportType)
+        params.append('sportType', selectedSportType.toLowerCase())
+        history.push('/equipmentSelect?' + params)
     }
 }
 
@@ -118,12 +120,13 @@ const onApplyEvent = ()=> {
                         }
                         </div>
                     </div>
-                    <div className = "button-block">
-                        <button style={{display:"block"}} onClick={() => {
+                    <div className = "button-block-apply">
+                        <button onClick={() => {
                                     setSelectedEvent(events);
                                     onApplyEvent();
                                 }} className = "btn btn-dark"> Apply!</button>
-                    </div>  
+                    </div>
+                <div style={{marginTop:'50px'}}><CommentList events={events}></CommentList> </div>
                 </div>
             }
             </div>

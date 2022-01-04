@@ -1,6 +1,7 @@
 /* event previews / list */
 
 .event-preview-detail {
+  justify-content: center;
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
@@ -8,6 +9,7 @@
 
 .event-features-detail {
   display: flex;
+  justify-content: center;
 }
 
 .event-preview-detail:hover {
@@ -44,17 +46,15 @@
   margin-block-start: 20px;
 }
 
-.button-block {
-  align-items: center;
+.button-block-apply {
+  justify-content: center;
   text-align: center;
   margin-bottom: 20px;
-  margin-left: 660px;
 }
-
-
 
 .participants {
   margin-left:500px;
+  margin-right: 80px;
 }
 
 .participants p{
@@ -62,10 +62,6 @@
   margin-top: 10px;
   margin-left: 5px;
 
-}
-
-.event-inner-detail {
-  margin-left:200px
 }
 
 .inner-link {
@@ -81,4 +77,8 @@
   text-align: center;
   margin-left: 0px;
   margin-top: 10px
+}
+
+.event-inner-detail {
+  margin-right: 20px;
 }

@@ -37,6 +37,8 @@ import EventDetail from './pages/EventDetail';
 import UserProfileSelect from './pages/UserProfileSelect';
 import EquipSuccess from './pages/EquipSuccess';
 import EquipmentSearch from './pages/EquipmentSearch';
+import EquipmentSelect from './pages/EquipmentSelect';
+
 
 import UserCards from './pages/UserCards';
 
@@ -71,6 +73,7 @@ function App() {
         <Route path='/equipsuccess' component={EquipSuccess} />
         <Route path='/equipmentsearch' component={EquipmentSearch} />
         <Route path='/equipmentcreate' component={EquipmentCreator} />
+        <Route path='/equipmentSelect' component={EquipmentSelect} />
         
         <Route path='/equipmentList' component={EquipmentList} />
         <Route path='/events' component={Events} />

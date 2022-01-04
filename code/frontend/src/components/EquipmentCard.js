@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import '../design/Card.css'
 import Modal from './Modal'
-import { Link} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
+
 
 function EquipmentCard({title,description,location,image_url,contact, sportType ,eqps}) {
 
     const [selectedEquipment, setSelectedEquipment] = useState(null)
-
+    const history = useHistory()
+    const [selectedUser, setSelectedUser] = useState(null)
+    const onFindUser = ()=> {
+        if(!!selectedUser){
+            const params = new URLSearchParams()
+            params.append('userName', selectedUser)
+            history.push('/userProfileSelect?' + params)
+        }
+    }
     
     return (
         <div className="event-list">   
@@ -70,6 +79,10 @@ function EquipmentCard({title,description,location,image_url,contact, sportType 
                 <p> Location: { selectedEquipment.location }</p>
                 <p> Contact: { selectedEquipment.contact }</p>
                 <p> Sport Type : { selectedEquipment.sportType}</p>
+                <p style={{display:"block", cursor:"pointer"}} onClick={() => {
+                            setSelectedUser(selectedEquipment.owner);
+                            onFindUser();
+                        }}> Seller: {selectedEquipment.owner.toUpperCase()}</p>
             
                 
               
