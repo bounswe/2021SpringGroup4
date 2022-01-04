@@ -10,6 +10,8 @@ from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework import status
 from .utils import distance, dist, loc
+from api.equipment.models import EquipmentPost
+from api.equipment.serializers import EquipmentSerializer
 
 class UserSearch(views.APIView):
     def get(self, request, *args, **kwargs):
@@ -43,3 +45,27 @@ class EventSearch(views.APIView):
             qs = Event.objects.filter(Q(id__in=ids))
             serializer = EventSerializer(qs, many=True)
             return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'sport':
+            sportType = request.data.get("sportType")
+            qs = Event.objects.filter(body__sportType__iexact=sportType)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'owner':
+            username = request.data.get("username")
+            qs = Event.objects.filter(owner__username=username)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+        if kwargs.get('field') == 'skill':
+            skill_level = request.data.get("skill_level")
+            qs = Event.objects.filter(body__skill_level=skill_level)
+            serializer = EventSerializer(qs, many=True)
+            return Response(status=200, data=serializer.data, content_type='json')
+
+class EquipmentSearch(views.APIView):
+    permission_classes = [AllowAny]
+    def post(self, request, *args, **kwargs):
+        sportType = request.data.get('sportType')
+        qs = EquipmentPost.objects.filter(sportType__iexact=sportType)
+        serializer = EquipmentSerializer(qs, many=True)
+        return Response(status=200, data=serializer.data, content_type='json')
+
