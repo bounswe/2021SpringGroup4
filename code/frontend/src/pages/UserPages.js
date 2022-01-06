@@ -10,7 +10,7 @@ const UserPages= () => {
     
      
         useEffect(() => {
-            fetch('http://3.67.188.187:8000/api/profiles/', {
+            fetch('http://localhost:8000/api/profiles/', {
                 method: 'GET'
             })
                 .then(res => {

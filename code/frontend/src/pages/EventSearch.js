@@ -8,7 +8,7 @@ const EventSearch = () => {
    const [error, setError] = useState(null);
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/search/event/location/', {
+        fetch('http://localhost:8000/api/search/event/location/', {
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'

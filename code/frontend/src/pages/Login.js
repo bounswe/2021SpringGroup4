@@ -30,7 +30,7 @@ this.submitForm=this.submitForm.bind(this);
 submitForm(){
   console.log("Data submitted.");
 
-  fetch('http://3.67.188.187:8000/api/auth/login/',{
+  fetch('http://localhost:8000/api/auth/login/',{
       method:'POST',
       body:JSON.stringify(this.state),
       headers:{

@@ -14,7 +14,7 @@ function EquipmentSelect() {
     
     useEffect(() => {
         console.log(sportType)
-        fetch('http://3.67.188.187:8000/api/search/equipment/sport/', { 
+        fetch('http://localhost:8000/api/search/equipment/sport/', { 
             method:'POST', 
             headers:{
                 'Content-type': 'application/json; charset=UTF-8'

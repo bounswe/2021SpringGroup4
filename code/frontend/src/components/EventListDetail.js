@@ -42,7 +42,7 @@ const onApplyEvent = ()=> {
         console.log(authTokens)
         console.log(myusername)
         window.alert("Succesfully Applied!")
-        fetch('http://3.67.188.187:8000/api/events/' + selectedEvent.id + '/', {
+        fetch('http://localhost:8000/api/events/' + selectedEvent.id + '/', {
             method: 'PATCH',
             headers:{
                 'Content-type': 'application/json; charset=UTF-8',
@@ -64,7 +64,7 @@ const onApplyEvent = ()=> {
             console.log(res);
             return res.json();
         }).then(()=>{
-            fetch('http://3.67.188.187:8000/api/events/' + selectedEvent.id + '/', {
+            fetch('http://localhost:8000/api/events/' + selectedEvent.id + '/', {
                 method: 'GET'
             }).then(res => {
                 console.log(res);

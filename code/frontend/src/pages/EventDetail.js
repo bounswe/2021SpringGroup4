@@ -12,7 +12,7 @@ const Events = () => {
     const eventIdParam = params.get('eventId') || '';
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/events/' + eventIdParam + '/', {
+        fetch('http://localhost:8000/api/events/' + eventIdParam + '/', {
             method: 'GET'
         })
             .then(res => {

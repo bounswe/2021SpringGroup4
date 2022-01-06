@@ -12,7 +12,7 @@ const Comments = ({ events, comments }) => {
     
     const handleOnClick = async () => {
     
-        let response = await fetch('http://3.67.188.187:8000/api/events/comment/', {
+        let response = await fetch('http://localhost:8000/api/events/comment/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

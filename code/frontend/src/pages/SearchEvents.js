@@ -15,7 +15,7 @@ const Events = () => {
 
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/search/event/applicant/', {
+        fetch('http://localhost:8000/api/search/event/applicant/', {
             method: 'POST',
             body: JSON.stringify({
                 'username': myusername

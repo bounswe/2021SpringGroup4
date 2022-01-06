@@ -23,7 +23,7 @@ const EventList = ({events: eventsFromParent}) => {
         }
         const handleOnClick = async () => {
     
-            fetch('http://3.67.188.187:8000/api/events/comment/', {
+            fetch('http://localhost:8000/api/events/comment/', {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -36,7 +36,7 @@ const EventList = ({events: eventsFromParent}) => {
                     }
                 ),
             }).then(()=>{
-                fetch('http://3.67.188.187:8000/api/events/' + events.id + '/', {
+                fetch('http://localhost:8000/api/events/' + events.id + '/', {
                     method: 'GET'
                 }).then(res => {
                     console.log(res);

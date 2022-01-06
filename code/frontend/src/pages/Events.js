@@ -6,9 +6,10 @@ const Events = () => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
+    //localhost:8000
  
     useEffect(() => {
-        fetch('http://3.67.188.187:8000/api/events/', {
+        fetch('http://localhost:8000/api/events/', {
             method: 'GET'
         })
             .then(res => {

@@ -172,7 +172,7 @@ const EventCreator = () => {
         Useraddr : ${userAdress}
       `);
 
-        let response = await fetch('http://3.67.188.187:8000/api/events/', {
+        let response = await fetch('http://localhost:8000/api/events/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

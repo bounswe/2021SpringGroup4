@@ -24,7 +24,7 @@ function EditUserProfile() {
     let updateProfile = async (e) => {
         console.log("link" + profile_pictures);
         e.preventDefault()
-        let response = await fetch("http://3.67.188.187:8000/api/profiles/" + myusername + "/", {
+        let response = await fetch("http://localhost:8000/api/profiles/" + myusername + "/", {
             method:'PATCH',
             headers:{
                 'Content-Type':'application/json',

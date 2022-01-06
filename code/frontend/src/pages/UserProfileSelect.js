@@ -17,7 +17,7 @@ function UserProfileSelect() {
             params.append('userName', selectedUser)
             history.push('/userProfileSelect?' + params)
         }
-        fetch("http://3.67.188.187:8000/api/profiles/" + myusername + "/" , {
+        fetch("http://localhost:8000/api/profiles/" + myusername + "/" , {
             method: 'GET'
         })
         .then(res => {
@@ -67,7 +67,7 @@ function UserProfileSelect() {
         setBadgePic(selectedItem)
     }
     const onGiveBadge = ()=> {
-        fetch('http://3.67.188.187:8000/api/badges/' ,{
+        fetch('http://localhost:8000/api/badges/' ,{
             method:'POST',
             headers:{
                 'Content-type': 'application/json; charset=UTF-8',
@@ -84,7 +84,7 @@ function UserProfileSelect() {
             return res.json();
         })
         alert(badgePic+"  badge granted successfully!")
-        fetch("http://3.67.188.187:8000/api/profiles/" + myusername + "/" , {
+        fetch("http://localhost:8000/api/profiles/" + myusername + "/" , {
             method: 'GET'
         })
         .then(res => {
@@ -124,7 +124,7 @@ function UserProfileSelect() {
     
 
     useEffect(() => {
-        fetch("http://3.67.188.187:8000/api/profiles/" + myusername + "/" , {
+        fetch("http://localhost:8000/api/profiles/" + myusername + "/" , {
             method: 'GET'
         })
             .then(res => {

@@ -24,7 +24,7 @@ export class UserProfilePage extends Component {
     fetchData(){
         const myusername = 'yigit'
        
-        fetch("http://3.67.188.187:8000/api/profiles/" + myusername + "/" ,{ 
+        fetch("http://localhost:8000/api/profiles/" + myusername + "/" ,{ 
             method:'GET', } )
 
             

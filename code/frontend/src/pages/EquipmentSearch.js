@@ -22,7 +22,7 @@ function EquipmentSearch() {
       `);
         
 
-        let response = await fetch("http://3.67.188.187:8000/api/equipment/" + e.target.userId.value + "/" , {
+        let response = await fetch("http://localhost:8000/api/equipment/" + e.target.userId.value + "/" , {
             method:'GET',
            
         })

@@ -44,7 +44,7 @@ function EquipmentCreator() {
       `);
       console.log("link" + image_url);
 
-        let response = await fetch('http://3.67.188.187:8000/api/equipment/', {
+        let response = await fetch('http://localhost:8000/api/equipment/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json',

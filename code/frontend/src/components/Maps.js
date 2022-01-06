@@ -37,7 +37,7 @@ const handleSelect = async event => {
     
 
     useEffect(() => {
-      fetch('http://3.67.188.187:8000/api/events/', {
+      fetch('http://localhost:8000/api/events/', {
           method: 'GET'
       })
           .then(res => {
