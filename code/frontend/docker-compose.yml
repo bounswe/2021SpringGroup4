@@ -2,14 +2,10 @@ version: "3.8"
 
 services: 
     app:
-        build: 
-            context: .
-            dockerfile: Dockerfile
         volumes: 
             - .:/app
             - ./logs:/logs
         ports:
             - 3000:3000
         image: 352451/group4sportshub 
-        container_name: app-dev
-        command: npm start
+        

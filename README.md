@@ -9,8 +9,7 @@ Deployed app can be reached via following url: http://ec2-18-216-171-234.us-east
 <br> 4- Change branch to the **frontendmain**: **$ git checkout frontendmain**
 <br> 5- Change directory to the code/frontend: **$ cd code/frontend**
 <br> 6- Open **docker desktop**
-<br> 7- Build docker: **$ docker-compose build --no-cache**
-<br> 8- Up container: **$ docker-compose up**
+<br> 7- Up container: **$ docker-compose up**
 <br> Open your browser and go to the following url: **http://localhost:3000/**
 <br><br> **Important Note**: For development purpose don't forget to create new branch. After finished working, 
 new branch should be pushed to the github and pull request should be created with **frontendmain**. 
@@ -21,6 +20,7 @@ The new branch will be merged after necessary reviews.
 <br><b> Running app with docker hub:</b> 
 <br> Open **docker desktop**
 <br> 1- Run app: **$docker-compose up**
+<br> 2- Open your browser and go to the following url: **http://localhost:3000/**
 
 
 
