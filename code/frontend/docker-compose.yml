@@ -10,6 +10,6 @@ services:
             - ./logs:/logs
         ports:
             - 3000:3000
-        image: app:app-dev
+        image: 352451/group4sportshub 
         container_name: app-dev
         command: npm start
