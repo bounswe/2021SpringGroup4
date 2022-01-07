@@ -2,20 +2,57 @@ import React from 'react'
 import {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
 // import profile from '.../public/profile.png';
 
 //Bu metodu kullanıyoruz
 // use this method
 function UserProfile() {
 
-    
+    let {authTokens, logoutUser} = useContext(AuthContext)
     let {myusername, user} = useContext(AuthContext);
 
     const data = []
     const [userdata, setUserdata] = useState({ username: "", email: "" , first_name: "", last_name: null, age: "" , location: "" });
     const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null); 
+    const [badgePic,setBadgePic] = useState(null);
+   
+    const onSelectBadge = (selectedItem)=> {
+        setBadgePic(selectedItem)
     
+        
+    }
+    const onGiveBadge = ()=> {
+        fetch('http://3.67.188.187:8000/api/badges/' ,{
+            method:'POST',
+            headers:{
+                'Content-type': 'application/json; charset=UTF-8',
+                'Authorization':'Bearer ' + String(authTokens.access)
+            },
+            body:JSON.stringify({'owner':myusername, 'event':1, 'type':badgePic})
+        })
+        
+        .then(res => {
+            console.log(res);
+            if(!res.ok){
+                console.log(res);
+                throw Error('could not fetch the data for that resource');
+            }
+           
+            return res.json();
+        })
+        
+
+        .then(data => {
+
+            setUserdata(  data ); 
+            console.log(data)  
+            alert(badgePic+"  badge granted successfully!")
+
+    }  )
+
+}
     
 
     useEffect(() => {
@@ -58,6 +95,7 @@ function UserProfile() {
     }, [])
 
 
+    console.log(badgePic,`/${badgePic}.png`)
 
 
     return (
@@ -86,7 +124,8 @@ function UserProfile() {
                         
                         :
                         <img src= "/profile.png" alt="Profile image" width="200" height="200" />   
-
+                        
+                        
                         }    
                             
                              
@@ -95,6 +134,7 @@ function UserProfile() {
                          </th>
                        
                     </tr>
+                   
 
 
                     <tr>
@@ -153,10 +193,43 @@ function UserProfile() {
                        
                     </tr>
 
+
+
                 </thead>
               
             </table>
+            <div style= {{display: "flex",
+                    justifyContent: "center"
+                    }}>        
+                    <tr>
+                        <th> <label for="badges">Choose a badge to give :</label>  </th>
+                        <td>
+                            <select  name="badges" id="badges"
+                            onClick= {event => onSelectBadge(event.target.value) }
+                            >
+                                <option value="Skilled">Skilled</option>
+                                <option value="Friendly">Friendly</option>
+                                <option value="Master">Master</option>
+ 				                <option value="Novice">Novice</option>
+                                <option value="Top Organizer">Top Organizer</option>
+                                <option value="Sore Loser">Sore Loser</option>
+				                <option value="Crybaby">Crybaby</option>
+			                	<option value="Gentleman">Gentleman</option>
+                            </select>
+                        </td>
+                    </tr>
 
+
+                  
+                   
+                    </div>
+                    <center><img src={`/${badgePic}.png`}  width="200" height="200"/></center>
+                    <div style= {{display: "flex",
+                    justifyContent: "center"
+                    }}>        
+                    <button onClick ={onGiveBadge}>Give Badge</button> 
+
+</div>
 
 
             
