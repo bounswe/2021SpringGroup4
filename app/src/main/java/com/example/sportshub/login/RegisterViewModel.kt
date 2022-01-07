@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.login.model.RegisterModel
 import org.json.JSONException
@@ -12,7 +13,7 @@ import org.json.JSONObject
 
 class RegisterViewModel : ViewModel() {
 
-    private val QUERY_FOR_REGISTER = "http://3.67.188.187:8000/api/auth/register/"
+    private val QUERY_FOR_REGISTER = "${R.string.localBackend}/api/auth/register/"
 
     fun tryRegister(context: Context, username:String, email: String, password: String, registerListener: RegisterListener) {
 

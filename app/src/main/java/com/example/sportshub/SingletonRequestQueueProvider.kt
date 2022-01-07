@@ -17,7 +17,7 @@ object SingletonRequestQueueProvider {
     private lateinit var access_token : String
     private lateinit var username : String
     private lateinit var password : String
-    private val QUERY_FOR_LOGIN = "http://3.67.188.187:8000/api/auth/login/"
+    private val QUERY_FOR_LOGIN = "${R.string.localBackend}/api/auth/login/"
     fun createQueue(context: Context){
         requestQueue = Volley.newRequestQueue(context)
     }

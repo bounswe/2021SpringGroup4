@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.event.model.CreateEventRequestModel
 import com.google.gson.GsonBuilder
@@ -15,7 +16,7 @@ import org.json.JSONObject
 class EventCreateViewModel : ViewModel() {
     val eventCreateRequestModel : MutableLiveData<CreateEventRequestModel> = MutableLiveData(CreateEventRequestModel())
 
-    private val QUERY_FOR_CREATE_EVENT = "http://3.67.188.187:8000/api/events/"
+    private val QUERY_FOR_CREATE_EVENT = "${R.string.localBackend}/api/events/"
     private var warning: String = ""
 
     fun stringConstruction(number: Int, word: String){

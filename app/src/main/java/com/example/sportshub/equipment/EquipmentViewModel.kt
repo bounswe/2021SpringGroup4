@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.example.sportshub.CustomRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.equipment.model.EquipmentModel
 import com.example.sportshub.event.EventListListener
@@ -16,8 +17,8 @@ import org.json.JSONException
 import org.json.JSONObject
 
 class EquipmentViewModel : ViewModel() {
-    private val QUERY_FOR_EQUIPMENT_LIST = "http://3.67.188.187:8000/api/equipment"
-    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "http://3.67.188.187:8000/api/search/equipment/sport/"
+    private val QUERY_FOR_EQUIPMENT_LIST = "${R.string.localBackend}/api/equipment"
+    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "${R.string.localBackend}/api/search/equipment/sport/"
     var equipments = MutableLiveData<MutableList<EquipmentModel>>()
     fun getAllEquipments(){
 
