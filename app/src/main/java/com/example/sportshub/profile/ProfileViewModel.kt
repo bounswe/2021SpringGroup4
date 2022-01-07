@@ -10,6 +10,7 @@ import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.event.AddCommentListener
 import com.example.sportshub.event.EventListListener
@@ -22,9 +23,9 @@ import org.json.JSONObject
 
 class ProfileViewModel : ViewModel() {
 
-    private val QUERY_FOR_GET_PROFILE = "http://3.67.188.187:8000/api/profiles/"
-    private val QUERY_FOR_GET_EVENT_DETAIL = "http://3.67.188.187:8000/api/events/"
-    private val QUERY_FOR_GRANT_BADGE = "http://3.67.188.187:8000/api/badges/"
+    private val QUERY_FOR_GET_PROFILE = "${R.string.localBackend}/api/profiles/"
+    private val QUERY_FOR_GET_EVENT_DETAIL = "${R.string.localBackend}/api/events/"
+    private val QUERY_FOR_GRANT_BADGE = "${R.string.localBackend}/api/badges/"
 
     fun getProfile(context: Context, username: String, getProfileListener: GetProfileListener){
         val url = QUERY_FOR_GET_PROFILE + "$username/"

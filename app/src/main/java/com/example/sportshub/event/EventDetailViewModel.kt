@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.TimeoutError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.sportshub.CustomRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.equipment.model.EquipmentModel
 import com.example.sportshub.event.model.EventModel
@@ -18,12 +19,12 @@ import org.json.JSONObject
 
 class EventDetailViewModel : ViewModel() {
     val event : MutableLiveData<EventModel>? = MutableLiveData(EventModel())
-    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "http://3.67.188.187:8000/api/search/equipment/sport/"
+    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "${R.string.localBackend}/api/search/equipment/sport/"
     var equipments = MutableLiveData<MutableList<EquipmentModel>>()
 
-    private val QUERY_FOR_ADD_COMMENT = "http://3.67.188.187:8000/api/events/comment/"
-    private val QUERY_FOR_APPLY_EVENT = "http://3.67.188.187:8000/api/events/"
-    private val QUERY_FOR_DELETE_EVENT = "http://3.67.188.187:8000/api/events/"
+    private val QUERY_FOR_ADD_COMMENT = "${R.string.localBackend}/api/events/comment/"
+    private val QUERY_FOR_APPLY_EVENT = "${R.string.localBackend}/api/events/"
+    private val QUERY_FOR_DELETE_EVENT = "${R.string.localBackend}/api/events/"
 
     fun addComment(context: Context, body: String, addCommentListener: AddCommentListener) {
         val url = QUERY_FOR_ADD_COMMENT

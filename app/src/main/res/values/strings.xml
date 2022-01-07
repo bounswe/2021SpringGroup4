@@ -3,6 +3,8 @@
     <string name="title_event">Event</string>
     <string name="title_equipment">Equipment</string>
     <string name="title_profile">Profile</string>
+    <string name="backend">http://3.67.188.187:8000</string>
+    <string name="localBackend">localhost:8000</string>
     <string-array name="badge_types">
         <item>--Badge Type--</item>
         <item>Skilled</item>

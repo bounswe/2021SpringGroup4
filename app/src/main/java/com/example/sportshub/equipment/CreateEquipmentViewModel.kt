@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.equipment.model.CreateEquipmentRequestModel
 import com.example.sportshub.event.model.CreateEventRequestModel
@@ -13,7 +14,7 @@ import org.json.JSONObject
 
 class CreateEquipmentViewModel : ViewModel() {
     var requestmodel : CreateEquipmentRequestModel = CreateEquipmentRequestModel()
-    private val QUERY_CREATE_EQUIPMENT = "http://3.67.188.187:8000/api/equipment/"
+    private val QUERY_CREATE_EQUIPMENT = "${R.string.localBackend}/api/equipment/"
 
     fun createEquipment(){
         val url = QUERY_CREATE_EQUIPMENT

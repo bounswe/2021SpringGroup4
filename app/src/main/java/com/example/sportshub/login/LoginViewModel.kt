@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.login.model.LoginResponseModel
 import org.json.JSONException
@@ -11,7 +12,7 @@ import org.json.JSONObject
 
 class LoginViewModel: ViewModel(){
 
-    private val QUERY_FOR_LOGIN = "http://3.67.188.187:8000/api/auth/login/"
+    private val QUERY_FOR_LOGIN = "${R.string.localBackend}/api/auth/login/"
 
     fun tryLogin(context: Context, username: String, password: String, loginListener: LoginListener) {
         //TODO if valid user then save credential for subsequent logins

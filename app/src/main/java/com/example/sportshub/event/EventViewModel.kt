@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.JsonRequest
 import com.example.sportshub.CustomRequest
+import com.example.sportshub.R
 import com.example.sportshub.SingletonRequestQueueProvider
 import com.example.sportshub.event.model.EventModel
 import com.google.gson.Gson
@@ -22,10 +23,10 @@ import org.json.JSONObject
 
 class EventViewModel : ViewModel() {
 
-    private val QUERY_FOR_EVENT_LIST = "http://3.67.188.187:8000/api/events"
-    private val QUERY_FOR_SEARCH_BY_CREATOR = "http://3.67.188.187:8000/api/search/event/owner/"
-    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "http://3.67.188.187:8000/api/search/event/sport/"
-    private val QUERY_FOR_SEARCH_BY_SKILL_LEVEL = "http://3.67.188.187:8000/api/search/event/skill/"
+    private val QUERY_FOR_EVENT_LIST = "${R.string.localBackend}/api/events"
+    private val QUERY_FOR_SEARCH_BY_CREATOR = "${R.string.localBackend}/api/search/event/owner/"
+    private val QUERY_FOR_SEARCH_BY_SPORT_TYPE = "${R.string.localBackend}/api/search/event/sport/"
+    private val QUERY_FOR_SEARCH_BY_SKILL_LEVEL = "${R.string.localBackend}/api/search/event/skill/"
     var eventList : MutableLiveData<List<EventModel>> = MutableLiveData<List<EventModel>>()
 
 
